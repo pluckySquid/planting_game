@@ -2911,3 +2911,37 @@ body .game .task::before {
 .farm-panel .upgrade-button {
     bottom: 22px !important;
 }
+
+
+/* --- ABSOLUTE FIX FOR TASK BAR OFF-SCREEN ISSUE --- */
+/* The issue was that position: fixed was attaching to the viewport instead of the game container 
+   when viewed on a desktop browser. We must use position: absolute relative to the .game container. */
+
+.task,
+body .game .task,
+.phone-shell .game .task {
+    position: absolute !important;
+    bottom: 20px !important;
+    left: 20px !important;
+    right: auto !important;
+    top: auto !important;
+    width: auto !important;
+    min-width: 200px !important;
+    max-width: 80% !important;
+    transform: none !important;
+    background: rgba(44, 31, 22, 0.95) !important;
+    border: 2px solid #8b6b4a !important;
+    border-radius: 8px !important;
+    padding: 10px 15px 10px 45px !important;
+    z-index: 1000 !important;
+    clip-path: none !important;
+}
+
+.task::before,
+body .game .task::before {
+    left: 10px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 25px !important;
+    height: 25px !important;
+}
