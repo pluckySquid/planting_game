@@ -16,6 +16,7 @@ const closeWeatherModalBtn = document.getElementById("closeWeatherModalBtn");
 const weatherBtn = document.querySelector(".profile-card");
 const currentSeasonEl = document.getElementById("currentSeason");
 const currentWeatherIconEl = document.getElementById("currentWeatherIcon");
+const currentWeatherNameEl = document.getElementById("playerName");
 
 const weathers = [
     { id: 'sunny', icon: '☀️', name: '晴天', desc: '阳光明媚，火属性植物加速' },
@@ -41,6 +42,7 @@ function updateCurrentWeather() {
     const current = forecastData[0];
     if(currentSeasonEl) currentSeasonEl.textContent = current.season;
     if(currentWeatherIconEl) currentWeatherIconEl.textContent = current.weather.icon;
+    if(currentWeatherNameEl) currentWeatherNameEl.textContent = current.weather.name;
     
     const gameEl = document.getElementById("game");
     if(gameEl) {

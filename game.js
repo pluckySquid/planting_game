@@ -1,6 +1,6 @@
 const SAVE_KEY = "pastoral-fields-save-v4";
-const PLOT_COLS = 7;
-const PLOT_COUNT = 49;
+const PLOT_COLS = 5;
+const PLOT_COUNT = 25;
 
 const CROPS = {
   corn: { name: "小型玉米", seed: "玉米种子", price: 8671, yield: "2.3斤", growMs: 52000, life: 100, tags: ["折枝"], weather: "折枝 0.3倍", rarity: "普通", reward: 62 },
@@ -250,7 +250,7 @@ function handlePlot(index, event) {
     return;
   }
   if (index >= state.unlocked) {
-    if (index === state.unlocked) { expandField(); } else { showToast("请先开垦前面的土地。"); }
+    expandField();
     return;
   }
 
@@ -262,6 +262,38 @@ function handlePlot(index, event) {
 
   selectedPlot = index;
   showCropCard(index);
+}
+
+function handleFieldFallbackClick(event) {
+  const clickedElement = event.target instanceof Element ? event.target : null;
+  if (
+    suppressClick ||
+    event.defaultPrevented ||
+    clickedElement?.closest(".crop-sprite, .map-building, .topbar, .profile-card, .right-menu, .left-menu, .bottom-actions, .panel, .crop-card, .seed-modal, .toast")
+  ) {
+    return;
+  }
+
+  const plots = Array.from(els.field.children);
+  let nearest = null;
+  let nearestDistance = Infinity;
+
+  plots.forEach((plot, index) => {
+    const rect = plot.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const distance = Math.hypot(event.clientX - cx, event.clientY - cy);
+    if (distance < nearestDistance) {
+      nearestDistance = distance;
+      nearest = index;
+    }
+  });
+
+  if (nearest !== null && nearestDistance < 58) {
+    event.preventDefault();
+    event.stopPropagation();
+    handlePlot(nearest, event);
+  }
 }
 
 function applyMapOffset() {
@@ -435,7 +467,8 @@ function expandField() {
     return;
   }
 
-  const cost = 600 + (state.unlocked - 18) * 250;
+  const expansionStep = Math.max(0, state.unlocked - 18);
+  const cost = Math.round(600 * Math.pow(1.5, expansionStep));
   if (state.coins < cost) {
     showToast(`需要${cost.toLocaleString()}铜钱开垦。`);
     return;
@@ -626,6 +659,7 @@ els.game.addEventListener("pointermove", moveMapDrag);
 els.game.addEventListener("pointerup", handleBuildingPointer, true);
 els.game.addEventListener("pointerup", endMapDrag);
 els.game.addEventListener("pointercancel", endMapDrag);
+document.addEventListener("click", handleFieldFallbackClick, true);
 
 document.addEventListener("click", (event) => {
   const seedButton = event.target.closest("[data-seed]");
