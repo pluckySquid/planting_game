@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+  
+      <!-- Columns -->
+      <rect x="20" y="30" width="10" height="70" fill="#e63946" stroke="#4a2411" stroke-width="3"/>
+      <rect x="70" y="30" width="10" height="70" fill="#e63946" stroke="#4a2411" stroke-width="3"/>
+      <!-- Roof -->
+      <path d="M 10 40 C 20 20, 80 20, 90 40 Q 80 30, 50 30 Q 20 30, 10 40 Z" fill="#2a9d8f" stroke="#1d3557" stroke-width="3"/>
+      <!-- Sign -->
+      <rect x="35" y="35" width="30" height="15" fill="#f4a261" stroke="#4a2411" stroke-width="3"/>
+      <text x="50" y="46" font-size="10" font-family="sans-serif" font-weight="bold" fill="#4a2411" text-anchor="middle">仙灵园</text>
+    
+</svg>
