@@ -1170,3 +1170,32 @@
     pointer-events: auto !important;
     cursor: pointer !important;
 }
+
+/* Force hide the chat box (门派分享) entirely again */
+.chat-box {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+/* Ensure the task bar is cleanly in the bottom left corner as requested previously */
+.task {
+    position: fixed !important;
+    bottom: 20px !important;
+    left: -10px !important;
+    width: auto !important;
+    min-width: 250px !important;
+    background: #3e2b1f !important;
+    border: none !important;
+    border-radius: 0 !important;
+    clip-path: polygon(0 0, 100% 0, calc(100% - 15px) 100%, 0 100%) !important;
+    padding: 10px 40px 10px 60px !important;
+    color: #e6c27a !important;
+    box-shadow: none !important;
+    display: flex !important;
+    align-items: center !important;
+    transform: none !important;
+    z-index: 9999 !important;
+    margin: 0 !important;
+}
