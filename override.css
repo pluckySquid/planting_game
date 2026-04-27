@@ -2972,25 +2972,29 @@ body .game .task::before {
     transform: none !important;
 }
 
+/* Storage moves into the spot Farm just vacated. */
 .storage-building {
     background-image: url("assets/buildings/storage.svg") !important;
-    left: 0 !important;
+    left: 60px !important;
     right: auto !important;
-    top: 300px !important;
+    top: 235px !important;
 }
 
+/* Farm slides up-right along the field's 45° edge to the upper-right corner.
+   Its TOP edge lines up with the diamond field's top point. */
 .farm-building {
     background-image: url("assets/buildings/farm.svg") !important;
-    left: 60px !important;          /* center x = 90, mirrors shop */
-    right: auto !important;
-    top: 235px !important;          /* sits clear above storage (no overlap) */
+    left: auto !important;
+    right: 0 !important;
+    top: 200px !important;
 }
 
+/* Shop mirrors Farm across the field's vertical center axis (x=215). */
 .shop-building {
     background-image: url("assets/buildings/shop.svg") !important;
-    left: auto !important;
-    right: 60px !important;         /* center x = 340 (mirror of farm across x=215) */
-    top: 235px !important;
+    left: 0 !important;
+    right: auto !important;
+    top: 200px !important;
 }
 
 /* Kill any ::before/::after decorative pseudo-elements that earlier rules drew on
