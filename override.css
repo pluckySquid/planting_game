@@ -1306,3 +1306,15 @@
     right: auto !important;
     top: 40px !important;
 }
+
+/* FIX PANNING: Ensure the background and added buildings pan together with the map */
+.game {
+    background-position: calc(50% + var(--map-x)) calc(50% + var(--map-y)) !important;
+    background-size: 150% 150% !important; /* Zoom in slightly to allow panning space */
+}
+.gate {
+    transform: translate(calc(-50% + var(--map-x)), var(--map-y)) !important;
+}
+.scarecrow {
+    transform: translate(calc(-50% + var(--map-x)), var(--map-y)) !important;
+}
