@@ -1394,3 +1394,11 @@ body .game .right-menu {
     flex-direction: column !important;
     position: absolute !important;
 }
+
+/* Ensure Trough and Crates also move properly */
+.trough {
+    transform: translate(calc(-50% + var(--map-x)), var(--map-y)) !important;
+}
+.crates {
+    transform: translate(calc(-50% + var(--map-x)), var(--map-y)) !important;
+}

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" preserveAspectRatio="none">
+        <rect width="1000" height="1000" fill="#a4d85a"/>
+        <path d="M 600 1000 Q 700 800, 650 600 T 750 200 L 950 200 Q 800 600, 850 800 T 800 1000 Z" fill="#dcb974" stroke="#c09d57" stroke-width="8"/>
+        <!-- Some simple flat flowers -->
+        <circle cx="150" cy="800" r="15" fill="#ff7675" stroke="#d63031" stroke-width="4"/>
+        <circle cx="150" cy="800" r="6" fill="#ffeaa7"/>
+        <line x1="150" y1="815" x2="150" y2="840" stroke="#55efc4" stroke-width="6" stroke-linecap="round"/>
+        
+        <circle cx="250" cy="400" r="12" fill="#fd79a8" stroke="#e84393" stroke-width="4"/>
+        <circle cx="250" cy="400" r="5" fill="#ffeaa7"/>
+        <line x1="250" y1="412" x2="250" y2="430" stroke="#55efc4" stroke-width="5" stroke-linecap="round"/>
+        
+        <circle cx="850" cy="100" r="18" fill="#74b9ff" stroke="#0984e3" stroke-width="4"/>
+        <circle cx="850" cy="100" r="7" fill="#ffeaa7"/>
+        <line x1="850" y1="118" x2="850" y2="150" stroke="#55efc4" stroke-width="6" stroke-linecap="round"/>
+    </svg>
