@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>田园牧歌 Demo</title>
+    <link rel="stylesheet" href="styles.css?v=17" />
+  </head>
+  <body>
+    <main class="phone-shell" aria-label="田园牧歌农场游戏">
+      <section class="game" id="game">
+        <div class="weather-layer" aria-hidden="true">
+          <span></span><span></span><span></span><span></span>
+        </div>
+        <div class="version">13110152814&nbsp;&nbsp;6550<br />10.2244_10.2244</div>
+        <div class="gate" aria-hidden="true"><span></span><span></span></div>
+
+        <header class="topbar">
+          <div class="farm-badge">
+            <div class="hut-icon" aria-hidden="true"><span></span></div>
+            <div>
+              <div class="tiny">农场 <span id="level">5</span>级</div>
+              <div class="xp"><span id="xpFill"></span></div>
+            </div>
+          </div>
+          <div class="wallet"><span class="coin"></span><strong id="coins">35182</strong></div>
+          <div class="wallet"><span class="leaf"></span><strong id="grain">54</strong></div>
+        </header>
+
+        <div class="profile-card">
+          <div class="tree-medal" aria-hidden="true"></div>
+          <div class="season">夏</div>
+          <strong id="playerName">大风</strong>
+          <button id="boostBtn" class="round-btn" title="使用唤风铃加速所有作物">↻</button>
+        </div>
+
+        <aside class="right-menu" aria-label="活动">
+          <button class="event wheat">田园<br />试令</button>
+          <button class="event basket">田园<br />牧歌令</button>
+          <button class="event medal">田园<br />活动<small>3天11时</small></button>
+        </aside>
+
+        <aside class="left-menu" aria-label="记录">
+          <button class="wood-btn small" id="settingsBtn">收获<br />设置</button>
+          <button class="wood-btn small" id="logBtn">记录</button>
+        </aside>
+
+        <section class="homestead" aria-label="建筑">
+          <button class="map-building farm-building" id="farmBuildingBtn" aria-label="农场">
+            <span class="building-label">农场</span>
+          </button>
+          <button class="map-building storage-building" id="storageBuildingBtn" aria-label="仓库">
+            <span class="building-label">仓库</span>
+          </button>
+          <button class="map-building shop-building" id="shopBuildingBtn" aria-label="商铺">
+            <span class="building-label">商铺</span>
+          </button>
+          <div class="shed" aria-hidden="true">
+            <div class="roof"></div>
+            <div class="wall"><span>农场</span></div>
+          </div>
+          <div class="pond"></div>
+          <div class="crates"><span></span><span></span><span></span></div>
+          <div class="merchant">
+            <div class="speech">35</div>
+            <div class="merchant-body">福</div>
+          </div>
+        </section>
+
+        <section class="field-wrap">
+          <div class="timer">00:23:10</div>
+          <div class="task" id="taskText">使用唤风铃1次 (0/1)</div>
+          <div class="field" id="field" aria-label="农田"></div>
+          <div class="crop-layer" id="cropLayer" aria-hidden="true"></div>
+        </section>
+
+        <nav class="bottom-actions" aria-label="操作">
+          <button class="wood-btn" id="plantAllBtn">播种</button>
+          <button class="wood-btn main" id="harvestAllBtn">收获</button>
+          <button class="wood-btn" id="expandBtn">开垦</button>
+        </nav>
+
+        <aside class="tool-rail" aria-label="快捷操作">
+          <button id="rulesBtn">说明</button>
+          <button id="quickHarvestBtn">一键<br />收获</button>
+          <button id="bookBtn">图鉴</button>
+          <button id="visitBtn">拜访</button>
+        </aside>
+
+        <div class="chat" aria-hidden="true">
+          <p>[门派] [玉华山王者] [分享]</p>
+          <p>[门派] [肝就肝] [分享]</p>
+        </div>
+
+        <section class="crop-card" id="cropCard" aria-live="polite" hidden>
+          <div class="bubble-actions">
+            <button id="removeCropBtn">铲除</button>
+            <button id="moveCropBtn">移植</button>
+            <button id="itemCropBtn">道具</button>
+            <button id="cardHarvestBtn">收获</button>
+          </div>
+          <div class="paper-card">
+            <button class="close-card" id="closeCropBtn" aria-label="关闭">×</button>
+            <div class="rarity-tag" id="cardRarity">普通</div>
+            <h2 id="cardName">小型玉米</h2>
+            <div class="card-art" id="cardArt"></div>
+            <div class="price-row"><span class="coin"></span><strong id="cardPrice">8671</strong><button>!</button></div>
+            <div class="life-row"><span class="water-drop"></span><div><i id="cardLife"></i></div><b id="cardLifeText">100/100</b></div>
+            <p>产量 <strong id="cardYield">2.3斤</strong></p>
+            <p>天气词条 <strong id="cardWeather">折枝 0.3倍</strong></p>
+            <div class="tags" id="cardTags"></div>
+          </div>
+        </section>
+
+        <section class="panel shop-panel" id="shopPanel" hidden>
+          <div class="panel-title">种子商店</div>
+          <button class="panel-close" data-close="shopPanel">×</button>
+          <div class="shop-top"><span class="coin"></span><strong id="shopCoins">25.6万</strong><button id="refreshShopBtn">刷新</button></div>
+          <div class="seed-grid" id="seedGrid"></div>
+        </section>
+
+        <section class="panel farm-panel" id="farmPanel" hidden>
+          <div class="panel-title">农舍</div>
+          <button class="panel-close" data-close="farmPanel">×</button>
+          <div class="farm-preview">
+            <div class="mini-farm-art"></div>
+            <div class="level-step"><span>5</span><b>›</b><span>6</span></div>
+          </div>
+          <div class="farm-exp-row"><strong>农场经验：</strong><div><i id="farmPanelXp"></i></div><b id="farmPanelXpText">1250/2620</b></div>
+          <h3>解锁种子</h3>
+          <div class="unlock-seeds">
+            <span class="crop-icon crop-icon-corn"></span>
+            <span class="crop-icon crop-icon-cauliflower"></span>
+          </div>
+          <h3>升级效果</h3>
+          <div class="upgrade-list" id="upgradeList"></div>
+          <button class="upgrade-button" id="upgradeFarmBtn">升级</button>
+        </section>
+
+        <section class="panel storage-panel" id="storagePanel" hidden>
+          <div class="panel-title">仓库</div>
+          <button class="panel-close" data-close="storagePanel">×</button>
+          <div class="storage-grid" id="storageGrid"></div>
+        </section>
+
+        <section class="panel book-panel" id="bookPanel" hidden>
+          <div class="panel-title">作物图鉴</div>
+          <button class="panel-close" data-close="bookPanel">×</button>
+          <div class="book-tabs"><span>普通</span><span>常见</span><span>稀有</span></div>
+          <div class="book-grid" id="bookGrid"></div>
+        </section>
+
+        <section class="panel rules-panel" id="rulesPanel" hidden>
+          <div class="panel-title">偷取规则 / 天气规则</div>
+          <button class="panel-close" data-close="rulesPanel">×</button>
+          <div class="rules-scroll">
+            <h3>作物详情</h3>
+            <p>果实售价由基础单价、稀有度系数、最终产量和突变词条共同决定。</p>
+            <p>作物产量会随季节、天气与播种时机上下波动，有概率产出高价值词条。</p>
+            <h3>稀有度规则</h3>
+            <p>普通 1倍、常见 2倍、优质 4倍、卓越 6倍、珍稀 8倍、参天 10倍。</p>
+            <h3>天气词条</h3>
+            <p>小雨、阵雨、暴雨、小雪、晴雪、大雪、微风、大风、龙卷风、雾天、薄雾、大雾、闪电、雷暴、流星、极光、红月、彩虹等。</p>
+            <h3>种子商店</h3>
+            <p>每天有免费刷新次数，刷新后价格会逐步提高。购买种子后可在空地播种。</p>
+          </div>
+        </section>
+
+        <div class="toast" id="toast" role="status" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <script src="game.js"></script>
+  </body>
+</html>
