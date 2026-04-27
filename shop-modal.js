@@ -5,44 +5,58 @@ if (!state.shopItems || state.shopItems.length === 0) {
 
 function generateShopItems() {
     const items = [];
-    for(let i=0; i<4; i++) {
-        items.push(CROP_ORDER[Math.floor(Math.random() * CROP_ORDER.length)]);
+    // Generate 6 items to match screenshot exactly
+    for(let i=0; i<6; i++) {
+        const key = CROP_ORDER[Math.floor(Math.random() * CROP_ORDER.length)];
+        items.push({
+            key: key,
+            limit: Math.floor(Math.random() * 5) + 2, // limit between 2 and 6
+            bought: false
+        });
     }
     return items;
 }
 
 // Override the original renderShop
 window.renderShop = function() {
-    els.shopCoins.textContent = formatCoins(state.coins);
-    els.seedGrid.innerHTML = state.shopItems.map((key, i) => {
-        const crop = CROPS[key];
+    let coinsDisplay = state.coins;
+    if (state.coins >= 10000) {
+        coinsDisplay = (state.coins / 10000).toFixed(1) + "万";
+    }
+    els.shopCoins.textContent = coinsDisplay;
+    
+    els.seedGrid.innerHTML = state.shopItems.map((item, i) => {
+        const crop = CROPS[item.key];
+        const isBought = item.bought;
         return `
-        <div class="seed-card" style="display: flex; flex-direction: column; align-items: center; border: 2px solid #a44b22; background: #fff1b8; padding: 10px; border-radius: 8px;">
-            <div class="crop-sprite crop-sprite-${key} stage-3" style="position: relative; transform: none; left: auto; top: auto; animation: none; width: 40px; height: 40px;"></div>
-            <strong style="margin: 8px 0 4px; color: #4a2412;">${crop.seed}</strong>
-            <div style="font-size: 12px; color: #c3402d; font-weight: bold; margin-bottom: 8px;">💎 ${crop.price}</div>
-            <button onclick="buyShopItem(${i}, '${key}')" style="background: linear-gradient(#d78b4d, #8a3c1b); color: white; border: 2px solid #5a2817; padding: 6px 15px; border-radius: 6px; font-weight: bold; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.3);">购买</button>
+        <div class="seed-card ${isBought ? 'selected' : ''}">
+            <div class="price-badge">${crop.price}玉</div>
+            <div class="crop-sprite crop-sprite-${item.key} stage-3" style="position: relative; transform: none; left: auto; top: auto; animation: none; width: 45px; height: 55px; margin: auto; grid-column: 1; grid-row: 1;"></div>
+            <strong style="grid-column: 2; grid-row: 1; color: #4a2411; font-size: 14px; text-align: right; align-self: start; margin-top: 5px;">${crop.seed}</strong>
+            <div class="limit" style="grid-column: 1; grid-row: 2; color: #4a2411; font-size: 11px; margin-top: 10px;">限购：${item.limit}</div>
+            <button onclick="buyShopItem(${i})" class="${isBought ? 'bought' : ''}" style="grid-column: 2; grid-row: 2; background: transparent; border: 1px dashed ${isBought ? '#5a2817' : '#c3402d'}; color: ${isBought ? '#5a2817' : '#c3402d'}; font-size: 12px; font-weight: bold; padding: 4px 0; border-radius: 2px; width: 100%; margin-top: 10px; cursor: pointer;">
+                ${isBought ? '已选' : '选择'}
+            </button>
         </div>
         `;
     }).join("");
-    
-    // Fill empty slots if bought
-    for (let i = state.shopItems.length; i < 4; i++) {
-        els.seedGrid.innerHTML += `
-        <div class="seed-card" style="display: flex; flex-direction: column; align-items: center; justify-content: center; border: 2px dashed #a44b22; background: rgba(255, 241, 184, 0.5); padding: 10px; border-radius: 8px;">
-            <div style="color: #a44b22; font-weight: bold;">已售空</div>
-        </div>
-        `;
-    }
 };
 
-window.buyShopItem = function(index, key) {
-    const crop = CROPS[key];
+window.buyShopItem = function(index) {
+    const item = state.shopItems[index];
+    if (item.bought) {
+        showToast("已达到限购数量！");
+        return;
+    }
+    const crop = CROPS[item.key];
     if (state.coins >= crop.price) {
         state.coins -= crop.price;
-        state.inventory[key] = (state.inventory[key] || 0) + 1;
-        state.shopItems.splice(index, 1);
-        showToast(`购买成功：${crop.seed}`);
+        state.inventory[item.key] = (state.inventory[item.key] || 0) + 1;
+        item.limit -= 1;
+        if (item.limit <= 0) {
+            item.bought = true;
+        }
+        showToast(`花费 ${crop.price} 灵玉购买了 ${crop.seed}`);
         commit();
     } else {
         showToast("灵玉不足，无法购买！");
@@ -51,27 +65,25 @@ window.buyShopItem = function(index, key) {
 
 // Override refresh logic
 setTimeout(() => {
-    els.refreshShop.replaceWith(els.refreshShop.cloneNode(true));
-    els.refreshShop = document.querySelector("#refreshShopBtn");
-    els.refreshShop.innerHTML = "刷新 (500💎)";
-    els.refreshShop.style.background = "linear-gradient(#f2b92d, #c5753a)";
-    els.refreshShop.style.color = "white";
-    els.refreshShop.style.border = "2px solid #5a2817";
-    els.refreshShop.style.padding = "5px 10px";
-    els.refreshShop.style.borderRadius = "5px";
-    els.refreshShop.style.cursor = "pointer";
-    els.refreshShop.style.fontWeight = "bold";
+    if(els.refreshShop) {
+        els.refreshShop.replaceWith(els.refreshShop.cloneNode(true));
+        els.refreshShop = document.querySelector("#refreshShopBtn");
+        els.refreshShop.innerHTML = "刷新";
+        
+        // Remove old inline styles, let CSS handle it
+        els.refreshShop.removeAttribute("style");
 
-    els.refreshShop.addEventListener("click", () => {
-        const REFRESH_COST = 500;
-        if (state.coins >= REFRESH_COST) {
-            state.coins -= REFRESH_COST;
-            state.shopItems = generateShopItems();
-            showToast(`花费 500 灵玉刷新了商店！`);
-            commit();
-        } else {
-            showToast("灵玉不足，无法刷新商店！");
-        }
-    });
-    renderShop();
+        els.refreshShop.addEventListener("click", () => {
+            const REFRESH_COST = 500;
+            if (state.coins >= REFRESH_COST) {
+                state.coins -= REFRESH_COST;
+                state.shopItems = generateShopItems();
+                showToast(`花费 500 灵玉刷新了商店！`);
+                commit();
+            } else {
+                showToast("灵玉不足，无法刷新商店！");
+            }
+        });
+        renderShop();
+    }
 }, 500);

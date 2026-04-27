@@ -973,3 +973,124 @@
 .building-label {
     display: none !important;
 }
+
+/* --- EXACT SHOP PANEL MATCH --- */
+.shop-panel {
+    background: #e8cfa6 !important; /* Tan board background */
+    border: 6px solid #6b3e26 !important; /* Thick brown border */
+    border-radius: 4px !important;
+    padding: 20px 10px 10px !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6) !important;
+    width: 320px !important;
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 200 !important;
+}
+
+/* Tab Title */
+.shop-panel .panel-title {
+    position: absolute !important;
+    top: -25px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    background: #5a2e17 !important;
+    color: #fdf5e6 !important;
+    padding: 8px 30px !important;
+    border-radius: 8px 8px 0 0 !important;
+    font-size: 20px !important;
+    font-weight: bold !important;
+    letter-spacing: 2px !important;
+    border: 4px solid #4a2411 !important;
+    border-bottom: none !important;
+    white-space: nowrap !important;
+}
+
+/* Bottom Right Close Button */
+.shop-panel .panel-close {
+    position: absolute !important;
+    bottom: -20px !important;
+    right: -20px !important;
+    width: 40px !important;
+    height: 40px !important;
+    background: #c3402d !important;
+    border: 3px solid #5a2817 !important;
+    border-radius: 8px !important;
+    color: white !important;
+    font-size: 24px !important;
+    font-weight: bold !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 2px 4px 0 rgba(0,0,0,0.3) !important;
+    top: auto !important;
+    cursor: pointer !important;
+}
+
+/* Top bar: Coins and Refresh */
+.shop-top {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 15px !important;
+    margin-top: 15px !important;
+    margin-bottom: 15px !important;
+}
+.shop-top strong {
+    color: #4a2411 !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+}
+#refreshShopBtn {
+    background: linear-gradient(to bottom, #5cb85c, #3d8b3d) !important;
+    border: 2px solid #255625 !important;
+    border-radius: 6px !important;
+    color: white !important;
+    padding: 8px 20px !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    box-shadow: inset 0 2px rgba(255,255,255,0.3), 0 3px 0 #255625 !important;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5) !important;
+    cursor: pointer !important;
+}
+#refreshShopBtn:active {
+    transform: translateY(3px) !important;
+    box-shadow: none !important;
+}
+
+/* Grid and Cards */
+.seed-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+}
+.seed-card {
+    background: #fdf2d0 !important; /* Light yellow/beige background */
+    border: 2px solid #6b3e26 !important;
+    border-radius: 4px !important;
+    padding: 8px !important;
+    display: grid !important;
+    grid-template-columns: 45px 1fr !important;
+    grid-template-rows: auto auto !important;
+    gap: 5px !important;
+    align-items: end !important;
+    position: relative !important;
+}
+.seed-card.selected {
+    border: 3px solid #4ade80 !important; /* Green border when fully bought/selected */
+}
+.seed-card .price-badge {
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    background: #c3402d;
+    color: white;
+    font-size: 10px;
+    padding: 2px 4px;
+    border-radius: 4px;
+    border: 1px solid #5a2817;
+    font-weight: bold;
+    z-index: 10;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+}
