@@ -1,0 +1,778 @@
+/* UI Overrides to match the reference image exactly */
+
+.game {
+    background: #9bd27b !important; /* Flat light green grass */
+}
+
+/* --- Topbar modifications --- */
+.topbar {
+    position: relative;
+    padding-top: 25px !important;
+}
+
+/* Wooden pegs above the boxes */
+.topbar .wallet, .topbar .farm-badge {
+    position: relative;
+    border: 3px solid #5a2817 !important;
+    background: #ebefce !important; /* light beige */
+    border-radius: 6px !important;
+    color: #5a2817 !important;
+}
+.topbar .wallet strong {
+    color: #5a2817 !important;
+    font-weight: bold;
+}
+
+.topbar .wallet::before, .topbar .wallet::after,
+.topbar .farm-badge::before, .topbar .farm-badge::after {
+    content: "";
+    position: absolute;
+    top: -25px;
+    width: 12px;
+    height: 30px;
+    background: linear-gradient(90deg, #b97645, #7a3615, #4e1f13);
+    border: 2px solid #3c160a;
+    border-radius: 4px;
+    z-index: -1;
+}
+.topbar .farm-badge::before { left: 15px; }
+.topbar .farm-badge::after { left: 65px; }
+.topbar .wallet::before { left: 20px; }
+.topbar .wallet::after { right: 20px; }
+
+/* --- Profile Card (Season & Weather) --- */
+.profile-card {
+    background: #e2ecc2 !important; /* greenish beige */
+    border: 3px solid #85af5f !important;
+    border-radius: 6px !important;
+    top: 85px !important;
+    left: 15px !important;
+    display: flex;
+    align-items: center;
+    padding: 2px 8px !important;
+    width: auto !important;
+}
+.profile-card .season {
+    background: #7ca856 !important;
+    color: white !important;
+    padding: 2px 6px !important;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 4px;
+    margin-right: 6px;
+}
+.profile-card strong {
+    color: #2a4115 !important;
+    font-size: 16px !important;
+}
+
+/* --- Right menu buttons (The circle-topped square buttons) --- */
+.right-menu {
+    top: 140px !important;
+    right: 5px !important;
+    gap: 2px !important;
+}
+
+.event {
+    width: 65px !important;
+    min-height: 60px !important;
+    border-radius: 10px !important;
+    border: 3px solid #481d0f !important;
+    background: linear-gradient(to bottom, #cf864c 0%, #cf864c 45%, #903c19 46%, #62230b 100%) !important;
+    box-shadow: inset 0 2px rgba(255,255,255,0.2) !important;
+    color: white !important;
+    font-size: 12px !important;
+    line-height: 1.1 !important;
+    padding: 18px 2px 2px 2px !important;
+    text-shadow: 1px 1px #481d0f !important;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Green dot badges on the buttons */
+.event::before {
+    content: "" !important;
+    position: absolute !important;
+    top: -12px !important;
+    
+    
+    width: 28px !important;
+    height: 28px !important;
+    background: radial-gradient(circle at 30% 30%, #e8f99e, #b8df51 60%, #87a935) !important;
+    border-radius: 50% !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3) !important;
+    z-index: 10;
+}
+/* A small yellow dot inside the green dot */
+.event::after {
+    content: "" !important;
+    position: absolute !important;
+    top: -4px !important;
+    
+    
+    width: 6px !important;
+    height: 6px !important;
+    background: #ffeb3b !important;
+    border-radius: 50% !important;
+    z-index: 11;
+}
+
+/* --- Bottom Left buttons --- */
+.left-menu {
+    bottom: 120px !important;
+    left: 5px !important;
+}
+.wood-btn.small {
+    width: 65px !important;
+    min-height: 50px !important;
+    border-radius: 10px !important;
+    border: 3px solid #481d0f !important;
+    background: linear-gradient(to bottom, #cf864c 0%, #cf864c 45%, #903c19 46%, #62230b 100%) !important;
+    color: white !important;
+    font-size: 14px !important;
+    text-shadow: 1px 1px #481d0f !important;
+}
+
+/* --- Main Bottom buttons (播种, 收获, 开垦) --- */
+.bottom-actions {
+    bottom: 5px !important;
+    left: 50px !important;
+    right: 50px !important;
+    gap: 8px !important;
+}
+.bottom-actions .wood-btn {
+    border-radius: 12px !important;
+    border: 3px solid #481d0f !important;
+    background: linear-gradient(to bottom, #d58d51 0%, #d58d51 45%, #a5471f 46%, #772b12 100%) !important;
+    color: white !important;
+    font-size: 20px !important;
+    text-shadow: 1px 2px #481d0f !important;
+    box-shadow: inset 0 2px rgba(255,255,255,0.2) !important;
+    min-height: 45px !important;
+    padding: 2px !important;
+}
+
+
+
+/* Ensure crops are above the field */
+.crop-layer {
+    z-index: 15 !important;
+}
+
+/* --- Left Buildings (Yellow Awning + Timer + Task) --- */
+.shed {
+    position: absolute !important;
+    left: 20px !important;
+    top: 220px !important;
+    width: 140px !important;
+    height: 80px !important;
+    background: #bd5933 !important;
+    border: 3px solid #481d0f !important;
+    border-radius: 10px !important;
+    z-index: 2 !important;
+    pointer-events: none;
+}
+.shed .roof {
+    position: absolute !important;
+    top: -30px !important;
+    left: -5px !important;
+    right: -5px !important;
+    height: 50px !important;
+    background: repeating-linear-gradient(90deg, #f0c354 0, #f0c354 20px, #e8a640 20px, #e8a640 40px) !important;
+    border: 3px solid #481d0f !important;
+    border-radius: 20px 20px 0 0 !important;
+}
+.shed .wall { display: none !important; }
+
+.timer {
+    position: absolute !important;
+    left: 20px !important;
+    top: -120px !important;
+    background: rgba(0,0,0,0.7) !important;
+    color: white !important;
+    padding: 2px 8px !important;
+    border-radius: 4px !important;
+    font-family: monospace !important;
+    font-size: 16px !important;
+    z-index: 10 !important;
+    border: 1px solid rgba(255,255,255,0.3);
+    pointer-events: none;
+}
+
+.task {
+    position: absolute !important;
+    left: 20px !important;
+    top: -80px !important;
+    background: rgba(0,0,0,0.6) !important;
+    color: white !important;
+    padding: 6px 15px !important;
+    border-radius: 0 15px 15px 0 !important;
+    font-size: 14px !important;
+    font-weight: bold !important;
+    z-index: 10 !important;
+    border-left: 4px solid #8b5a33 !important;
+    pointer-events: none;
+}
+
+/* Chat Box */
+.chat-box {
+    position: absolute;
+    bottom: 60px;
+    left: 10px;
+    right: 50px;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    padding: 10px;
+    font-size: 12px;
+    border-radius: 5px;
+    z-index: 10;
+    clip-path: polygon(0 0, 100% 0, 90% 100%, 0 100%);
+}
+
+/* --- Right Building (Blue Awning Shop) --- */
+.merchant {
+    position: absolute !important;
+    right: 50px !important;
+    top: 240px !important;
+    width: 120px !important;
+    height: 70px !important;
+    background: #bd5933 !important;
+    border: 3px solid #481d0f !important;
+    border-radius: 10px !important;
+    z-index: 5 !important;
+}
+.merchant::before {
+    content: "";
+    position: absolute !important;
+    top: -20px !important;
+    left: -5px !important;
+    right: -5px !important;
+    height: 40px !important;
+    background: repeating-linear-gradient(90deg, #1c4d63 0, #1c4d63 20px, #4d8f99 20px, #4d8f99 40px) !important;
+    border: 3px solid #481d0f !important;
+    border-radius: 15px 15px 0 0 !important;
+}
+.merchant .merchant-body, .merchant .speech { display: none !important; } /* Hide the old characters */
+
+/* Crates */
+.crates {
+    position: absolute !important;
+    left: 140px !important;
+    top: 250px !important;
+    z-index: 4 !important;
+}
+.crates span {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background: #8b5a33;
+    border: 2px solid #481d0f;
+    margin: -5px;
+    position: relative;
+}
+.crates span::after {
+    content: "";
+    position: absolute;
+    inset: 2px;
+    border: 1px solid rgba(0,0,0,0.3);
+}
+
+/* Fix right menu position to avoid overlapping the blue shop */
+.right-menu {
+    top: 100px !important;
+}
+.left-menu .wood-btn {
+    width: 65px !important;
+    min-height: 50px !important;
+    border-radius: 10px !important;
+    border: 3px solid #481d0f !important;
+    background: linear-gradient(to bottom, #cf864c 0%, #cf864c 45%, #903c19 46%, #62230b 100%) !important;
+    color: white !important;
+    font-size: 14px !important;
+    text-shadow: 1px 1px #481d0f !important;
+    box-shadow: inset 0 2px rgba(255,255,255,0.2) !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Fix the shop building position and z-index to not block the field */
+.merchant {
+    position: absolute !important;
+    right: 30px !important;
+    top: 200px !important;
+    width: 120px !important;
+    height: 70px !important;
+    background: #bd5933 !important;
+    border: 3px solid #481d0f !important;
+    border-radius: 10px !important;
+    z-index: 2 !important;
+    pointer-events: none;
+}
+
+/* Crates */
+.crates {
+    position: absolute !important;
+    left: 170px !important;
+    top: 250px !important;
+    z-index: 2 !important;
+    pointer-events: none;
+}
+
+/* Hide the bottom actions since they are moving to context menus */
+.bottom-actions {
+    display: none !important;
+}
+
+/* Modal styles for seed selection */
+.seed-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 100;
+    display: grid;
+    place-items: center;
+}
+.seed-modal[hidden] {
+    display: none !important;
+}
+.seed-modal-content {
+    background: #e2ecc2;
+    border: 3px solid #85af5f;
+    border-radius: 10px;
+    padding: 20px;
+    width: 320px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+.seed-modal-content h3 {
+    margin: 0 0 15px;
+    text-align: center;
+    color: #2a4115;
+}
+.seed-grid-modal {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+.seed-modal-btn {
+    background: #fff1b8;
+    border: 2px solid #a7663c;
+    border-radius: 6px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+.seed-modal-btn:hover {
+    background: #f2b92d;
+}
+
+/* Crop context menu overrides */
+.crop-card {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    top: 50% !important;
+    
+    transform: translate(-50%, -50%) !important;
+}
+.crop-card .paper-card {
+    display: none !important; /* Hide the big paper card */
+}
+.crop-card .bubble-actions {
+    position: static !important;
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 10px !important;
+    background: #e2ecc2 !important;
+    border: 3px solid #85af5f !important;
+    border-radius: 10px !important;
+    padding: 15px !important;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5) !important;
+}
+.crop-card .bubble-actions button {
+    position: static !important;
+    width: 60px !important;
+    height: 60px !important;
+    border-radius: 10px !important;
+    border: 2px solid #5a2817 !important;
+    background: linear-gradient(#f2b92d, #c5753a) !important;
+    color: white !important;
+    font-size: 14px !important;
+    font-weight: bold !important;
+    text-shadow: 1px 1px #4e1f13 !important;
+}
+
+/* Fix the positions of the buildings to ensure labels and text are fully visible */
+
+.homestead {
+    position: absolute;
+    inset: 100px 0 auto 0 !important;
+    height: 300px !important;
+}
+
+/* Hide the old decorative .shed and .merchant if they interfere */
+.shed, .merchant, .crates {
+    display: none !important;
+}
+
+/* Re-style the actual interactive buttons to look like the screenshot */
+
+.farm-building, .storage-building, .shop-building {
+    border-radius: 10px !important;
+    border: 3px solid #481d0f !important;
+    background: #bd5933 !important;
+    z-index: 5 !important;
+}
+.farm-building::before, .storage-building::before, .shop-building::before {
+    content: "";
+    position: absolute !important;
+    top: -30px !important;
+    left: -5px !important;
+    right: -5px !important;
+    height: 50px !important;
+    border: 3px solid #481d0f !important;
+    border-radius: 20px 20px 0 0 !important;
+}
+
+.farm-building {
+    left: 20px !important;
+    top: 10px !important;
+    width: 130px !important;
+    height: 70px !important;
+}
+.farm-building::before {
+    background: repeating-linear-gradient(90deg, #f0c354 0, #f0c354 20px, #e8a640 20px, #e8a640 40px) !important;
+}
+
+.storage-building {
+    left: 20px !important;
+    top: 140px !important;
+    width: 100px !important;
+    height: 60px !important;
+}
+.storage-building::before {
+    background: repeating-linear-gradient(90deg, #f0c354 0, #f0c354 20px, #e8a640 20px, #e8a640 40px) !important;
+    top: -20px !important;
+    height: 30px !important;
+}
+
+.shop-building {
+    left: auto !important;
+    right: 40px !important;
+    top: 50px !important;
+    width: 120px !important;
+    height: 70px !important;
+}
+.shop-building::before {
+    background: repeating-linear-gradient(90deg, #1c4d63 0, #1c4d63 20px, #4d8f99 20px, #4d8f99 40px) !important;
+}
+
+/* Ensure the labels inside buildings stick out but don't clip */
+.building-label {
+    right: auto !important;
+    
+    top: -25px !important;
+    
+    width: auto !important;
+    min-height: auto !important;
+    padding: 2px 8px !important;
+    background: #62230b !important;
+    border: 2px solid #481d0f !important;
+    border-radius: 4px !important;
+    color: white !important;
+    font-size: 12px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    writing-mode: horizontal-tb !important;
+    text-orientation: mixed !important;
+    z-index: 10 !important;
+    white-space: nowrap !important;
+}
+
+/* Move the timer and task correctly */
+.timer {
+    display: none !important;
+}
+
+.task {
+    position: absolute !important;
+    
+    bottom: 120px !important;
+    top: auto !important;
+    
+    background: rgba(44, 31, 22, 0.95) !important;
+    color: #e6c27a !important;
+    padding: 10px 20px !important;
+    border-radius: 30px !important;
+    font-size: 14px !important;
+    font-weight: bold !important;
+    z-index: 50 !important;
+    border: 2px solid #8b6b4a !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5) !important;
+    pointer-events: auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 90% !important;
+    max-width: 350px !important;
+}
+.crop-card {
+    z-index: 100 !important;
+}
+.crop-card .bubble-actions {
+    position: relative !important;
+}
+.crop-card .bubble-actions {
+    position: fixed !important;
+    
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+}
+
+/* Update chat box to look like a broadcast bar */
+.chat-box {
+    background: rgba(26, 19, 16, 0.85) !important;
+    border: 2px solid #5a2817 !important;
+    border-radius: 20px !important;
+    clip-path: none !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5) !important;
+    bottom: 70px !important;
+    left: 5% !important;
+    right: 5% !important;
+    width: 90% !important;
+    text-align: center !important;
+}
+
+/* PERFECT MATCH FOR CORNER BUTTONS & CHAT/TASK BARS */
+
+/* Right Menu - Stick to right edge */
+.right-menu {
+    top: auto !important;
+    bottom: 120px !important;
+    right: -2px !important;
+    gap: 8px !important;
+}
+.right-menu .wood-btn.small {
+    width: 65px !important;
+    min-height: 55px !important;
+    border-radius: 15px 0 0 15px !important;
+    background: linear-gradient(to bottom, #bd6c36 0%, #893815 100%) !important;
+    border: 3px solid #481d0f !important;
+    border-right: none !important;
+    color: white !important;
+    font-size: 14px !important;
+    font-weight: bold !important;
+    box-shadow: inset 0 2px rgba(255,255,255,0.2), 0 4px 6px rgba(0,0,0,0.4) !important;
+    text-shadow: 1px 1px 2px black !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Left Menu - Stick to left edge */
+.left-menu {
+    bottom: 120px !important;
+    left: -2px !important;
+    gap: 8px !important;
+}
+.left-menu .wood-btn.small {
+    width: 65px !important;
+    min-height: 55px !important;
+    border-radius: 0 15px 15px 0 !important;
+    background: linear-gradient(to bottom, #bd6c36 0%, #893815 100%) !important;
+    border: 3px solid #481d0f !important;
+    border-left: none !important;
+    color: white !important;
+    font-size: 14px !important;
+    font-weight: bold !important;
+    box-shadow: inset 0 2px rgba(255,255,255,0.2), 0 4px 6px rgba(0,0,0,0.4) !important;
+    text-shadow: 1px 1px 2px black !important;
+}
+
+/* Task Bar - Slanted edges */
+.task {
+    position: absolute !important;
+    bottom: 85px !important;
+    left: -10px !important;
+    transform: none !important;
+    width: auto !important;
+    min-width: 250px !important;
+    background: #3e2b1f !important;
+    border: none !important;
+    border-radius: 0 !important;
+    clip-path: polygon(0 0, 100% 0, calc(100% - 15px) 100%, 0 100%) !important;
+    padding: 10px 40px 10px 60px !important;
+    color: #e6c27a !important;
+    box-shadow: none !important;
+    display: flex !important;
+    align-items: center !important;
+}
+/* Beige icon block inside task bar */
+.task::before {
+    content: "";
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 35px;
+    height: 35px;
+    background: #e8dcb8;
+    border: 2px solid #5a2817;
+    border-radius: 6px;
+    box-shadow: inset 0 -3px rgba(0,0,0,0.2);
+}
+.task::after {
+    content: "";
+    position: absolute;
+    left: 30px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background: #5a2817;
+    border-radius: 50%;
+}
+/* Hide the previous "前往" button since it breaks the new layout */
+.task button { display: none !important; }
+
+/* Chat Box - Hide it completely */
+.chat-box {
+    display: none !important;
+}
+
+/* Crop Timers - Small black boxes floating above crops */
+.plot-timer {
+    position: absolute !important;
+    top: -20px !important;
+    
+    
+    background: rgba(0, 0, 0, 0.8) !important;
+    color: white !important;
+    font-family: monospace !important;
+    font-size: 12px !important;
+    padding: 2px 5px !important;
+    border-radius: 2px !important;
+    z-index: 20 !important;
+    border: 1px solid #444 !important;
+    display: inline-block !important;
+    white-space: nowrap !important;
+}
+.plot-timer::before {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 4px 4px 0;
+    border-style: solid;
+    border-color: rgba(0,0,0,0.8) transparent transparent transparent;
+}
+
+/* Force hide chat-box just to be absolutely sure */
+.chat-box {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
+
+/* ULTIMATE FIX FOR CROP ALIGNMENT */
+/* The original CSS mixed margin:auto and absolute left:50% inside an asymmetrical padded container. */
+.field-wrap {
+    padding: 0 !important;
+}
+.field {
+    position: absolute !important;
+    
+    top: 0px !important;
+    transform: translateX(-50%) rotateX(56deg) rotateZ(45deg) !important;
+    margin: 0 !important;
+    width: 356px !important;
+    height: 356px !important;
+}
+.crop-layer {
+    position: absolute !important;
+    
+    top: 52px !important;
+    width: 356px !important;
+    height: 300px !important;
+    
+}
+.field {
+    transform-origin: 50% 62% !important;
+}
+/* FORCE TASK TO BOTTOM LEFT */
+.task {
+    position: fixed !important;
+    bottom: 20px !important;
+    left: 0 !important;
+    transform: none !important;
+    z-index: 9999 !important;
+    margin: 0 !important;
+    display: flex !important;
+}
+.field, .crop-layer, .plot-timer {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+}
+.field {
+    transform: translateX(-50%) rotateX(56deg) rotateZ(45deg) !important;
+}
+.task {
+    left: -10px !important;
+    transform: none !important;
+}
+
+/* --- CRITICAL ALIGNMENT FIX --- */
+.field-wrap {
+    padding: 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+.field {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    transform: rotateX(56deg) rotateZ(45deg) !important;
+    margin: 0 !important;
+}
+.crop-layer {
+    position: absolute !important;
+    left: 50% !important;
+    top: 54px !important;
+    transform: translateX(-50%) !important;
+}
+.plot-timer {
+    transform: translateX(-50%) !important;
+}
+.field {
+    margin: 2px 0 0 0 !important;
+}
+.field-wrap {
+    align-items: flex-start !important;
+    flex-direction: row !important;
+}
+
+/* FIX CROP CARD DIALOG ALIGNMENT DESTROYED BY SED */
+.crop-card {
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    position: fixed !important;
+}
+.crop-card .bubble-actions {
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    position: fixed !important;
+}

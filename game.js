@@ -58,7 +58,7 @@ const els = {
   book: document.querySelector("#bookBtn"),
   visit: document.querySelector("#visitBtn"),
   cropCard: document.querySelector("#cropCard"),
-  closeCrop: document.querySelector("#closeCropBtn"),
+  closeCrop: document.getElementById("closeCropMenuBtn"),
   cardHarvest: document.querySelector("#cardHarvestBtn"),
   removeCrop: document.querySelector("#removeCropBtn"),
   moveCrop: document.querySelector("#moveCropBtn"),
@@ -236,13 +236,13 @@ function handlePlot(index, event) {
     return;
   }
   if (index >= state.unlocked) {
-    showToast("开垦后才能使用这块地。");
+    if (index === state.unlocked) { openUnlockModal(); } else { showToast("请先开垦前面的土地。"); }
     return;
   }
 
   const plot = state.plots[index];
   if (!plot.crop) {
-    plant(index, state.selectedSeed);
+    openSeedModal(index);
     return;
   }
 
