@@ -1,7 +1,7 @@
 /* UI Overrides to match the reference image exactly */
 
 .game {
-    background: #9bd27b !important; /* Flat light green grass */
+    background: url("https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=1200") center/cover no-repeat !important;
 }
 
 /* --- Topbar modifications --- */
@@ -790,3 +790,64 @@
 /* Adjust scales for the young plants so they look right */
 .crop-sprite.stage-1 { --crop-scale: .55 !important; opacity: 1 !important; filter: drop-shadow(0 4px 2px rgba(0,0,0,0.4)) !important; }
 .crop-sprite.stage-2 { --crop-scale: .85 !important; opacity: 1 !important; filter: drop-shadow(0 6px 3px rgba(0,0,0,0.4)) !important; }
+
+/* --- REBUILT BUILDINGS WITH SVG ART --- */
+.farm-building {
+    background: url("assets/buildings/farm.svg") center/contain no-repeat !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    width: 140px !important;
+    height: 140px !important;
+    left: 10px !important;
+    top: 0px !important;
+}
+.farm-building::before { display: none !important; }
+
+.storage-building {
+    background: url("assets/buildings/storage.svg") center/contain no-repeat !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    width: 110px !important;
+    height: 110px !important;
+    left: 20px !important;
+    top: 130px !important;
+}
+.storage-building::before { display: none !important; }
+
+.shop-building {
+    background: url("assets/buildings/shop.svg") center/contain no-repeat !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    width: 130px !important;
+    height: 130px !important;
+    right: 20px !important;
+    top: 40px !important;
+}
+.shop-building::before { display: none !important; }
+
+.building-label {
+    top: -20px !important;
+    background: rgba(98, 35, 11, 0.8) !important;
+}
+
+/* --- SOIL TEXTURE UPGRADE --- */
+.field button {
+    background-color: #5c381f !important;
+    background-image: 
+        radial-gradient(circle at 25% 25%, #4a2b12 2px, transparent 3px),
+        radial-gradient(circle at 75% 75%, #4a2b12 2px, transparent 3px),
+        linear-gradient(45deg, rgba(0,0,0,0.1) 25%, transparent 25%, transparent 75%, rgba(0,0,0,0.1) 75%) !important;
+    background-size: 20px 20px, 20px 20px, 10px 10px !important;
+    border: 2px solid #4a2b12 !important;
+    box-shadow: inset 0 0 15px rgba(0,0,0,0.7), 0 2px 4px rgba(0,0,0,0.5) !important;
+    border-radius: 4px !important;
+}
+.field {
+    border: 3px solid #85af5f !important;
+    border-radius: 8px !important;
+    background: rgba(92, 56, 31, 0.4) !important;
+    box-shadow: 0 15px 25px rgba(0,0,0,0.4) !important;
+}
