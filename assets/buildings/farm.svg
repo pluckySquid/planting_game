@@ -1,14 +1,28 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
   
-      <!-- Wooden structure -->
-      <path d="M 10 90 L 10 50 L 90 50 L 90 90 Z" fill="#b05c36" stroke="#4a2411" stroke-width="3" stroke-linejoin="round"/>
-      <path d="M 10 50 L 20 40 L 100 40 L 90 50 Z" fill="#d27d46" stroke="#4a2411" stroke-width="3" stroke-linejoin="round"/>
-      <path d="M 90 90 L 90 50 L 100 40 L 100 80 Z" fill="#8f4322" stroke="#4a2411" stroke-width="3" stroke-linejoin="round"/>
-      <!-- Thatched roof (yellow/gold) -->
-      <path d="M 0 60 C 10 30, 40 10, 50 10 C 60 10, 90 30, 100 60 C 90 55, 80 60, 70 55 C 60 60, 50 55, 40 60 C 30 55, 20 60, 10 55 C 5 58, 0 60, 0 60 Z" fill="#f4d03f" stroke="#8a5a19" stroke-width="3" stroke-linejoin="round"/>
-      <!-- Details -->
-      <rect x="40" y="60" width="20" height="30" fill="#4a2411" />
-      <rect x="20" y="65" width="10" height="15" fill="#e9c46a" stroke="#4a2411" stroke-width="2"/>
-      <rect x="70" y="65" width="10" height="15" fill="#e9c46a" stroke="#4a2411" stroke-width="2"/>
+      <!-- Main building walls -->
+      <rect x="20" y="45" width="45" height="35" fill="#a44a3f" stroke="#4a2411" stroke-width="2.5"/>
+      <!-- Extension right -->
+      <rect x="60" y="55" width="25" height="25" fill="#a44a3f" stroke="#4a2411" stroke-width="2.5"/>
+      
+      <!-- Door -->
+      <rect x="35" y="55" width="15" height="25" fill="#4a2411" />
+      
+      <!-- Box on right -->
+      <rect x="65" y="65" width="12" height="12" fill="#e9c46a" stroke="#4a2411" stroke-width="2"/>
+      <path d="M 65 71 L 77 71 M 71 65 L 71 77" stroke="#4a2411" stroke-width="1.5"/>
+
+      <!-- Logs/Wood on left -->
+      <rect x="10" y="65" width="15" height="5" fill="#cf864c" stroke="#4a2411" stroke-width="2" rx="2"/>
+      <rect x="8" y="70" width="15" height="5" fill="#cf864c" stroke="#4a2411" stroke-width="2" rx="2"/>
+      <rect x="10" y="75" width="15" height="5" fill="#cf864c" stroke="#4a2411" stroke-width="2" rx="2"/>
+
+      <!-- Main Roof (Thick straw, layered) -->
+      <path d="M 10 50 C 10 25, 30 15, 45 15 C 60 15, 75 25, 75 50 Q 45 58, 10 50 Z" fill="#f4d03f" stroke="#8a5a19" stroke-width="3"/>
+      <!-- Extension Roof -->
+      <path d="M 55 60 C 55 45, 65 35, 75 35 C 85 35, 95 45, 95 60 Q 75 65, 55 60 Z" fill="#f4d03f" stroke="#8a5a19" stroke-width="3"/>
+      
+      <!-- Red roof ridge top -->
+      <path d="M 15 25 Q 45 5, 70 25" fill="none" stroke="#e63946" stroke-width="5" stroke-linecap="round"/>
     
 </svg>
