@@ -1,5 +1,6 @@
 const SAVE_KEY = "pastoral-fields-save-v4";
-const PLOT_COUNT = 25;
+const PLOT_COLS = 7;
+const PLOT_COUNT = 49;
 
 const CROPS = {
   corn: { name: "小型玉米", seed: "玉米种子", price: 8671, yield: "2.3斤", growMs: 52000, life: 100, tags: ["折枝"], weather: "折枝 0.3倍", rarity: "普通", reward: 62 },
@@ -213,8 +214,8 @@ function render() {
 }
 
 function renderCropSprite(index, cropKey, stage) {
-  const row = Math.floor(index / 5);
-  const col = index % 5;
+  const row = Math.floor(index / PLOT_COLS);
+  const col = index % PLOT_COLS;
   const plotButton = els.field.children[index];
   const plotRect = plotButton?.getBoundingClientRect();
   const layerRect = els.cropLayer.getBoundingClientRect();
