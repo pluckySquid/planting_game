@@ -6,7 +6,7 @@ if (!state.shopItems || state.shopItems.length === 0) {
 function generateShopItems() {
     const items = [];
     // Generate 6 items to match screenshot exactly
-    for(let i=0; i<6; i++) {
+    for(let i=0; i<4; i++) {
         const key = CROP_ORDER[Math.floor(Math.random() * CROP_ORDER.length)];
         items.push({
             key: key,
@@ -68,7 +68,7 @@ setTimeout(() => {
     if(els.refreshShop) {
         els.refreshShop.replaceWith(els.refreshShop.cloneNode(true));
         els.refreshShop = document.querySelector("#refreshShopBtn");
-        els.refreshShop.innerHTML = "刷新";
+        els.refreshShop.innerHTML = "刷新 (500玉)";
         
         // Remove old inline styles, let CSS handle it
         els.refreshShop.removeAttribute("style");
