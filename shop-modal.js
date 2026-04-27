@@ -47,7 +47,7 @@ window.renderShop = function() {
             <div class="price-badge">${crop.price}玉</div>
             <div class="crop-sprite crop-sprite-${item.key} stage-3" style="position: relative; transform: none; left: auto; top: auto; animation: none; width: 45px; height: 55px; margin: auto; grid-column: 1; grid-row: 1;"></div>
             <strong style="grid-column: 2; grid-row: 1; color: #4a2411; font-size: 14px; text-align: right; align-self: start; margin-top: 5px;">${crop.seed}</strong>
-            <div class="limit" style="grid-column: 1; grid-row: 2; color: #4a2411; font-size: 11px; margin-top: 10px;">限购：1</div>
+            <div class="limit" style="grid-column: 1; grid-row: 2; color: #4a2411; font-size: 11px; margin-top: 10px;">剩余：${isBought ? 0 : 1}</div>
             <button onclick="buyShopItem(${i})" class="${isBought ? 'bought' : ''}" style="grid-column: 2; grid-row: 2; background: transparent; border: 1px dashed ${isBought ? '#5a2817' : '#c3402d'}; color: ${isBought ? '#5a2817' : '#c3402d'}; font-size: 12px; font-weight: bold; padding: 4px 0; border-radius: 2px; width: 100%; margin-top: 10px; cursor: pointer;">
                 ${isBought ? '已购' : '购买'}
             </button>
@@ -59,7 +59,7 @@ window.renderShop = function() {
 window.buyShopItem = function(index) {
     const item = state.shopItems[index];
     if (item.bought) {
-        showToast("已达到限购数量！");
+        showToast("已售完！");
         return;
     }
     const crop = CROPS[item.key];

@@ -306,7 +306,7 @@ function clamp(value, min, max) {
 }
 
 function canStartMapDrag(target) {
-  return !target.closest(".crop-sprite, .map-building, .topbar, .profile-card, .right-menu, .left-menu, .tool-rail, .bottom-actions, .panel, .crop-card, .toast");
+  return !target.closest(".crop-sprite, .map-building, .topbar, .profile-card, .right-menu, .left-menu, .tool-rail, .bottom-actions, .panel, .crop-card, .seed-modal, .toast");
 }
 
 function startMapDrag(event) {
@@ -524,7 +524,7 @@ function renderShop() {
       <button class="seed-card${selected}" data-seed="${key}">
         <span class="seed-bag crop-icon crop-icon-${key}"></span>
         <strong>${crop.seed}</strong>
-        <small>限购：${state.inventory[key]}</small>
+        <small>剩余：${state.inventory[key]}</small>
         <b>${selected ? "已选" : "选择"}</b>
       </button>
     `;

@@ -9,7 +9,10 @@ const weatherModalHtml = `
   </div>
 </div>
 `;
-document.body.insertAdjacentHTML("beforeend", weatherModalHtml);
+// Insert into the .game element so the modal is scoped to the phone-shell
+// (otherwise position:absolute fills the whole desktop browser, not the in-game screen).
+const __weatherHost = document.querySelector(".game") || document.body;
+__weatherHost.insertAdjacentHTML("beforeend", weatherModalHtml);
 
 const weatherModal = document.getElementById("weatherModal");
 const closeWeatherModalBtn = document.getElementById("closeWeatherModalBtn");
@@ -88,8 +91,28 @@ function generateForecast() {
     }
 }
 
-closeWeatherModalBtn.addEventListener("click", () => {
-    weatherModal.hidden = true;
+// Robust close handlers — document-level delegation so it doesn't matter
+// where the modal lives in the DOM or whether the references above resolved.
+document.addEventListener("click", (e) => {
+    const modal = document.getElementById("weatherModal");
+    if (!modal) return;
+    // Click on the X (or its child icon) closes the modal.
+    if (e.target.closest("#closeWeatherModalBtn")) {
+        modal.hidden = true;
+        return;
+    }
+    // Click on the dim backdrop (the modal element itself, NOT its content card) closes.
+    if (e.target === modal) {
+        modal.hidden = true;
+    }
+});
+
+// Escape key also closes (helpful for desktop testing).
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+        const modal = document.getElementById("weatherModal");
+        if (modal && !modal.hidden) modal.hidden = true;
+    }
 });
 
 weatherBtn.addEventListener("click", () => {
