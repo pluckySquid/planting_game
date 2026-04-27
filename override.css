@@ -1847,3 +1847,40 @@ body .game .task::before {
 body .game .task::after {
     left: 22.5px !important;
 }
+
+/* UI ADJUSTMENT FOR TOPBAR */
+.topbar {
+    position: absolute !important;
+    top: 10px !important;
+    left: 10px !important;
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 15px !important;
+    z-index: 100 !important;
+}
+
+/* Ensure Wallets Stack Properly on Right */
+.topbar .wallet {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    background: #a46a48 !important;
+    border: 3px solid #5a2817 !important;
+    border-radius: 20px !important;
+    padding: 2px 15px 2px 2px !important;
+    height: 32px !important;
+    margin: 0 !important;
+}
+.topbar .wallet strong {
+    background: transparent !important;
+    border: none !important;
+    color: white !important;
+    font-size: 14px !important;
+    text-align: right !important;
+    width: 80px !important;
+}
+
+/* Hide overlapping numbers */
+.version { display: none !important; }
