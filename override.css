@@ -1094,3 +1094,19 @@
     z-index: 10;
     box-shadow: 1px 1px 3px rgba(0,0,0,0.4);
 }
+
+/* --- FIX CROP OVERLAPPING CLICK ISSUE --- */
+/* By making the crop image ignore pointer events, clicks will fall through 
+   to the exact rhombus-shaped tile underneath it, perfectly solving the bounding box overlap issue! */
+.crop-sprite {
+    pointer-events: none !important;
+}
+
+/* Scale down the fully grown crops slightly so they fit inside their tiles better */
+.crop-sprite.stage-3 {
+    transform: translate(-50%, -100%) scale(0.85) !important;
+}
+/* Ensure hover effect doesn't break the new scale */
+.crop-sprite.stage-3:hover, .crop-sprite.stage-3:focus-visible {
+    transform: translate(-50%, -106%) scale(0.95) !important;
+}
