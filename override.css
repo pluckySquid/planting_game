@@ -1384,3 +1384,13 @@ body .game .chat-box, body .game .chat {
     position: absolute !important;
     left: -9999px !important;
 }
+
+/* MOVE RIGHT MENU BUTTONS DOWN */
+body .game .right-menu {
+    top: auto !important;
+    bottom: 120px !important;
+    right: -2px !important;
+    gap: 8px !important;
+    flex-direction: column !important;
+    position: absolute !important;
+}
