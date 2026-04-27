@@ -35,10 +35,8 @@ function openSeedModal(index) {
         btn.addEventListener("click", () => {
             if (state.inventory[seedKey] > 0) {
                 state.selectedSeed = seedKey;
-                state.inventory[seedKey]--;
                 plant(targetPlotIndex, seedKey);
                 seedModal.hidden = true;
-                commit();
             } else {
                 showToast("种子不足，请前往商铺购买！");
             }

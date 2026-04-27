@@ -154,6 +154,7 @@ function cropMarkup(key) {
 function render() {
   els.field.innerHTML = "";
   els.cropLayer.innerHTML = "";
+  applyMapOffset();
 
   state.plots.forEach((plot, index) => {
     const button = document.createElement("button");
@@ -179,17 +180,25 @@ function render() {
 
     button.addEventListener("click", (event) => handlePlot(index, event));
 
-    if (plot.crop) {
-      if (stage < 3) {
-        const tag = document.createElement("b");
-        tag.className = "plot-timer";
-        tag.textContent = `00:${String(timeLeft(plot)).padStart(2, "0")}`;
-        button.appendChild(tag);
-      }
-      renderCropSprite(index, plot.crop, stage);
+    if (plot.crop && stage < 3) {
+      const tag = document.createElement("b");
+      tag.className = "plot-timer";
+      tag.textContent = `00:${String(timeLeft(plot)).padStart(2, "0")}`;
+      button.appendChild(tag);
     }
 
     els.field.appendChild(button);
+  });
+
+  state.plots.forEach((plot, index) => {
+    if (plot.crop) {
+      const stage = cropStage(plot);
+      if (stage < 3) {
+        const tag = els.field.children[index]?.querySelector(".plot-timer");
+        if (tag) tag.textContent = `00:${String(timeLeft(plot)).padStart(2, "0")}`;
+      }
+      renderCropSprite(index, plot.crop, stage);
+    }
   });
 
   els.coins.textContent = formatCoins(state.coins);
@@ -201,17 +210,21 @@ function render() {
   renderStorage();
   renderFarmPanel();
   renderBook();
-  applyMapOffset();
 }
 
 function renderCropSprite(index, cropKey, stage) {
   const row = Math.floor(index / 5);
   const col = index % 5;
+  const plotButton = els.field.children[index];
+  const plotRect = plotButton?.getBoundingClientRect();
+  const layerRect = els.cropLayer.getBoundingClientRect();
+  if (!plotRect || !layerRect.width) return;
+
   const cropEl = document.createElement("button");
   cropEl.type = "button";
   cropEl.className = `crop-sprite crop-sprite-${cropKey} stage-${stage}`;
-  cropEl.style.left = `${178 + (col - row) * 32}px`;
-  cropEl.style.top = `${117 + (col + row) * 18}px`;
+  cropEl.style.left = `${plotRect.left + plotRect.width / 2 - layerRect.left}px`;
+  cropEl.style.top = `${plotRect.top + plotRect.height / 2 - layerRect.top}px`;
   cropEl.style.zIndex = String(20 + row + col);
   cropEl.style.setProperty("--sway-delay", `${(index % 7) * -0.18}s`);
   cropEl.addEventListener("pointerdown", (event) => {
@@ -236,7 +249,7 @@ function handlePlot(index, event) {
     return;
   }
   if (index >= state.unlocked) {
-    if (index === state.unlocked) { openUnlockModal(); } else { showToast("请先开垦前面的土地。"); }
+    if (index === state.unlocked) { expandField(); } else { showToast("请先开垦前面的土地。"); }
     return;
   }
 
