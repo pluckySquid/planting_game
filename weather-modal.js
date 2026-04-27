@@ -18,11 +18,11 @@ const currentSeasonEl = document.getElementById("currentSeason");
 const currentWeatherIconEl = document.getElementById("currentWeatherIcon");
 
 const weathers = [
-    { icon: '☀️', name: '晴天', desc: '阳光明媚，火属性植物加速' },
-    { icon: '🌧️', name: '小雨', desc: '细雨润物，水属性植物增产' },
-    { icon: '⛈️', name: '雷暴', desc: '天降神雷，所有仙力翻倍' },
-    { icon: '☁️', name: '多云', desc: '云遮雾绕，土属性植物加速' },
-    { icon: '❄️', name: '大雪', desc: '瑞雪丰年，无特殊加成' }
+    { id: 'sunny', icon: '☀️', name: '晴天', desc: '阳光明媚，火属性植物加速' },
+    { id: 'rainy', icon: '🌧️', name: '小雨', desc: '细雨润物，水属性植物增产' },
+    { id: 'storm', icon: '⛈️', name: '雷暴', desc: '天降神雷，所有仙力翻倍' },
+    { id: 'cloudy', icon: '☁️', name: '多云', desc: '云遮雾绕，土属性植物加速' },
+    { id: 'snowy', icon: '❄️', name: '大雪', desc: '瑞雪丰年，无特殊加成' }
 ];
 
 const seasons = ['春', '夏', '秋', '冬'];
@@ -41,6 +41,11 @@ function updateCurrentWeather() {
     const current = forecastData[0];
     if(currentSeasonEl) currentSeasonEl.textContent = current.season;
     if(currentWeatherIconEl) currentWeatherIconEl.textContent = current.weather.icon;
+    
+    const gameEl = document.getElementById("game");
+    if(gameEl) {
+        gameEl.setAttribute("data-weather", current.weather.id);
+    }
 }
 
 function generateForecast() {

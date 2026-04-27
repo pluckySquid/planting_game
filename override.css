@@ -1468,3 +1468,73 @@ body .game .task::after {
     border-radius: 50% !important;
     display: block !important;
 }
+
+/* --- GLOBAL WEATHER EFFECTS --- */
+.weather-layer {
+    position: absolute !important;
+    inset: 0 !important;
+    pointer-events: none !important;
+    z-index: 90 !important; /* Above farm, below UI */
+    transition: background-color 2s ease, opacity 2s ease !important;
+}
+
+/* Clear old spans if any */
+.weather-layer span { display: none !important; }
+
+/* Sunny */
+#game[data-weather="sunny"] .weather-layer {
+    background-color: rgba(255, 200, 0, 0.05) !important;
+    box-shadow: inset 0 0 100px rgba(255, 200, 0, 0.1) !important;
+}
+
+/* Cloudy */
+#game[data-weather="cloudy"] .weather-layer {
+    background-color: rgba(100, 110, 120, 0.2) !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 400'%3E%3Cpath fill='%23ffffff' opacity='0.5' d='M142.6 156.4c-4.4-23.4-24.8-41.2-49.4-41.2-22.6 0-41.8 14.8-48.2 35.4-1.8-.2-3.6-.4-5.6-.4-19.8 0-36 16.2-36 36s16.2 36 36 36h102.8c21.2 0 38.6-17.4 38.6-38.6 0-19.2-14.2-35.4-32.6-38.2z'/%3E%3C/svg%3E") !important;
+    background-size: 800px 400px !important;
+    animation: driftClouds 60s linear infinite !important;
+}
+
+/* Rainy */
+#game[data-weather="rainy"] .weather-layer {
+    background-color: rgba(20, 40, 60, 0.25) !important;
+    background-image: url("data:image/svg+xml,%3Csvg width='20' height='50' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='10' y1='0' x2='0' y2='50' stroke='%23a5f3fc' stroke-width='0.8' opacity='0.8' stroke-dasharray='15,35'/%3E%3C/svg%3E") !important;
+    background-size: 100px 200px !important;
+    animation: fallRain 0.6s linear infinite !important;
+}
+
+/* Stormy */
+#game[data-weather="storm"] .weather-layer {
+    background-color: rgba(10, 15, 30, 0.4) !important;
+    background-image: url("data:image/svg+xml,%3Csvg width='20' height='50' xmlns='http://www.w3.org/2000/svg'%3E%3Cline x1='10' y1='0' x2='0' y2='50' stroke='%23a5f3fc' stroke-width='1.5' opacity='0.9' stroke-dasharray='20,40'/%3E%3C/svg%3E") !important;
+    background-size: 150px 300px !important;
+    animation: fallRain 0.4s linear infinite, flashLightning 6s infinite !important;
+}
+
+/* Snowy */
+#game[data-weather="snowy"] .weather-layer {
+    background-color: rgba(200, 220, 255, 0.1) !important;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='20' cy='20' r='2' fill='%23ffffff' opacity='0.8'/%3E%3Ccircle cx='70' cy='60' r='3' fill='%23ffffff' opacity='0.6'/%3E%3Ccircle cx='40' cy='90' r='1.5' fill='%23ffffff' opacity='0.9'/%3E%3C/svg%3E") !important;
+    background-size: 200px 200px !important;
+    animation: fallSnow 10s linear infinite !important;
+}
+
+@keyframes driftClouds {
+    0% { background-position: 0 0; }
+    100% { background-position: -800px 0; }
+}
+
+@keyframes fallRain {
+    0% { background-position: 0 -200px; }
+    100% { background-position: -100px 200px; }
+}
+
+@keyframes fallSnow {
+    0% { background-position: 0 -200px; }
+    100% { background-position: 50px 200px; }
+}
+
+@keyframes flashLightning {
+    0%, 95%, 98%, 100% { background-color: rgba(10, 15, 30, 0.4); }
+    96%, 99% { background-color: rgba(255, 255, 255, 0.6); }
+}
