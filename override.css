@@ -876,7 +876,7 @@
 .profile-card { top: 80px !important; left: 10px !important; background: #fdf5e6 !important; border-radius: 20px !important; padding: 8px 15px !important; box-shadow: 0 4px 6px rgba(0,0,0,0.3) !important; border: 2px solid #e6a861 !important; color: #a63a15 !important; font-size: 18px !important; }
 .profile-card strong, .profile-card button { display: none !important; }
 .profile-card .season { background: #d97b41 !important; border-radius: 50% !important; width: 24px !important; height: 24px !important; display: flex !important; justify-content: center !important; align-items: center !important; font-size: 12px !important; }
-.profile-card::after { content: "☀️"; margin-left: 10px; font-size: 20px; }
+
 
 /* Field Appearance */
 .field button {

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>田园牧歌 Demo</title>
     <link rel="stylesheet" href="styles.css?v=17" />
-    <link rel="stylesheet" href="override.css?v=1777312993" />
+    <link rel="stylesheet" href="override.css?v=1777313157" />
   </head>
   <body>
     <main class="phone-shell" aria-label="田园牧歌农场游戏">
@@ -31,7 +31,7 @@
 
         <div class="profile-card">
           <div class="tree-medal" aria-hidden="true"></div>
-          <div class="season">夏</div>
+          <div class="season" id="currentSeason">夏</div><div id="currentWeatherIcon" style="margin-left: 10px; font-size: 20px;">☀️</div>
           <strong id="playerName">大风</strong>
           <button id="boostBtn" class="round-btn" title="使用唤风铃加速所有作物">↻</button>
         </div>
@@ -166,6 +166,7 @@
     </main>
 
     
+    <script src="weather-modal.js"></script>
     <script src="shop-modal.js"></script>
     <script src="seed-modal.js"></script>
     <script src="game.js"></script>
