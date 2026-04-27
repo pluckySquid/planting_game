@@ -776,3 +776,17 @@
     transform: translate(-50%, -50%) !important;
     position: fixed !important;
 }
+
+/* UNIQUE YOUNG PLANTS (NO FRUIT) FOR STAGE 1 AND 2 */
+.crop-sprite-corn.stage-1, .crop-sprite-corn.stage-2 { background-image: url("assets/crops/young_corn.svg") !important; }
+.crop-sprite-chili.stage-1, .crop-sprite-chili.stage-2 { background-image: url("assets/crops/young_chili.svg") !important; }
+.crop-sprite-cabbage.stage-1, .crop-sprite-cabbage.stage-2 { background-image: url("assets/crops/young_cabbage.svg") !important; }
+.crop-sprite-tomato.stage-1, .crop-sprite-tomato.stage-2 { background-image: url("assets/crops/young_tomato.svg") !important; }
+.crop-sprite-eggplant.stage-1, .crop-sprite-eggplant.stage-2 { background-image: url("assets/crops/young_eggplant.svg") !important; }
+.crop-sprite-carrot.stage-1, .crop-sprite-carrot.stage-2 { background-image: url("assets/crops/young_carrot.svg") !important; }
+.crop-sprite-onion.stage-1, .crop-sprite-onion.stage-2 { background-image: url("assets/crops/young_onion.svg") !important; }
+.crop-sprite-cauliflower.stage-1, .crop-sprite-cauliflower.stage-2 { background-image: url("assets/crops/young_cauliflower.svg") !important; }
+
+/* Adjust scales for the young plants so they look right */
+.crop-sprite.stage-1 { --crop-scale: .55 !important; opacity: 1 !important; filter: drop-shadow(0 4px 2px rgba(0,0,0,0.4)) !important; }
+.crop-sprite.stage-2 { --crop-scale: .85 !important; opacity: 1 !important; filter: drop-shadow(0 6px 3px rgba(0,0,0,0.4)) !important; }
