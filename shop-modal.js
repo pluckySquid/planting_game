@@ -25,6 +25,7 @@ window.renderShop = function() {
     }
     els.shopCoins.textContent = coinsDisplay;
     
+    state.shopItems = state.shopItems.slice(0, 4);
     els.seedGrid.innerHTML = state.shopItems.map((item, i) => {
         const crop = CROPS[item.key];
         const isBought = item.bought;

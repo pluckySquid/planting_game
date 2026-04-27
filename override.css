@@ -1827,3 +1827,23 @@ body .game .task::after {
 .crop-sprite.stage-3:hover, .crop-sprite.stage-3:focus-visible {
     transform: translate(-50%, -106%) scale(0.75) !important;
 }
+
+/* GUARANTEED SAFE TASK BAR */
+body .game .task {
+    position: absolute !important; /* Back to absolute within .game container */
+    bottom: 20px !important;
+    left: 10px !important;
+    width: 280px !important;
+    max-width: 80% !important;
+    height: auto !important;
+    min-height: 40px !important;
+    padding: 10px 10px 10px 45px !important;
+    border-radius: 8px !important;
+    box-sizing: border-box !important;
+}
+body .game .task::before {
+    left: 10px !important;
+}
+body .game .task::after {
+    left: 22.5px !important;
+}
