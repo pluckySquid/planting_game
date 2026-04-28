@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- Husk leaves -->
+  <path d="M 16 6 Q 8 3 6 8 Q 9 11 14 9 Z" fill="#7ab93a" stroke="#1f420e" stroke-width="1.4" stroke-linejoin="round"/>
+  <path d="M 16 6 Q 24 3 26 8 Q 23 11 18 9 Z" fill="#7ab93a" stroke="#1f420e" stroke-width="1.4" stroke-linejoin="round"/>
+  <!-- Corn body -->
+  <ellipse cx="16" cy="18" rx="6.5" ry="11" fill="#fbcf3a" stroke="#7a4216" stroke-width="1.6"/>
+  <!-- Kernels (rows) -->
+  <g fill="#e89712">
+    <circle cx="13" cy="11" r="1.1"/><circle cx="16" cy="10.5" r="1.1"/><circle cx="19" cy="11" r="1.1"/>
+    <circle cx="12" cy="14" r="1.1"/><circle cx="15" cy="14" r="1.1"/><circle cx="18" cy="14" r="1.1"/><circle cx="20.5" cy="14" r="1.1"/>
+    <circle cx="12" cy="17.5" r="1.1"/><circle cx="15" cy="17.5" r="1.1"/><circle cx="18" cy="17.5" r="1.1"/><circle cx="20.5" cy="17.5" r="1.1"/>
+    <circle cx="12" cy="21" r="1.1"/><circle cx="15" cy="21" r="1.1"/><circle cx="18" cy="21" r="1.1"/><circle cx="20.5" cy="21" r="1.1"/>
+    <circle cx="13" cy="24.5" r="1.1"/><circle cx="16" cy="25" r="1.1"/><circle cx="19" cy="24.5" r="1.1"/>
+  </g>
+  <!-- Top sprig -->
+  <path d="M 16 6 L 16 2" stroke="#1f420e" stroke-width="1.3" stroke-linecap="round"/>
+</svg>

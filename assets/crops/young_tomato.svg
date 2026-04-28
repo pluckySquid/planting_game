@@ -1,9 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 88" width="64" height="88">
-  <g fill="#3a8726" stroke="#1f420e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M 32 80 C 32 60 20 50 10 40 C 25 40 30 50 32 65" />
-    <path d="M 32 80 C 32 60 44 50 54 40 C 39 40 34 50 32 65" />
-    <path d="M 32 65 L 32 30" />
-    <path d="M 32 45 C 20 35 15 20 15 20 C 25 25 30 35 32 45" />
-    <path d="M 32 45 C 44 35 49 20 49 20 C 39 25 34 35 32 45" />
+  <!-- Tomato seedling: forked stem, jagged compound leaves, tiny green tomatoes -->
+  <!-- Main stem -->
+  <path d="M 32 84 L 32 28" stroke="#3a6a1e" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Compound leaves (jagged tomato leaf style) -->
+  <g fill="#5fa83a" stroke="#1f420e" stroke-width="1.5" stroke-linejoin="round">
+    <path d="M 32 70 Q 18 70 12 60 Q 16 56 22 60 Q 18 50 14 46 Q 24 48 32 64 Z"/>
+    <path d="M 32 70 Q 46 70 52 60 Q 48 56 42 60 Q 46 50 50 46 Q 40 48 32 64 Z"/>
+    <path d="M 32 54 Q 18 50 14 38 Q 18 36 24 42 Q 22 32 18 28 Q 28 30 32 48 Z"/>
+    <path d="M 32 54 Q 46 50 50 38 Q 46 36 40 42 Q 42 32 46 28 Q 36 30 32 48 Z"/>
+    <path d="M 32 36 Q 24 30 24 22 Q 30 24 32 32 Z"/>
+    <path d="M 32 36 Q 40 30 40 22 Q 34 24 32 32 Z"/>
   </g>
+  <!-- Two tiny green tomatoes (the giveaway) -->
+  <circle cx="22" cy="44" r="3.5" fill="#9bd664" stroke="#3a6a1e" stroke-width="1"/>
+  <circle cx="42" cy="42" r="3" fill="#9bd664" stroke="#3a6a1e" stroke-width="1"/>
+  <!-- Star caps on tomatoes -->
+  <path d="M 21 41 L 22 43 L 23 41" stroke="#3a6a1e" stroke-width="0.8" fill="none"/>
 </svg>

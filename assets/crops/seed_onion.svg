@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- Green tops (3 spikes) -->
+  <g fill="none" stroke="#3a7022" stroke-width="2.5" stroke-linecap="round">
+    <path d="M 12 12 Q 9 7 9 4"/>
+    <path d="M 16 11 L 16 3"/>
+    <path d="M 20 12 Q 23 7 23 4"/>
+  </g>
+  <!-- Tube highlights -->
+  <g fill="none" stroke="#7dd44a" stroke-width="1.2" stroke-linecap="round" opacity="0.85">
+    <path d="M 12 12 Q 9 8 9 5"/>
+    <path d="M 16 11 L 16 4"/>
+    <path d="M 20 12 Q 23 8 23 5"/>
+  </g>
+  <!-- Onion bulb body — round purple-white -->
+  <path d="M 9 14 Q 7 22 16 28 Q 25 22 23 14 Q 20 12 16 12 Q 12 12 9 14 Z"
+        fill="#e8c5dc" stroke="#5a3a18" stroke-width="1.6" stroke-linejoin="round"/>
+  <!-- Vertical stripes (onion lines) -->
+  <g stroke="#a85b95" stroke-width="0.9" fill="none" opacity="0.7">
+    <path d="M 12 14 Q 11 20 14 27"/>
+    <path d="M 16 13 L 16 28"/>
+    <path d="M 20 14 Q 21 20 18 27"/>
+  </g>
+  <!-- Highlight -->
+  <ellipse cx="13" cy="17" rx="1.8" ry="3" fill="#ffffff" opacity="0.55"/>
+  <!-- Root tip -->
+  <path d="M 14 28 L 16 30 L 18 28" stroke="#5a3a18" stroke-width="1" fill="none"/>
+</svg>

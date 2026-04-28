@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- Outer leaves (darker) -->
+  <circle cx="16" cy="17" r="11" fill="#7bc757" stroke="#1f420e" stroke-width="1.6"/>
+  <!-- Leaf wrap segments -->
+  <path d="M 16 6 Q 6 14 16 28" stroke="#3a7022" stroke-width="1.2" fill="none" opacity="0.7"/>
+  <path d="M 16 6 Q 26 14 16 28" stroke="#3a7022" stroke-width="1.2" fill="none" opacity="0.7"/>
+  <!-- Inner head (lighter, paler) -->
+  <ellipse cx="16" cy="18" rx="7" ry="8" fill="#cfeb98" stroke="#3a7022" stroke-width="1.3"/>
+  <!-- Center vein -->
+  <path d="M 16 11 Q 14 18 16 25" stroke="#5fa337" stroke-width="1" fill="none"/>
+  <!-- Highlight -->
+  <ellipse cx="13" cy="14" rx="2.5" ry="3" fill="#e8f5c8" opacity="0.7"/>
+</svg>

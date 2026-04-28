@@ -27,12 +27,14 @@ function openSeedModal(index) {
 
     CROP_ORDER.forEach(seedKey => {
         const crop = CROPS[seedKey];
+        const count = state.inventory[seedKey] || 0;
         const btn = document.createElement("button");
-        btn.className = "seed-modal-btn";
+        btn.className = "seed-modal-btn" + (count === 0 ? " locked" : "");
+        btn.dataset.count = String(count);
         btn.innerHTML = `
             <div class="crop-icon crop-icon-${seedKey}"></div>
             <strong>${crop.seed}</strong>
-            <span>余量: ${state.inventory[seedKey] || 0}</span>
+            <span class="seed-count">${count}</span>
         `;
         btn.addEventListener("click", () => {
             // Suppress click that ends a drag-scroll.

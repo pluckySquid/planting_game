@@ -1,20 +1,40 @@
 const SAVE_KEY = "pastoral-fields-save-v4";
 const PLOT_COLS = 5;
 const PLOT_COUNT = 25;
+const LIFE_TICK_MS = 60000;
+const MIN_CROP_SIZE = 0.5;
+const MAX_CROP_SIZE = 100;
+const MAX_FINAL_YIELD = 100;
 
 const CROPS = {
-  corn: { name: "小型玉米", seed: "玉米种子", price: 8671, yield: "2.3斤", growMs: 52000, life: 100, tags: ["折枝"], weather: "折枝 0.3倍", rarity: "普通", reward: 62 },
-  chili: { name: "超巨型辣椒", seed: "辣椒种子", price: 15232, yield: "3.4斤", growMs: 64000, life: 60, tags: ["折枝", "雪暴", "震霆"], weather: "雪暴 2.5倍", rarity: "普通", reward: 88 },
-  cabbage: { name: "超巨型白菜", seed: "白菜种子", price: 2356, yield: "1.7斤", growMs: 43000, life: 40, tags: ["震霆", "折枝"], weather: "震霆 2.3倍", rarity: "普通", reward: 44 },
-  tomato: { name: "番茄", seed: "番茄种子", price: 6120, yield: "2.0斤", growMs: 47000, life: 75, tags: ["潮湿"], weather: "小雨 0.1倍", rarity: "常见", reward: 54 },
-  eggplant: { name: "茄子", seed: "茄子种子", price: 7340, yield: "2.6斤", growMs: 56000, life: 80, tags: ["薄雾"], weather: "薄雾 0.7倍", rarity: "常见", reward: 68 },
-  carrot: { name: "胡萝卜", seed: "胡萝卜种子", price: 4210, yield: "1.9斤", growMs: 39000, life: 55, tags: ["大风"], weather: "大风 0.3倍", rarity: "常见", reward: 48 },
-  onion: { name: "洋葱", seed: "洋葱种子", price: 5120, yield: "2.1斤", growMs: 50000, life: 65, tags: ["雾霾"], weather: "雾霾 0.5倍", rarity: "常见", reward: 58 },
-  cauliflower: { name: "花椰菜", seed: "花椰菜种子", price: 9300, yield: "2.8斤", growMs: 68000, life: 90, tags: ["彩虹"], weather: "彩虹 10倍", rarity: "优质", reward: 96 }
+  corn: { name: "小型玉米", seed: "玉米种子", price: 3000, yield: "2.3斤", growMs: 52000, life: 100, tags: ["折枝"], weather: "折枝 0.3倍", rarity: "普通", reward: 62 },
+  chili: { name: "超巨型辣椒", seed: "辣椒种子", price: 10000, yield: "3.4斤", growMs: 64000, life: 60, tags: ["折枝", "雪暴", "震霆"], weather: "雪暴 2.5倍", rarity: "普通", reward: 88 },
+  cabbage: { name: "超巨型白菜", seed: "白菜种子", price: 1000, yield: "1.7斤", growMs: 43000, life: 40, tags: ["震霆", "折枝"], weather: "震霆 2.3倍", rarity: "普通", reward: 44 },
+  tomato: { name: "番茄", seed: "番茄种子", price: 200, yield: "2.0斤", growMs: 47000, life: 75, tags: ["潮湿"], weather: "小雨 0.1倍", rarity: "常见", reward: 54 },
+  eggplant: { name: "茄子", seed: "茄子种子", price: 7000, yield: "2.6斤", growMs: 56000, life: 80, tags: ["薄雾"], weather: "薄雾 0.7倍", rarity: "常见", reward: 68 },
+  carrot: { name: "胡萝卜", seed: "胡萝卜种子", price: 4500, yield: "1.9斤", growMs: 39000, life: 55, tags: ["大风"], weather: "大风 0.3倍", rarity: "常见", reward: 48 },
+  onion: { name: "洋葱", seed: "洋葱种子", price: 200, yield: "2.1斤", growMs: 50000, life: 65, tags: ["雾霾"], weather: "雾霾 0.5倍", rarity: "常见", reward: 58 },
+  cauliflower: { name: "花椰菜", seed: "花椰菜种子", price: 1000, yield: "2.8斤", growMs: 68000, life: 90, tags: ["彩虹"], weather: "彩虹 10倍", rarity: "优质", reward: 96 },
+  coconut: { name: "椰子", seed: "椰子种子", price: 15000, yield: "3.2斤", growMs: 72000, life: 110, tags: ["热带", "暴雨"], weather: "暴雨 1.8倍", rarity: "优质", reward: 120 }
 };
 
-const CROP_ORDER = ["corn", "chili", "cabbage", "tomato", "eggplant", "carrot", "onion", "cauliflower"];
+const CROP_ORDER = ["corn", "chili", "cabbage", "tomato", "eggplant", "carrot", "onion", "cauliflower", "coconut"];
 const STARTER_PATTERN = ["corn", "chili", "chili", "tomato", "cabbage", "carrot", "corn", "chili", "eggplant", "onion", "cabbage", "tomato", "corn", "chili", "cauliflower", "carrot", "eggplant", "cabbage"];
+const PLANT_WEATHER_MUTATIONS = [
+  { id: "windy", icon: "〰", name: "大风", multiplier: 0.3 },
+  { id: "foggy", icon: "≋", name: "薄雾", multiplier: 0.7 },
+  { id: "lightning", icon: "ϟ", name: "雷电", multiplier: 2.3 },
+  { id: "rainy", icon: "⌇", name: "小雨", multiplier: 0.1 },
+  { id: "snowy", icon: "✧", name: "大雪", multiplier: 1.4 },
+  { id: "sunny", icon: "☼", name: "晴光", multiplier: 1.2 },
+  { id: "storm", icon: "ϟ", name: "雷暴", multiplier: 3 },
+  { id: "cloudy", icon: "≋", name: "多云", multiplier: 1.1 },
+  { id: "blizzard", icon: "✦", name: "雪暴", multiplier: 2.5 },
+  { id: "smog", icon: "≋", name: "雾霾", multiplier: 0.5 },
+  { id: "rainbow", icon: "◒", name: "彩虹", multiplier: 10 },
+  { id: "branch", icon: "⌁", name: "折枝", multiplier: 0.3 }
+];
+const RARITY_MULTIPLIERS = { 普通: 1, 常见: 2, 优质: 4, 卓越: 6, 珍稀: 8, 参天: 10 };
 
 const starter = {
   coins: 102000,
@@ -27,13 +47,17 @@ const starter = {
   selectedSeed: "chili",
   mapX: 0,
   mapY: 0,
+  zoom: 1,
+  lastLifeTick: Date.now(),
   inventory: Object.fromEntries(CROP_ORDER.map((key) => [key, 6])),
   plots: Array.from({ length: PLOT_COUNT }, (_, index) => {
     const crop = STARTER_PATTERN[index] || null;
     const growMs = crop ? CROPS[crop].growMs : 0;
     return {
       crop,
-      plantedAt: crop ? Date.now() - Math.round(growMs * (index % 4 === 0 ? .35 : index % 3 === 0 ? .68 : 1.08)) : 0
+      plantedAt: crop ? Date.now() - Math.round(growMs * (index % 4 === 0 ? .35 : index % 3 === 0 ? .68 : 1.08)) : 0,
+      weather: crop && index % 3 === 0 ? PLANT_WEATHER_MUTATIONS[Math.floor(index / 3) % PLANT_WEATHER_MUTATIONS.length] : null,
+      size: crop ? rollCropSize(index) : 0
     };
   })
 };
@@ -48,6 +72,9 @@ const els = {
   xpFill: document.querySelector("#xpFill"),
   taskText: document.querySelector("#taskText"),
   toast: document.querySelector("#toast"),
+  zoomIn: document.querySelector("#zoomInBtn"),
+  zoomOut: document.querySelector("#zoomOutBtn"),
+  zoomLabel: document.querySelector("#zoomLabel"),
   plantAll: document.querySelector("#plantAllBtn"),
   harvestAll: document.querySelector("#harvestAllBtn"),
   quickHarvest: document.querySelector("#quickHarvestBtn"),
@@ -68,6 +95,8 @@ const els = {
   cardRarity: document.querySelector("#cardRarity"),
   cardArt: document.querySelector("#cardArt"),
   cardPrice: document.querySelector("#cardPrice"),
+  priceInfo: document.querySelector("#priceInfoPopover"),
+  priceInfoBtn: document.querySelector("#priceInfoBtn"),
   cardLife: document.querySelector("#cardLife"),
   cardLifeText: document.querySelector("#cardLifeText"),
   cardYield: document.querySelector("#cardYield"),
@@ -96,6 +125,7 @@ let state = load();
 let toastTimer = 0;
 let selectedPlot = null;
 let dragState = null;
+let pinchState = null;
 let suppressClick = false;
 
 function load() {
@@ -115,18 +145,65 @@ function normalize(source) {
   next.selectedSeed = CROPS[next.selectedSeed] ? next.selectedSeed : "chili";
   next.mapX = Number.isFinite(next.mapX) ? next.mapX : 0;
   next.mapY = Number.isFinite(next.mapY) ? next.mapY : 0;
+  next.zoom = Number.isFinite(next.zoom) ? clamp(next.zoom, 0.8, 2.5) : 1;
+  next.lastLifeTick = Number.isFinite(next.lastLifeTick) ? next.lastLifeTick : Date.now();
   next.inventory = next.inventory || {};
   CROP_ORDER.forEach((key) => {
     next.inventory[key] = Number.isFinite(next.inventory[key]) ? next.inventory[key] : 3;
   });
+  const existingSizes = (next.plots || [])
+    .filter((plot) => CROPS[plot?.crop] && Number.isFinite(Number(plot.size)))
+    .map((plot) => Number(plot.size));
+  const needsVisibleSizes = existingSizes.length > 3 && Math.max(...existingSizes) - Math.min(...existingSizes) < 18;
   next.plots = Array.from({ length: PLOT_COUNT }, (_, index) => {
     const old = next.plots[index] || {};
     return {
       crop: CROPS[old.crop] ? old.crop : null,
-      plantedAt: old.plantedAt || 0
+      plantedAt: old.plantedAt || 0,
+      weather: normalizePlotWeather(old.weather),
+      size: CROPS[old.crop] ? normalizeCropSize(needsVisibleSizes ? null : old.size, index) : 0
     };
   });
   return next;
+}
+
+function normalizePlotWeather(weather) {
+  if (!weather || typeof weather !== "object") return null;
+  const name = typeof weather.name === "string" ? weather.name : "天气";
+  const id = typeof weather.id === "string" ? weather.id : "";
+  const known = PLANT_WEATHER_MUTATIONS.find((item) => item.id === id || item.name === name);
+  if (known) return known;
+  return {
+    id: id || "weather",
+    icon: typeof weather.icon === "string" ? weather.icon : "✦",
+    name,
+    multiplier: Number.isFinite(weather.multiplier) ? weather.multiplier : 1
+  };
+}
+
+function rollPlantWeather() {
+  if (Math.random() >= 0.3) return null;
+  const weather = PLANT_WEATHER_MUTATIONS[Math.floor(Math.random() * PLANT_WEATHER_MUTATIONS.length)];
+  return normalizePlotWeather(weather);
+}
+
+function rollCropSize(seed) {
+  const random = Number.isFinite(seed) ? ((seed + 1) * 0.61803398875) % 1 : Math.random();
+  let size;
+  if (random < 0.45) {
+    size = MIN_CROP_SIZE + (random / 0.45) * 8.5;
+  } else if (random < 0.82) {
+    size = 9 + ((random - 0.45) / 0.37) * 36;
+  } else {
+    size = 45 + ((random - 0.82) / 0.18) * 55;
+  }
+  return Number(clamp(size, MIN_CROP_SIZE, MAX_CROP_SIZE).toFixed(1));
+}
+
+function normalizeCropSize(size, fallbackSeed) {
+  const value = Number(size);
+  if (Number.isFinite(value)) return clamp(value, MIN_CROP_SIZE, MAX_CROP_SIZE);
+  return rollCropSize(fallbackSeed);
 }
 
 function save() {
@@ -148,11 +225,140 @@ function timeLeft(plot) {
   return Math.ceil(left / 1000);
 }
 
+function cropLifeMinutes(crop) {
+  const minPrice = 200;
+  const maxPrice = 15000;
+  const progress = clamp((crop.price - minPrice) / (maxPrice - minPrice), 0, 1);
+  return Math.round(20 + progress * 180);
+}
+
+function matureMinutes(plot) {
+  if (!plot.crop || cropStage(plot) < 3) return 0;
+  const crop = CROPS[plot.crop];
+  return Math.max(0, Math.floor((Date.now() - plot.plantedAt - crop.growMs) / LIFE_TICK_MS));
+}
+
+function lifeLeft(plot) {
+  if (!plot.crop) return 0;
+  const crop = CROPS[plot.crop];
+  const maxLife = cropLifeMinutes(crop);
+  if (cropStage(plot) < 3) return maxLife;
+  return Math.max(0, maxLife - matureMinutes(plot));
+}
+
+function yieldAmount(crop) {
+  const value = Number.parseFloat(String(crop.yield).replace(/[^\d.]/g, ""));
+  return Number.isFinite(value) ? value : 1;
+}
+
+function cropSize(plot) {
+  return normalizeCropSize(plot.size, 0);
+}
+
+function sizeVisualScale(plot) {
+  const progress = (cropSize(plot) - MIN_CROP_SIZE) / (MAX_CROP_SIZE - MIN_CROP_SIZE);
+  return Number((0.5 + Math.pow(progress, 0.68) * 0.8).toFixed(2));
+}
+
+function sizeVisualLift(plot) {
+  return Math.round(Math.max(0, sizeVisualScale(plot) - 1) * 4);
+}
+
+function finalYield(plot) {
+  if (!plot.crop) return 0;
+  return Number(Math.min(MAX_FINAL_YIELD, yieldAmount(CROPS[plot.crop]) * cropSize(plot)).toFixed(1));
+}
+
+function rarityMultiplier(crop) {
+  return RARITY_MULTIPLIERS[crop.rarity] || 1;
+}
+
+function mutationMultiplier(plot) {
+  const mutation = normalizePlotWeather(plot.weather);
+  return mutation?.multiplier || 1;
+}
+
+function cropValue(plot) {
+  if (!plot.crop) return 0;
+  const crop = CROPS[plot.crop];
+  return Math.round(crop.price * rarityMultiplier(crop) * finalYield(plot) * mutationMultiplier(plot));
+}
+
+function mutationText(plot) {
+  const mutation = normalizePlotWeather(plot.weather);
+  return mutation ? `${mutation.name} ${mutation.multiplier}倍` : "未获得天气突变";
+}
+
+function priceFormulaRows(plot) {
+  if (!plot.crop) return "";
+  const crop = CROPS[plot.crop];
+  const mutation = normalizePlotWeather(plot.weather);
+  const base = crop.price;
+  const rarity = rarityMultiplier(crop);
+  const baseYield = yieldAmount(crop);
+  const size = cropSize(plot);
+  const yieldValue = finalYield(plot);
+  const mutationValue = mutation?.multiplier || 1;
+  const value = cropValue(plot);
+  const mutationLabel = mutation ? mutation.name : "无突变";
+  const mutationClass = mutationValue < 1 ? " down" : mutationValue > 1 ? " up" : "";
+
+  return `
+    <button class="price-info-close" id="priceInfoCloseBtn" aria-label="关闭价格说明">×</button>
+    <h3>价格说明</h3>
+    <p>果实价格=基础价格×稀有度系数×最终产量×突变词条倍率</p>
+    <dl>
+      <div><dt>基础价格</dt><dd>${base.toLocaleString()}</dd></div>
+      <div><dt>基础产量</dt><dd>${baseYield}斤</dd></div>
+      <div><dt>果实体型</dt><dd>${size}倍</dd></div>
+      <div><dt>最终产量</dt><dd>${yieldValue}斤</dd></div>
+      <div><dt>稀有度</dt><dd>${rarity}倍</dd></div>
+      <div><dt>${mutationLabel}</dt><dd class="${mutationClass}">${mutationValue}倍</dd></div>
+      <div class="total"><dt>最终价格</dt><dd>${value.toLocaleString()}</dd></div>
+    </dl>
+  `;
+}
+
+function updateCropLife() {
+  const now = Date.now();
+  const ticks = Math.floor((now - state.lastLifeTick) / LIFE_TICK_MS);
+  if (ticks <= 0) return;
+
+  let changed = false;
+  state.plots = state.plots.map((plot) => {
+    if (!plot.crop || cropStage(plot) < 3) return plot;
+
+    if (lifeLeft(plot) <= 0) {
+      changed = true;
+      return { crop: null, plantedAt: 0, weather: null, size: 0 };
+    }
+
+    if (!plot.weather) {
+      for (let i = 0; i < ticks; i += 1) {
+        const weather = rollPlantWeather();
+        if (weather) {
+          changed = true;
+          return { ...plot, weather };
+        }
+      }
+    }
+
+    return plot;
+  });
+
+  state.lastLifeTick += ticks * LIFE_TICK_MS;
+  save();
+  if (changed && selectedPlot !== null && !state.plots[selectedPlot]?.crop) {
+    hideCropCard();
+  }
+}
+
 function cropMarkup(key) {
   return `<i></i><i></i><i></i><i></i><em></em>`;
 }
 
 function render() {
+  updateCropLife();
   els.field.innerHTML = "";
   els.cropLayer.innerHTML = "";
   applyMapOffset();
@@ -211,6 +417,9 @@ function render() {
   renderStorage();
   renderFarmPanel();
   renderBook();
+  if (selectedPlot !== null && state.plots[selectedPlot]?.crop && !els.cropCard.hidden) {
+    showCropCard(selectedPlot);
+  }
 }
 
 function renderCropSprite(index, cropKey, stage) {
@@ -220,12 +429,31 @@ function renderCropSprite(index, cropKey, stage) {
   const plotRect = plotButton?.getBoundingClientRect();
   const layerRect = els.cropLayer.getBoundingClientRect();
   if (!plotRect || !layerRect.width) return;
+  const zoomCompensation = 1 + ((state.zoom || 1) - 1) * 0.98;
 
   const cropEl = document.createElement("button");
   cropEl.type = "button";
   cropEl.className = `crop-sprite crop-sprite-${cropKey} stage-${stage}`;
-  cropEl.style.left = `${plotRect.left + plotRect.width / 2 - layerRect.left}px`;
-  cropEl.style.top = `${plotRect.top + plotRect.height / 2 - layerRect.top}px`;
+  cropEl.style.setProperty("--size-scale", sizeVisualScale(state.plots[index]));
+  cropEl.style.setProperty("--size-lift", `${sizeVisualLift(state.plots[index])}px`);
+  const plotWeather = normalizePlotWeather(state.plots[index]?.weather);
+  if (plotWeather) {
+    cropEl.classList.add("has-weather", `weather-${plotWeather.id}`);
+    cropEl.dataset.weather = plotWeather.name;
+    cropEl.setAttribute("aria-label", `${CROPS[cropKey].name}，获得${plotWeather.name}天气`);
+    const effect = document.createElement("span");
+    effect.className = `crop-weather-effect weather-effect-${plotWeather.id}`;
+    effect.setAttribute("aria-hidden", "true");
+    effect.innerHTML = "<i></i><i></i><i></i><b></b>";
+    cropEl.appendChild(effect);
+    const badge = document.createElement("span");
+    badge.className = "crop-weather-badge";
+    badge.textContent = plotWeather.icon;
+    badge.title = plotWeather.name;
+    cropEl.appendChild(badge);
+  }
+  cropEl.style.left = `${(plotRect.left + plotRect.width / 2 - layerRect.left) / zoomCompensation}px`;
+  cropEl.style.top = `${(plotRect.top + plotRect.height / 2 - layerRect.top) / zoomCompensation}px`;
   cropEl.style.zIndex = String(20 + row + col);
   cropEl.style.setProperty("--sway-delay", `${(index % 7) * -0.18}s`);
   cropEl.addEventListener("pointerdown", (event) => {
@@ -269,7 +497,7 @@ function handleFieldFallbackClick(event) {
   if (
     suppressClick ||
     event.defaultPrevented ||
-    clickedElement?.closest(".crop-sprite, .map-building, .topbar, .profile-card, .right-menu, .left-menu, .bottom-actions, .panel, .crop-card, .seed-modal, .toast")
+    clickedElement?.closest(".crop-sprite, .map-building, .topbar, .profile-card, .zoom-controls, .right-menu, .left-menu, .bottom-actions, .panel, .crop-card, .seed-modal, .toast")
   ) {
     return;
   }
@@ -299,6 +527,8 @@ function handleFieldFallbackClick(event) {
 function applyMapOffset() {
   els.game.style.setProperty("--map-x", `${state.mapX}px`);
   els.game.style.setProperty("--map-y", `${state.mapY}px`);
+  els.game.style.setProperty("--map-zoom", state.zoom.toFixed(2));
+  if (els.zoomLabel) els.zoomLabel.textContent = `${Math.round(state.zoom * 100)}%`;
 }
 
 function clamp(value, min, max) {
@@ -306,7 +536,7 @@ function clamp(value, min, max) {
 }
 
 function canStartMapDrag(target) {
-  return !target.closest(".crop-sprite, .map-building, .topbar, .profile-card, .right-menu, .left-menu, .tool-rail, .bottom-actions, .panel, .crop-card, .seed-modal, .toast");
+  return !target.closest(".crop-sprite, .map-building, .topbar, .profile-card, .zoom-controls, .right-menu, .left-menu, .tool-rail, .bottom-actions, .panel, .crop-card, .seed-modal, .toast");
 }
 
 function startMapDrag(event) {
@@ -333,9 +563,68 @@ function moveMapDrag(event) {
     dragState.moved = true;
     suppressClick = true;
   }
-  state.mapX = clamp(dragState.baseX + dx, -90, 90);
-  state.mapY = clamp(dragState.baseY + dy, -105, 80);
+  const zoomExtra = Math.round((state.zoom - 1) * 190);
+  state.mapX = clamp(dragState.baseX + dx, -90 - zoomExtra, 90 + zoomExtra);
+  state.mapY = clamp(dragState.baseY + dy, -105 - zoomExtra, 80 + zoomExtra);
   applyMapOffset();
+}
+
+function setZoom(nextZoom, options = {}) {
+  const previous = state.zoom;
+  const step = options.smooth ? 100 : 10;
+  state.zoom = clamp(Math.round(nextZoom * step) / step, 0.8, 2.5);
+  if (state.zoom === previous) {
+    applyMapOffset();
+    return;
+  }
+
+  const zoomExtra = Math.round((state.zoom - 1) * 190);
+  state.mapX = clamp(state.mapX, -90 - zoomExtra, 90 + zoomExtra);
+  state.mapY = clamp(state.mapY, -105 - zoomExtra, 80 + zoomExtra);
+  if (options.toast !== false) showToast(`地图缩放 ${Math.round(state.zoom * 100)}%`);
+  commit();
+}
+
+function isMapZoomTarget(target) {
+  return target instanceof Element && canStartMapDrag(target);
+}
+
+function handleWheelZoom(event) {
+  if (!isMapZoomTarget(event.target)) return;
+  event.preventDefault();
+  const direction = event.deltaY < 0 ? 1 : -1;
+  setZoom(state.zoom + direction * 0.1, { toast: false });
+}
+
+function distanceBetweenTouches(touches) {
+  const [first, second] = touches;
+  return Math.hypot(second.clientX - first.clientX, second.clientY - first.clientY);
+}
+
+function handleTouchStart(event) {
+  if (event.touches.length !== 2 || !isMapZoomTarget(event.target)) return;
+  pinchState = {
+    startDistance: distanceBetweenTouches(event.touches),
+    startZoom: state.zoom
+  };
+  dragState = null;
+  suppressClick = true;
+}
+
+function handleTouchMove(event) {
+  if (!pinchState || event.touches.length !== 2) return;
+  event.preventDefault();
+  const scale = distanceBetweenTouches(event.touches) / pinchState.startDistance;
+  setZoom(pinchState.startZoom * scale, { smooth: true, toast: false });
+}
+
+function handleTouchEnd(event) {
+  if (!pinchState || event.touches.length >= 2) return;
+  pinchState = null;
+  save();
+  window.setTimeout(() => {
+    suppressClick = false;
+  }, 100);
 }
 
 function endMapDrag(event) {
@@ -383,8 +672,9 @@ function plant(index, cropKey) {
 
   state.inventory[cropKey] -= 1;
   state.grain = Math.max(0, state.grain - 1);
-  state.plots[index] = { crop: cropKey, plantedAt: Date.now() };
-  showToast(`种下${crop.seed}。`);
+  const weather = rollPlantWeather();
+  state.plots[index] = { crop: cropKey, plantedAt: Date.now(), weather, size: rollCropSize() };
+  showToast(weather ? `种下${crop.seed}，获得${weather.name}天气。` : `种下${crop.seed}。`);
   commit();
 }
 
@@ -396,13 +686,21 @@ function harvest(index) {
     showToast(`${timeLeft(plot)}秒后成熟。`);
     return;
   }
+  if (lifeLeft(plot) <= 0) {
+    state.plots[index] = { crop: null, plantedAt: 0, weather: null, size: 0 };
+    showToast(`${crop.name}已经枯萎。`);
+    hideCropCard();
+    commit();
+    return;
+  }
 
-  state.plots[index] = { crop: null, plantedAt: 0 };
-  state.coins += crop.price;
+  const value = cropValue(plot);
+  state.plots[index] = { crop: null, plantedAt: 0, weather: null, size: 0 };
+  state.coins += value;
   state.grain += 2;
   state.xp += crop.reward;
   levelUpIfNeeded();
-  showToast(`收获${crop.name}，+${formatCoins(crop.price)}铜钱。`);
+  showToast(`收获${crop.name}，+${formatCoins(value)}铜钱。`);
   hideCropCard();
   commit();
 }
@@ -426,9 +724,9 @@ function harvestAll() {
   for (let i = 0; i < state.unlocked; i += 1) {
     const plot = state.plots[i];
     if (plot.crop && cropStage(plot) === 3) {
-      coins += CROPS[plot.crop].price;
+      coins += cropValue(plot);
       state.xp += CROPS[plot.crop].reward;
-      state.plots[i] = { crop: null, plantedAt: 0 };
+      state.plots[i] = { crop: null, plantedAt: 0, weather: null, size: 0 };
       count += 1;
     }
   }
@@ -497,22 +795,27 @@ function showCropCard(index) {
   const plot = state.plots[index];
   if (!plot.crop) return;
   const crop = CROPS[plot.crop];
-  const life = Math.max(0, Math.min(crop.life, Math.round(crop.life - (cropStage(plot) < 3 ? timeLeft(plot) / 2 : 0))));
+  const maxLife = cropLifeMinutes(crop);
+  const life = lifeLeft(plot);
+  const mutation = normalizePlotWeather(plot.weather);
+  const value = cropValue(plot);
   els.cardName.textContent = crop.name;
   els.cardRarity.textContent = crop.rarity;
   els.cardArt.className = `card-art crop-icon crop-icon-${plot.crop}`;
-  els.cardPrice.textContent = crop.price.toLocaleString();
-  els.cardLife.style.width = `${(life / crop.life) * 100}%`;
-  els.cardLifeText.textContent = `${life}/${crop.life}`;
-  els.cardYield.textContent = crop.yield;
-  els.cardWeather.textContent = crop.weather;
-  els.cardTags.innerHTML = crop.tags.map((tag) => `<span>${tag}</span>`).join("");
+  els.cardPrice.textContent = value.toLocaleString();
+  els.cardLife.style.width = `${(life / maxLife) * 100}%`;
+  els.cardLifeText.textContent = `${life}/${maxLife}`;
+  els.cardYield.textContent = `${finalYield(plot)}斤`;
+  els.cardWeather.textContent = mutationText(plot);
+  els.cardTags.innerHTML = `<span>体型：${cropSize(plot)}倍</span>${mutation ? `<span>突变：${mutation.name} ×${mutation.multiplier}</span>` : ""}`;
+  els.priceInfo.innerHTML = priceFormulaRows(plot);
   els.cropCard.hidden = false;
 }
 
 function hideCropCard() {
   selectedPlot = null;
   els.cropCard.hidden = true;
+  els.priceInfo.hidden = true;
 }
 
 function renderShop() {
@@ -536,8 +839,9 @@ function renderStorage() {
     const crop = CROPS[key];
     const count = state.inventory[key] || 0;
     const selected = state.selectedSeed === key ? " selected" : "";
+    const empty = count === 0 ? " empty" : "";
     return `
-      <button class="storage-item${selected}" data-seed="${key}">
+      <button class="storage-item${selected}${empty}" data-seed="${key}" data-count="${count}">
         <span class="crop-icon crop-icon-${key}"></span>
         <strong>${crop.seed}</strong>
         <b>${count}</b>
@@ -607,6 +911,8 @@ els.harvestAll.addEventListener("click", harvestAll);
 els.quickHarvest.addEventListener("click", harvestAll);
 els.expand.addEventListener("click", expandField);
 els.boost.addEventListener("click", boostAll);
+els.zoomIn?.addEventListener("click", () => setZoom(state.zoom + 0.1));
+els.zoomOut?.addEventListener("click", () => setZoom(state.zoom - 0.1));
 els.log.addEventListener("click", showLog);
 els.settings.addEventListener("click", resetGame);
 els.rules.addEventListener("click", () => openPanel(els.rulesPanel));
@@ -639,10 +945,24 @@ els.upgradeFarm.addEventListener("click", () => {
   commit();
 });
 els.closeCrop.addEventListener("click", hideCropCard);
+els.priceInfoBtn?.addEventListener("click", (event) => {
+  event.preventDefault();
+  event.stopPropagation();
+  if (selectedPlot === null) return;
+  els.priceInfo.hidden = !els.priceInfo.hidden;
+});
+els.priceInfo?.addEventListener("click", (event) => event.stopPropagation());
+els.priceInfo?.addEventListener("click", (event) => {
+  if (event.target.closest(".price-info-close")) {
+    event.preventDefault();
+    event.stopPropagation();
+    els.priceInfo.hidden = true;
+  }
+});
 els.cardHarvest.addEventListener("click", () => selectedPlot !== null && harvest(selectedPlot));
 els.removeCrop.addEventListener("click", () => {
   if (selectedPlot === null) return;
-  state.plots[selectedPlot] = { crop: null, plantedAt: 0 };
+  state.plots[selectedPlot] = { crop: null, plantedAt: 0, weather: null, size: 0 };
   showToast("已铲除作物。");
   hideCropCard();
   commit();
@@ -659,6 +979,11 @@ els.game.addEventListener("pointermove", moveMapDrag);
 els.game.addEventListener("pointerup", handleBuildingPointer, true);
 els.game.addEventListener("pointerup", endMapDrag);
 els.game.addEventListener("pointercancel", endMapDrag);
+els.game.addEventListener("wheel", handleWheelZoom, { passive: false });
+els.game.addEventListener("touchstart", handleTouchStart, { passive: false });
+els.game.addEventListener("touchmove", handleTouchMove, { passive: false });
+els.game.addEventListener("touchend", handleTouchEnd);
+els.game.addEventListener("touchcancel", handleTouchEnd);
 document.addEventListener("click", handleFieldFallbackClick, true);
 
 document.addEventListener("click", (event) => {

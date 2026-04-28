@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- Green tops (3 fronds) -->
+  <g fill="#5fa83a" stroke="#1f420e" stroke-width="1.3" stroke-linejoin="round">
+    <path d="M 16 10 Q 10 5 8 8 Q 11 12 14 11 Z"/>
+    <path d="M 16 10 Q 22 5 24 8 Q 21 12 18 11 Z"/>
+    <path d="M 16 10 Q 16 4 14 4 Q 14 8 16 11 Q 18 8 18 4 Q 16 4 16 10 Z"/>
+  </g>
+  <!-- Carrot body — orange triangle -->
+  <path d="M 11 11 L 21 11 Q 22 14 20 18 L 17 28 Q 16 30 15 28 L 12 18 Q 10 14 11 11 Z"
+        fill="#ee802a" stroke="#7a3812" stroke-width="1.6" stroke-linejoin="round"/>
+  <!-- Horizontal lines (carrot ridges) -->
+  <g stroke="#7a3812" stroke-width="0.7" fill="none" opacity="0.5">
+    <path d="M 12 15 Q 16 16 20 15"/>
+    <path d="M 13 19 Q 16 20 19 19"/>
+    <path d="M 14 23 Q 16 24 18 23"/>
+  </g>
+  <!-- Highlight -->
+  <path d="M 13 13 L 14 25" stroke="#ffc080" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.7"/>
+</svg>

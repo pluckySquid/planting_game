@@ -778,14 +778,14 @@
 }
 
 /* UNIQUE YOUNG PLANTS (NO FRUIT) FOR STAGE 1 AND 2 */
-.crop-sprite-corn.stage-1, .crop-sprite-corn.stage-2 { background-image: url("assets/crops/young_corn.svg") !important; }
-.crop-sprite-chili.stage-1, .crop-sprite-chili.stage-2 { background-image: url("assets/crops/young_chili.svg") !important; }
-.crop-sprite-cabbage.stage-1, .crop-sprite-cabbage.stage-2 { background-image: url("assets/crops/young_cabbage.svg") !important; }
-.crop-sprite-tomato.stage-1, .crop-sprite-tomato.stage-2 { background-image: url("assets/crops/young_tomato.svg") !important; }
-.crop-sprite-eggplant.stage-1, .crop-sprite-eggplant.stage-2 { background-image: url("assets/crops/young_eggplant.svg") !important; }
-.crop-sprite-carrot.stage-1, .crop-sprite-carrot.stage-2 { background-image: url("assets/crops/young_carrot.svg") !important; }
-.crop-sprite-onion.stage-1, .crop-sprite-onion.stage-2 { background-image: url("assets/crops/young_onion.svg") !important; }
-.crop-sprite-cauliflower.stage-1, .crop-sprite-cauliflower.stage-2 { background-image: url("assets/crops/young_cauliflower.svg") !important; }
+.crop-sprite-corn.stage-1, .crop-sprite-corn.stage-2 { background-image: url("assets/crops/young_corn.svg?v=2") !important; }
+.crop-sprite-chili.stage-1, .crop-sprite-chili.stage-2 { background-image: url("assets/crops/young_chili.svg?v=2") !important; }
+.crop-sprite-cabbage.stage-1, .crop-sprite-cabbage.stage-2 { background-image: url("assets/crops/young_cabbage.svg?v=2") !important; }
+.crop-sprite-tomato.stage-1, .crop-sprite-tomato.stage-2 { background-image: url("assets/crops/young_tomato.svg?v=2") !important; }
+.crop-sprite-eggplant.stage-1, .crop-sprite-eggplant.stage-2 { background-image: url("assets/crops/young_eggplant.svg?v=2") !important; }
+.crop-sprite-carrot.stage-1, .crop-sprite-carrot.stage-2 { background-image: url("assets/crops/young_carrot.svg?v=2") !important; }
+.crop-sprite-onion.stage-1, .crop-sprite-onion.stage-2 { background-image: url("assets/crops/young_onion.svg?v=2") !important; }
+.crop-sprite-cauliflower.stage-1, .crop-sprite-cauliflower.stage-2 { background-image: url("assets/crops/young_cauliflower.svg?v=2") !important; }
 
 /* Adjust scales for the young plants so they look right */
 .crop-sprite.stage-1 { --crop-scale: .55 !important; opacity: 1 !important; filter: drop-shadow(0 4px 2px rgba(0,0,0,0.4)) !important; }
@@ -2590,6 +2590,137 @@ body .game .task::after {
     border: 2px solid #4b2511 !important;
 }
 
+.crop-card .price-info-popover {
+    position: absolute !important;
+    left: 50% !important;
+    top: 136px !important;
+    width: 250px !important;
+    transform: translateX(-50%) !important;
+    padding: 12px 14px !important;
+    color: #f5e0c4 !important;
+    background: rgba(30, 20, 16, .88) !important;
+    border: 2px solid rgba(86, 50, 29, .92) !important;
+    border-radius: 3px !important;
+    box-shadow: 0 8px 18px rgba(0,0,0,.35) !important;
+    z-index: 260 !important;
+    font-weight: 900 !important;
+    pointer-events: auto !important;
+}
+
+.crop-card .price-info-popover[hidden] {
+    display: none !important;
+}
+
+.crop-card .price-info-popover h3 {
+    margin: -2px auto 8px !important;
+    width: 132px !important;
+    height: 22px !important;
+    display: grid !important;
+    place-items: center !important;
+    color: #ffebba !important;
+    background: rgba(91, 50, 27, .85) !important;
+    border-radius: 999px !important;
+    font-size: 13px !important;
+    text-shadow: 1px 1px #2a130a !important;
+}
+
+.crop-card .price-info-popover .price-info-close {
+    position: absolute !important;
+    right: -10px !important;
+    top: -10px !important;
+    width: 26px !important;
+    height: 26px !important;
+    display: grid !important;
+    place-items: center !important;
+    padding: 0 !important;
+    color: #fff4dc !important;
+    background: #b33a2b !important;
+    border: 2px solid #4b2511 !important;
+    border-radius: 50% !important;
+    font-size: 16px !important;
+    font-weight: 900 !important;
+    line-height: 1 !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,.35) !important;
+    cursor: pointer !important;
+}
+
+.crop-card .price-info-popover p {
+    display: block !important;
+    grid-template-columns: none !important;
+    min-height: 0 !important;
+    width: auto !important;
+    margin: 0 0 8px !important;
+    padding: 0 !important;
+    color: #dcc7aa !important;
+    font-size: 11px !important;
+    line-height: 1.45 !important;
+    font-weight: 800 !important;
+    text-align: left !important;
+    white-space: normal !important;
+    word-break: keep-all !important;
+    background: transparent !important;
+    border: 0 !important;
+}
+
+.crop-card .price-info-popover dl {
+    margin: 0 !important;
+}
+
+.crop-card .price-info-popover div {
+    display: grid !important;
+    grid-template-columns: 1fr auto !important;
+    align-items: center !important;
+    min-height: 27px !important;
+    padding: 0 10px !important;
+    margin: 0 0 3px !important;
+    background: rgba(71, 42, 31, .58) !important;
+    border-radius: 2px !important;
+}
+
+.crop-card .price-info-popover dt,
+.crop-card .price-info-popover dd {
+    margin: 0 !important;
+    font-size: 12px !important;
+}
+
+.crop-card .price-info-popover dt {
+    color: #e5ceb0 !important;
+}
+
+.crop-card .price-info-popover dd {
+    color: #ffe0a4 !important;
+}
+
+.crop-card .price-info-popover dd.up {
+    color: #76e577 !important;
+}
+
+.crop-card .price-info-popover dd.down {
+    color: #80e15f !important;
+}
+
+.crop-card .price-info-popover .total {
+    margin-top: 7px !important;
+    background: rgba(112, 58, 29, .78) !important;
+}
+
+.crop-card .price-info-popover .total dd {
+    color: #ffd661 !important;
+    font-size: 14px !important;
+}
+
+body .game .crop-card .price-info-popover {
+    z-index: 999 !important;
+}
+
+body .game .crop-card .price-info-popover p {
+    display: block !important;
+    grid-template-columns: none !important;
+    width: auto !important;
+    text-align: left !important;
+    white-space: normal !important;
+}
+
 .crop-card .life-row,
 .crop-card .paper-card p {
     min-height: 34px !important;
@@ -3504,4 +3635,1139 @@ body .game .task::before {
     max-height: calc(100% - 120px) !important;
     transform: none !important;
     overflow-y: auto !important;
+}
+
+/* Book and rules panels: centered within the game container. */
+#bookPanel.panel,
+#rulesPanel.panel {
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    right: auto !important;
+    bottom: auto !important;
+    inset: auto !important;
+    transform: translate(-50%, -50%) !important;
+    width: min(340px, calc(100% - 24px)) !important;
+    height: auto !important;
+    max-height: calc(100% - 60px) !important;
+    overflow-y: auto !important;
+}
+
+/* Weather should be readable on plants, while the full-screen ambience stays subtle. */
+#game[data-weather] .weather-layer {
+    opacity: .12 !important;
+}
+
+#game[data-weather="sunny"] .weather-layer {
+    background-color: rgba(255, 210, 80, 0.025) !important;
+    box-shadow: inset 0 0 70px rgba(255, 210, 80, 0.06) !important;
+}
+
+#game[data-weather="cloudy"] .weather-layer {
+    background-color: rgba(80, 90, 105, 0.08) !important;
+    background-size: 1050px 525px !important;
+    opacity: .42 !important;
+}
+
+#game[data-weather="rainy"] .weather-layer {
+    background-color: rgba(20, 40, 60, 0.08) !important;
+    background-size: 160px 320px !important;
+    opacity: .5 !important;
+}
+
+#game[data-weather="storm"] .weather-layer {
+    background-color: rgba(10, 15, 30, 0.14) !important;
+    background-size: 220px 420px !important;
+    opacity: .55 !important;
+}
+
+#game[data-weather="snowy"] .weather-layer {
+    background-color: rgba(200, 220, 255, 0.05) !important;
+    background-size: 280px 280px !important;
+    opacity: .46 !important;
+}
+
+.crop-sprite.has-weather {
+    overflow: visible !important;
+}
+
+.crop-sprite.has-weather::before,
+.crop-sprite.has-weather::after {
+    content: "" !important;
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    pointer-events: none !important;
+    z-index: 3 !important;
+}
+
+.crop-sprite.has-weather::before {
+    width: 108px !important;
+    height: 84px !important;
+    transform: translate(-50%, -66%) !important;
+    opacity: .82 !important;
+}
+
+.crop-sprite.has-weather::after {
+    width: 94px !important;
+    height: 70px !important;
+    transform: translate(-50%, -72%) !important;
+    opacity: .7 !important;
+}
+
+.crop-sprite.weather-rainy::before {
+    background:
+        linear-gradient(112deg, transparent 0 30%, rgba(121, 223, 255, 1) 31% 35%, transparent 36% 100%),
+        linear-gradient(112deg, transparent 0 52%, rgba(121, 223, 255, .92) 53% 57%, transparent 58% 100%),
+        linear-gradient(112deg, transparent 0 73%, rgba(121, 223, 255, .82) 74% 78%, transparent 79% 100%) !important;
+    background-size: 26px 54px !important;
+    filter: drop-shadow(0 0 3px rgba(110, 220, 255, .7)) !important;
+    animation: cropWeatherRain .7s linear infinite !important;
+}
+
+.crop-sprite.weather-windy::before {
+    width: 128px !important;
+    height: 78px !important;
+    background:
+        linear-gradient(12deg, transparent 0 18%, rgba(225, 255, 235, .95) 19% 22%, transparent 23% 100%),
+        linear-gradient(8deg, transparent 0 44%, rgba(179, 245, 207, .88) 45% 48%, transparent 49% 100%),
+        linear-gradient(15deg, transparent 0 67%, rgba(225, 255, 235, .72) 68% 71%, transparent 72% 100%) !important;
+    background-size: 74px 26px !important;
+    filter: drop-shadow(0 0 4px rgba(180, 255, 210, .75)) !important;
+    animation: cropWeatherWind .85s linear infinite !important;
+}
+
+.crop-sprite.weather-windy::after {
+    width: 104px !important;
+    height: 76px !important;
+    border-radius: 50% !important;
+    border-top: 3px solid rgba(205, 255, 225, .75) !important;
+    border-bottom: 2px solid rgba(155, 230, 190, .45) !important;
+    transform: translate(-50%, -72%) skewX(-18deg) !important;
+    animation: cropWeatherWindRing 1.6s ease-in-out infinite !important;
+}
+
+.crop-sprite.weather-rainy::after {
+    background:
+        radial-gradient(circle at 35% 86%, rgba(122, 208, 255, .72) 0 5px, transparent 6px),
+        radial-gradient(circle at 68% 82%, rgba(122, 208, 255, .5) 0 3px, transparent 4px) !important;
+}
+
+.crop-sprite.weather-cloudy::before,
+.crop-sprite.weather-foggy::before,
+.crop-sprite.weather-snowy::before {
+    width: 120px !important;
+    height: 76px !important;
+    border-radius: 50% !important;
+    background:
+        radial-gradient(ellipse at 28% 58%, rgba(229, 246, 255, .86) 0 24%, transparent 50%),
+        radial-gradient(ellipse at 64% 46%, rgba(216, 235, 240, .76) 0 28%, transparent 56%),
+        radial-gradient(ellipse at 48% 70%, rgba(255, 255, 255, .58) 0 32%, transparent 62%) !important;
+    filter: blur(1.2px) !important;
+    animation: cropWeatherMist 3.6s ease-in-out infinite !important;
+}
+
+.crop-sprite.weather-foggy::after {
+    width: 126px !important;
+    height: 82px !important;
+    border-radius: 50% !important;
+    background:
+        linear-gradient(0deg, transparent 0 28%, rgba(235, 250, 246, .72) 29% 35%, transparent 36% 100%),
+        linear-gradient(0deg, transparent 0 54%, rgba(210, 238, 231, .62) 55% 61%, transparent 62% 100%) !important;
+    filter: blur(.8px) !important;
+    animation: cropWeatherFogBands 2.4s ease-in-out infinite !important;
+}
+
+.crop-sprite.weather-snowy::after {
+    background:
+        radial-gradient(circle at 24% 28%, rgba(255,255,255,1) 0 3px, transparent 4px),
+        radial-gradient(circle at 62% 46%, rgba(255,255,255,.95) 0 2.5px, transparent 4px),
+        radial-gradient(circle at 44% 72%, rgba(255,255,255,.85) 0 2px, transparent 3px),
+        radial-gradient(circle at 78% 24%, rgba(255,255,255,.75) 0 1.8px, transparent 3px) !important;
+    filter: drop-shadow(0 0 3px rgba(255,255,255,.7)) !important;
+    animation: cropWeatherSnow 2.8s linear infinite !important;
+}
+
+.crop-sprite.weather-storm::before,
+.crop-sprite.weather-lightning::before {
+    width: 78px !important;
+    height: 92px !important;
+    background:
+        linear-gradient(145deg, transparent 0 36%, rgba(255, 244, 116, .95) 37% 43%, transparent 44% 100%),
+        linear-gradient(35deg, transparent 0 50%, rgba(124, 206, 255, .55) 51% 56%, transparent 57% 100%) !important;
+    clip-path: polygon(48% 0, 64% 0, 52% 35%, 72% 35%, 34% 100%, 44% 52%, 26% 52%) !important;
+    filter: drop-shadow(0 0 9px rgba(255, 241, 92, .9)) !important;
+    animation: cropWeatherLightning 1.8s steps(2, end) infinite !important;
+}
+
+.crop-sprite.weather-storm::after,
+.crop-sprite.weather-lightning::after {
+    width: 112px !important;
+    height: 78px !important;
+    border-radius: 50% !important;
+    background: radial-gradient(ellipse at 50% 58%, rgba(98, 107, 216, .48), transparent 64%) !important;
+    animation: cropWeatherPulse 1.8s ease-in-out infinite !important;
+}
+
+.crop-sprite.weather-sunny::before {
+    width: 116px !important;
+    height: 96px !important;
+    border-radius: 50% !important;
+    background:
+        radial-gradient(circle at 50% 50%, rgba(255, 226, 90, .42) 0 28%, transparent 56%),
+        conic-gradient(from 20deg, transparent 0 8%, rgba(255, 217, 89, .6) 9% 13%, transparent 14% 25%) !important;
+    filter: blur(.3px) !important;
+    animation: cropWeatherSun 3.8s ease-in-out infinite !important;
+}
+
+.crop-weather-badge {
+    position: absolute !important;
+    left: 50% !important;
+    top: -14px !important;
+    width: 26px !important;
+    height: 26px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transform: translateX(-50%) !important;
+    border-radius: 50% !important;
+    border: 2px solid rgba(255, 255, 255, .9) !important;
+    background:
+        radial-gradient(circle at 34% 28%, rgba(255,255,255,.85), rgba(255,255,255,0) 32%),
+        linear-gradient(145deg, #5ec3ff, #1766c7) !important;
+    box-shadow: 0 3px 7px rgba(24, 54, 92, .45), inset 0 -2px 3px rgba(0, 45, 110, .32) !important;
+    color: #fff !important;
+    font-size: 13px !important;
+    line-height: 1 !important;
+    pointer-events: none !important;
+    z-index: 4 !important;
+    width: 20px !important;
+    height: 20px !important;
+    top: -8px !important;
+    transform: translateX(-50%) scale(1) !important;
+    opacity: .85 !important;
+}
+
+.crop-sprite.weather-sunny .crop-weather-badge {
+    background:
+        radial-gradient(circle at 34% 28%, rgba(255,255,255,.8), rgba(255,255,255,0) 34%),
+        linear-gradient(145deg, #ffd969, #e8871b) !important;
+}
+
+.crop-sprite.weather-cloudy .crop-weather-badge {
+    background:
+        radial-gradient(circle at 34% 28%, rgba(255,255,255,.85), rgba(255,255,255,0) 34%),
+        linear-gradient(145deg, #b9d2df, #5f7d91) !important;
+}
+
+.crop-sprite.weather-foggy .crop-weather-badge,
+.crop-sprite.weather-windy .crop-weather-badge {
+    background:
+        radial-gradient(circle at 34% 28%, rgba(255,255,255,.86), rgba(255,255,255,0) 34%),
+        linear-gradient(145deg, #c9f4dc, #54a979) !important;
+}
+
+.crop-sprite.weather-storm .crop-weather-badge,
+.crop-sprite.weather-lightning .crop-weather-badge {
+    background:
+        radial-gradient(circle at 34% 28%, rgba(255,255,255,.85), rgba(255,255,255,0) 34%),
+        linear-gradient(145deg, #626bd8, #21275e) !important;
+}
+
+.crop-sprite.weather-snowy .crop-weather-badge {
+    background:
+        radial-gradient(circle at 34% 28%, rgba(255,255,255,.9), rgba(255,255,255,0) 34%),
+        linear-gradient(145deg, #eaf8ff, #6caed3) !important;
+}
+
+@keyframes cropWeatherRain {
+    from { background-position: 0 -52px, 8px -68px, 16px -42px; }
+    to { background-position: -16px 18px, -8px 2px, 0 28px; }
+}
+
+@keyframes cropWeatherWind {
+    from { background-position: -80px 0, -42px 12px, -112px 26px; }
+    to { background-position: 80px 0, 118px 12px, 48px 26px; }
+}
+
+@keyframes cropWeatherWindRing {
+    0%, 100% { opacity: .35; transform: translate(-56%, -72%) skewX(-18deg) scale(.92); }
+    50% { opacity: .82; transform: translate(-44%, -74%) skewX(-18deg) scale(1.08); }
+}
+
+@keyframes cropWeatherFogBands {
+    0%, 100% { opacity: .42; transform: translate(-58%, -70%); }
+    50% { opacity: .86; transform: translate(-42%, -70%); }
+}
+
+@keyframes cropWeatherMist {
+    0%, 100% { transform: translate(-60%, -66%); opacity: .52; }
+    50% { transform: translate(-40%, -69%); opacity: .88; }
+}
+
+@keyframes cropWeatherSnow {
+    from { transform: translate(-50%, -88%); opacity: .34; }
+    to { transform: translate(-50%, -52%); opacity: .82; }
+}
+
+@keyframes cropWeatherLightning {
+    0%, 74%, 100% { opacity: 0; }
+    76%, 82% { opacity: 1; }
+    84%, 88% { opacity: .28; }
+    90%, 94% { opacity: .95; }
+}
+
+@keyframes cropWeatherPulse {
+    0%, 100% { opacity: .24; transform: translate(-50%, -72%) scale(.92); }
+    50% { opacity: .66; transform: translate(-50%, -72%) scale(1.12); }
+}
+
+@keyframes cropWeatherSun {
+    0%, 100% { opacity: .42; transform: translate(-50%, -66%) scale(.92) rotate(0deg); }
+    50% { opacity: .72; transform: translate(-50%, -66%) scale(1.06) rotate(12deg); }
+}
+
+/* Map zoom: scale the whole world as one piece, keep UI panels/buttons steady. */
+.game {
+    --map-zoom: 1;
+    background-size: calc(200% * var(--map-zoom)) calc(200% * var(--map-zoom)) !important;
+}
+
+.world-layer {
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 5 !important;
+    pointer-events: none !important;
+    transform: translate(var(--map-x), var(--map-y)) scale(var(--map-zoom)) !important;
+    transform-origin: center center !important;
+}
+
+.homestead {
+    transform: none !important;
+    transform-origin: center top !important;
+}
+
+.field-wrap {
+    transform: none !important;
+    transform-origin: center center !important;
+    pointer-events: auto !important;
+}
+
+.crop-layer {
+    transform: translateX(-50%) !important;
+    transform-origin: center center !important;
+}
+
+.zoom-controls {
+    position: absolute !important;
+    right: 12px !important;
+    top: 92px !important;
+    z-index: 180 !important;
+    display: grid !important;
+    grid-template-columns: 34px 52px 34px !important;
+    align-items: center !important;
+    gap: 4px !important;
+    padding: 5px !important;
+    border: 3px solid #6b371c !important;
+    border-radius: 12px !important;
+    background: rgba(255, 231, 170, .9) !important;
+    box-shadow: 0 4px 0 #5b2a17, 0 8px 14px rgba(0,0,0,.24) !important;
+}
+
+.zoom-controls button {
+    width: 34px !important;
+    height: 30px !important;
+    padding: 0 !important;
+    border: 2px solid #5a2817 !important;
+    border-radius: 8px !important;
+    background: linear-gradient(#fff0aa, #d68b3f) !important;
+    color: #5a2817 !important;
+    font-size: 22px !important;
+    font-weight: 900 !important;
+    line-height: 1 !important;
+    cursor: pointer !important;
+}
+
+.zoom-controls span {
+    display: block !important;
+    min-width: 0 !important;
+    color: #5a2817 !important;
+    font-size: 13px !important;
+    font-weight: 900 !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+}
+
+/* Final clarity pass: sharper plants and visible, on-plant weather mutations. */
+.crop-sprite {
+    image-rendering: auto !important;
+    filter:
+        contrast(1.18)
+        saturate(1.22)
+        brightness(1.04)
+        drop-shadow(0 5px 2px rgba(20, 12, 7, .34)) !important;
+}
+
+.crop-sprite.stage-1 {
+    --crop-scale: .62 !important;
+}
+
+.crop-sprite.stage-2 {
+    --crop-scale: .8 !important;
+}
+
+.crop-sprite.stage-3 {
+    filter:
+        contrast(1.2)
+        saturate(1.25)
+        brightness(1.05)
+        drop-shadow(0 6px 2px rgba(20, 12, 7, .34)) !important;
+}
+
+.crop-sprite.has-weather {
+    filter:
+        contrast(1.24)
+        saturate(1.32)
+        brightness(1.08)
+        drop-shadow(0 6px 2px rgba(20, 12, 7, .34))
+        drop-shadow(0 0 9px rgba(255,255,255,.3)) !important;
+}
+
+.crop-sprite.has-weather::before,
+.crop-sprite.has-weather::after {
+    z-index: 20 !important;
+    mix-blend-mode: normal !important;
+}
+
+.crop-sprite.has-weather::before {
+    width: 118px !important;
+    height: 118px !important;
+    top: 48% !important;
+    opacity: 1 !important;
+}
+
+.crop-sprite.has-weather::after {
+    width: 104px !important;
+    height: 104px !important;
+    top: 52% !important;
+    opacity: 1 !important;
+}
+
+.crop-sprite.weather-rainy::before {
+    background:
+        repeating-linear-gradient(112deg, transparent 0 7px, #00c8ff 8px 15px, transparent 16px 24px) !important;
+    background-size: 30px 64px !important;
+    filter: drop-shadow(0 0 8px #00e5ff) !important;
+}
+
+.crop-sprite.weather-rainy::after {
+    background:
+        radial-gradient(circle at 34% 86%, #00b7ff 0 9px, transparent 10px),
+        radial-gradient(circle at 64% 78%, #3fd8ff 0 7px, transparent 8px) !important;
+}
+
+.crop-sprite.weather-windy::before {
+    background:
+        repeating-linear-gradient(12deg, transparent 0 12px, #b7ffcf 13px 21px, transparent 22px 34px) !important;
+    background-size: 90px 34px !important;
+    filter: drop-shadow(0 0 8px #91ffb7) !important;
+}
+
+.crop-sprite.weather-windy::after {
+    border-top: 8px solid #dcffe8 !important;
+    border-bottom: 6px solid #78ffab !important;
+}
+
+.crop-sprite.weather-foggy::before,
+.crop-sprite.weather-cloudy::before {
+    background:
+        linear-gradient(0deg, transparent 0 16%, #f2fff9 17% 34%, transparent 35% 44%, #d8fff1 45% 62%, transparent 63% 100%) !important;
+    filter: drop-shadow(0 0 8px #eafff7) !important;
+}
+
+.crop-sprite.weather-foggy::after,
+.crop-sprite.weather-cloudy::after {
+    background:
+        linear-gradient(0deg, transparent 0 30%, #ffffff 31% 46%, transparent 47% 100%) !important;
+    filter: none !important;
+}
+
+.crop-sprite.weather-lightning::before,
+.crop-sprite.weather-storm::before {
+    width: 110px !important;
+    height: 126px !important;
+    background: linear-gradient(145deg, transparent 0 28%, #fff200 29% 50%, transparent 51% 100%) !important;
+    filter: drop-shadow(0 0 16px #fff200) !important;
+    opacity: 1 !important;
+}
+
+.crop-sprite.weather-lightning::after,
+.crop-sprite.weather-storm::after {
+    background: radial-gradient(ellipse at 50% 58%, #5868ff, transparent 66%) !important;
+}
+
+.crop-sprite.weather-snowy::before {
+    background:
+        radial-gradient(circle at 20% 18%, #fff 0 7px, transparent 8px),
+        radial-gradient(circle at 58% 28%, #fff 0 6px, transparent 7px),
+        radial-gradient(circle at 78% 58%, #fff 0 5px, transparent 6px),
+        radial-gradient(circle at 38% 72%, #fff 0 5px, transparent 6px) !important;
+    filter: drop-shadow(0 0 8px #fff) !important;
+}
+
+.crop-sprite.weather-snowy::after {
+    background: radial-gradient(ellipse at 50% 60%, #dff8ff, transparent 65%) !important;
+}
+
+.crop-sprite.weather-sunny::before {
+    background:
+        radial-gradient(circle at 50% 50%, #ffe94a 0 32%, transparent 60%),
+        conic-gradient(from 20deg, transparent 0 6%, #ffcf24 7% 15%, transparent 16% 25%) !important;
+    filter: drop-shadow(0 0 12px #ffd22a) !important;
+}
+
+.crop-sprite.weather-sunny::after {
+    background: radial-gradient(circle at 50% 50%, #ff8f00, transparent 60%) !important;
+}
+
+/* DOM weather layer attached to each mutated plant. This is deliberately
+   high-contrast for now so the effect is unquestionably visible. */
+.crop-weather-effect {
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    width: 64px !important;
+    height: 80px !important;
+    transform: translate(-50%, -55%) !important;  /* sits ON the crop, not above it */
+    z-index: 32 !important;
+    opacity: .9 !important;
+    pointer-events: none !important;
+    overflow: visible !important;                  /* let particles show outside the box if needed */
+    border-radius: 14px !important;
+}
+
+.crop-weather-effect i,
+.crop-weather-effect b {
+    position: absolute !important;
+    display: block !important;
+    pointer-events: none !important;
+}
+
+.weather-effect-rainy i {
+    width: 4px !important;
+    height: 34px !important;
+    border-radius: 999px !important;
+    background: #00d9ff !important;
+    box-shadow: 0 0 2px rgba(0, 234, 255, .35) !important;
+    transform: rotate(26deg) !important;
+    animation: plantRainDrop .58s linear infinite !important;
+}
+.weather-effect-rainy i:nth-child(1) { left: 14px !important; top: 2px !important; animation-delay: 0s !important; }
+.weather-effect-rainy i:nth-child(2) { left: 34px !important; top: -8px !important; animation-delay: -.2s !important; }
+.weather-effect-rainy i:nth-child(3) { left: 54px !important; top: 6px !important; animation-delay: -.38s !important; }
+.weather-effect-rainy b {
+    left: 20px !important;
+    bottom: 8px !important;
+    width: 32px !important;
+    height: 8px !important;
+    border-radius: 50% !important;
+    background: #2dd8ff !important;
+    box-shadow: 0 0 2px rgba(0, 217, 255, .3) !important;
+}
+
+.weather-effect-windy i {
+    height: 4px !important;
+    border-radius: 999px !important;
+    background: #baffcf !important;
+    box-shadow: 0 0 2px rgba(125, 255, 171, .3) !important;
+    animation: plantWindLine .78s linear infinite !important;
+}
+.weather-effect-windy i:nth-child(1) { left: -8px !important; top: 18px !important; width: 72px !important; }
+.weather-effect-windy i:nth-child(2) { left: 8px !important; top: 36px !important; width: 56px !important; animation-delay: -.25s !important; }
+.weather-effect-windy i:nth-child(3) { left: -4px !important; top: 54px !important; width: 78px !important; animation-delay: -.45s !important; }
+.weather-effect-windy b {
+    left: 10px !important;
+    top: 14px !important;
+    width: 48px !important;
+    height: 48px !important;
+    border: 3px solid #9dffc1 !important;
+    border-left-color: transparent !important;
+    border-bottom-color: transparent !important;
+    border-radius: 50% !important;
+    box-shadow: 0 0 2px rgba(125, 255, 171, .25) !important;
+    animation: plantWindRing 1.1s ease-in-out infinite !important;
+}
+
+.weather-effect-foggy i {
+    left: -8px !important;
+    width: 86px !important;
+    height: 8px !important;
+    border-radius: 999px !important;
+    background: #f2fff9 !important;
+    box-shadow: 0 0 2px rgba(255,255,255,.24) !important;
+    animation: plantFogBand 1.8s ease-in-out infinite !important;
+}
+.weather-effect-foggy i:nth-child(1) { top: 20px !important; }
+.weather-effect-foggy i:nth-child(2) { top: 38px !important; animation-delay: -.55s !important; }
+.weather-effect-foggy i:nth-child(3) { top: 56px !important; animation-delay: -1s !important; }
+.weather-effect-foggy b {
+    inset: 10px !important;
+    border-radius: 50% !important;
+    background: rgba(230,255,245,.8) !important;
+    box-shadow: 0 0 2px rgba(255,255,255,.22) !important;
+}
+
+.weather-effect-lightning b {
+    left: 50% !important;
+    top: -4px !important;
+    margin-left: -18px !important;
+    width: 36px !important;
+    height: 72px !important;
+    background: linear-gradient(#ffffff 0%, #fff200 40%, #ffae00 100%) !important;
+    clip-path: polygon(45% 0, 78% 0, 58% 38%, 88% 38%, 30% 100%, 43% 55%, 18% 55%) !important;
+    box-shadow:
+        0 0 14px rgba(255,242,0,.95),
+        0 0 28px rgba(180,120,255,.75),
+        0 0 40px rgba(120,107,255,.45) !important;
+    filter: drop-shadow(0 0 6px rgba(255,255,180,.9)) !important;
+    animation: plantLightningFlash 1.6s ease-in-out infinite !important;
+    z-index: 2 !important;
+}
+.weather-effect-lightning i {
+    inset: 8px !important;
+    border-radius: 50% !important;
+    background: radial-gradient(circle, rgba(255,255,255,.7), rgba(120,107,255,.5) 55%, transparent 80%) !important;
+    box-shadow: 0 0 18px rgba(160,150,255,.6) !important;
+    animation: plantPulse 1.4s ease-in-out infinite !important;
+}
+
+.weather-effect-snowy i {
+    width: 8px !important;
+    height: 8px !important;
+    border-radius: 50% !important;
+    background: #ffffff !important;
+    box-shadow: 0 0 2px rgba(255,255,255,.28) !important;
+    animation: plantSnowFall 1.4s linear infinite !important;
+}
+.weather-effect-snowy i:nth-child(1) { left: 14px !important; top: 8px !important; }
+.weather-effect-snowy i:nth-child(2) { left: 34px !important; top: 20px !important; animation-delay: -.45s !important; }
+.weather-effect-snowy i:nth-child(3) { left: 52px !important; top: 6px !important; animation-delay: -.8s !important; }
+.weather-effect-snowy b {
+    left: 14px !important;
+    bottom: 14px !important;
+    width: 42px !important;
+    height: 14px !important;
+    border-radius: 50% !important;
+    background: rgba(225,250,255,.95) !important;
+    box-shadow: 0 0 2px rgba(255,255,255,.22) !important;
+}
+
+.weather-effect-sunny {
+    border-radius: 50% !important;
+    background:
+        radial-gradient(circle, #ffe94a 0 24%, transparent 50%),
+        conic-gradient(from 0deg, transparent 0 7%, #ffca19 8% 15%, transparent 16% 25%) !important;
+    box-shadow: 0 0 3px rgba(255,209,42,.25) !important;
+    animation: plantSunAura 1.8s ease-in-out infinite !important;
+}
+.weather-effect-sunny i,
+.weather-effect-sunny b {
+    display: none !important;
+}
+
+.weather-effect-cloudy i,
+.weather-effect-smog i {
+    left: -8px !important;
+    width: 86px !important;
+    height: 8px !important;
+    border-radius: 999px !important;
+    background: #e8eef0 !important;
+    box-shadow: 0 0 2px rgba(255,255,255,.22) !important;
+    animation: plantFogBand 2s ease-in-out infinite !important;
+}
+.weather-effect-cloudy i:nth-child(1),
+.weather-effect-smog i:nth-child(1) { top: 20px !important; }
+.weather-effect-cloudy i:nth-child(2),
+.weather-effect-smog i:nth-child(2) { top: 38px !important; animation-delay: -.55s !important; }
+.weather-effect-cloudy i:nth-child(3),
+.weather-effect-smog i:nth-child(3) { top: 56px !important; animation-delay: -1s !important; }
+.weather-effect-cloudy b,
+.weather-effect-smog b {
+    inset: 10px !important;
+    border-radius: 50% !important;
+    background: rgba(205,214,211,.72) !important;
+    box-shadow: 0 0 2px rgba(210,220,220,.22) !important;
+}
+
+.weather-effect-storm b {
+    left: 50% !important;
+    top: -4px !important;
+    margin-left: -18px !important;
+    width: 36px !important;
+    height: 72px !important;
+    background: linear-gradient(#ffffff 0%, #fff200 40%, #ffae00 100%) !important;
+    clip-path: polygon(45% 0, 78% 0, 58% 38%, 88% 38%, 30% 100%, 43% 55%, 18% 55%) !important;
+    box-shadow:
+        0 0 14px rgba(255,242,0,.95),
+        0 0 28px rgba(180,120,255,.75),
+        0 0 40px rgba(120,107,255,.45) !important;
+    filter: drop-shadow(0 0 6px rgba(255,255,180,.9)) !important;
+    animation: plantLightningFlash 1.4s ease-in-out infinite !important;
+    z-index: 2 !important;
+}
+.weather-effect-storm i {
+    inset: 8px !important;
+    border-radius: 50% !important;
+    background: radial-gradient(circle, rgba(255,255,255,.7), rgba(120,107,255,.5) 55%, transparent 80%) !important;
+    box-shadow: 0 0 18px rgba(160,150,255,.6) !important;
+    animation: plantPulse 1.2s ease-in-out infinite !important;
+}
+
+.weather-effect-blizzard i {
+    width: 8px !important;
+    height: 8px !important;
+    border-radius: 50% !important;
+    background: #ffffff !important;
+    box-shadow: 0 0 2px rgba(255,255,255,.28) !important;
+    animation: plantSnowFall .85s linear infinite !important;
+}
+.weather-effect-blizzard i:nth-child(1) { left: 14px !important; top: 8px !important; }
+.weather-effect-blizzard i:nth-child(2) { left: 34px !important; top: 20px !important; animation-delay: -.25s !important; }
+.weather-effect-blizzard i:nth-child(3) { left: 52px !important; top: 6px !important; animation-delay: -.55s !important; }
+.weather-effect-blizzard b {
+    inset: 10px !important;
+    border-radius: 50% !important;
+    border: 3px solid #e8fbff !important;
+    box-shadow: 0 0 2px rgba(255,255,255,.22) !important;
+    animation: plantWindRing 1.2s ease-in-out infinite !important;
+}
+
+.weather-effect-rainbow {
+    border-radius: 50% !important;
+    background:
+        conic-gradient(from 220deg, #ff4d4d, #ffd93d, #54e36b, #4db7ff, #8c6dff, #ff4dca, #ff4d4d) !important;
+    box-shadow: 0 0 3px rgba(255,255,255,.28) !important;
+    animation: plantSunAura 2.2s ease-in-out infinite !important;
+}
+.weather-effect-rainbow::after {
+    content: "" !important;
+    position: absolute !important;
+    inset: 12px !important;
+    border-radius: 50% !important;
+    background: rgba(255,255,255,.85) !important;
+}
+.weather-effect-rainbow i,
+.weather-effect-rainbow b {
+    display: none !important;
+}
+
+.weather-effect-branch i {
+    height: 4px !important;
+    border-radius: 999px !important;
+    background: #d9ffaf !important;
+    box-shadow: 0 0 2px rgba(217,255,175,.3) !important;
+    transform-origin: left center !important;
+    animation: plantBranchShake .75s ease-in-out infinite !important;
+}
+.weather-effect-branch i:nth-child(1) { left: 18px !important; top: 24px !important; width: 38px !important; transform: rotate(30deg); }
+.weather-effect-branch i:nth-child(2) { left: 20px !important; top: 42px !important; width: 46px !important; transform: rotate(-18deg); animation-delay: -.2s !important; }
+.weather-effect-branch i:nth-child(3) { left: 14px !important; top: 58px !important; width: 36px !important; transform: rotate(14deg); animation-delay: -.4s !important; }
+.weather-effect-branch b {
+    inset: 18px !important;
+    border-radius: 50% !important;
+    border: 2px dashed #d9ffaf !important;
+}
+
+/* Final weather subtlety pass: keep effects present but barely visible on plants. */
+.crop-weather-effect {
+    opacity: .12 !important;
+}
+
+.crop-sprite.has-weather::before,
+.crop-sprite.has-weather::after {
+    opacity: .12 !important;
+}
+
+@keyframes plantRainDrop {
+    from { transform: translateY(-28px) rotate(26deg); }
+    to { transform: translateY(42px) rotate(26deg); }
+}
+
+@keyframes plantWindLine {
+    from { transform: translateX(-36px); }
+    to { transform: translateX(36px); }
+}
+
+@keyframes plantWindRing {
+    0%, 100% { transform: rotate(-20deg) scale(.9); }
+    50% { transform: rotate(18deg) scale(1.08); }
+}
+
+@keyframes plantFogBand {
+    0%, 100% { transform: translateX(-22px); }
+    50% { transform: translateX(22px); }
+}
+
+@keyframes plantLightningFlash {
+    /* Mostly visible, with two quick "flash" moments per cycle for that
+       struck-by-lightning feel. Bolt stays glowing in between strikes. */
+    0%, 100%   { opacity: .55; transform: scale(.96); filter: brightness(1) drop-shadow(0 0 4px rgba(255,255,180,.6)); }
+    18%        { opacity: 1;   transform: scale(1.08); filter: brightness(1.6) drop-shadow(0 0 12px rgba(255,255,200,1)); }
+    24%        { opacity: .65; transform: scale(.98); filter: brightness(1) drop-shadow(0 0 4px rgba(255,255,180,.6)); }
+    62%        { opacity: 1;   transform: scale(1.12); filter: brightness(1.8) drop-shadow(0 0 14px rgba(255,255,200,1)); }
+    70%        { opacity: .65; transform: scale(.96); filter: brightness(1) drop-shadow(0 0 4px rgba(255,255,180,.6)); }
+}
+
+@keyframes plantPulse {
+    0%, 100% { transform: scale(.86); opacity: .5; }
+    50% { transform: scale(1.12); opacity: 1; }
+}
+
+@keyframes plantSnowFall {
+    from { transform: translateY(-18px); }
+    to { transform: translateY(46px); }
+}
+
+@keyframes plantSunAura {
+    0%, 100% { transform: translate(-50%, -72%) scale(.88) rotate(0deg); opacity: .9; }
+    50% { transform: translate(-50%, -72%) scale(1.12) rotate(18deg); opacity: 1; }
+}
+
+@keyframes plantBranchShake {
+    0%, 100% { translate: 0 0; }
+    50% { translate: 3px -1px; }
+}
+
+/* ==========================================================================
+   Seed bag tiles — used in 仓库 (storage panel) AND #seedModal seed selector.
+   Reference: green/gray tile background + burlap sack (seed-bag.svg) overlay
+   + crop icon on the bag's label area + quantity number in bottom-right.
+   ========================================================================== */
+
+.storage-item,
+#seedModal .seed-modal-btn {
+    position: relative !important;
+    width: 76px !important;
+    min-width: 76px !important;
+    height: 84px !important;
+    min-height: 84px !important;
+    padding: 0 !important;
+    background: linear-gradient(#9bc54e, #6ea838) !important;
+    border: 3px solid #3a6a1e !important;
+    border-radius: 10px !important;
+    box-shadow:
+        inset 0 2px 0 rgba(255,255,255,.22),
+        inset 0 -3px 0 rgba(0,0,0,.18),
+        0 3px 0 rgba(0,0,0,.25) !important;
+    overflow: hidden !important;
+    cursor: pointer !important;
+    transition: transform .12s ease, filter .12s ease !important;
+}
+
+/* Out-of-stock = gray tile */
+.storage-item.empty,
+.storage-item[data-count="0"],
+#seedModal .seed-modal-btn.locked,
+#seedModal .seed-modal-btn[data-count="0"] {
+    background: linear-gradient(#cfcfcf, #8e8e8e) !important;
+    border-color: #5a5a5a !important;
+    filter: saturate(0.4) !important;
+}
+
+.storage-item:hover,
+#seedModal .seed-modal-btn:hover {
+    transform: translateY(-2px) !important;
+    filter: brightness(1.06) drop-shadow(0 0 8px rgba(255,230,90,.55)) !important;
+}
+
+/* Burlap sack — layered over the tile */
+.storage-item::before,
+#seedModal .seed-modal-btn::before {
+    content: "" !important;
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -52%) !important;
+    width: 60px !important;
+    height: 72px !important;
+    background: url("assets/seed-bag.svg?v=2") center/contain no-repeat !important;
+    pointer-events: none !important;
+    z-index: 1 !important;
+}
+
+/* Crop icon on the bag — replaced with a simple SVG (one fruit/veg per bag).
+   We hide the CSS pseudo-elements that the global .crop-icon-* classes
+   draw (used elsewhere) and overlay the dedicated seed_*.svg via background. */
+.storage-item .crop-icon,
+#seedModal .seed-modal-btn .crop-icon {
+    position: absolute !important;
+    left: 50% !important;
+    top: 52% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 32px !important;
+    height: 32px !important;
+    z-index: 2 !important;
+    pointer-events: none !important;
+    background-color: transparent !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+}
+
+/* Hide the original CSS pseudo-element renderings inside the seed bags. */
+.storage-item .crop-icon::before,
+.storage-item .crop-icon::after,
+#seedModal .seed-modal-btn .crop-icon::before,
+#seedModal .seed-modal-btn .crop-icon::after {
+    display: none !important;
+}
+
+/* Per-crop seed icon — one fruit/veg image per bag. */
+.storage-item .crop-icon-corn,
+#seedModal .seed-modal-btn .crop-icon-corn        { background-image: url("assets/crops/seed_corn.svg?v=1") !important; }
+.storage-item .crop-icon-chili,
+#seedModal .seed-modal-btn .crop-icon-chili       { background-image: url("assets/crops/seed_chili.svg?v=1") !important; }
+.storage-item .crop-icon-cabbage,
+#seedModal .seed-modal-btn .crop-icon-cabbage     { background-image: url("assets/crops/seed_cabbage.svg?v=1") !important; }
+.storage-item .crop-icon-tomato,
+#seedModal .seed-modal-btn .crop-icon-tomato      { background-image: url("assets/crops/seed_tomato.svg?v=1") !important; }
+.storage-item .crop-icon-eggplant,
+#seedModal .seed-modal-btn .crop-icon-eggplant    { background-image: url("assets/crops/seed_eggplant.svg?v=1") !important; }
+.storage-item .crop-icon-carrot,
+#seedModal .seed-modal-btn .crop-icon-carrot      { background-image: url("assets/crops/seed_carrot.svg?v=1") !important; }
+.storage-item .crop-icon-onion,
+#seedModal .seed-modal-btn .crop-icon-onion       { background-image: url("assets/crops/seed_onion.svg?v=1") !important; }
+.storage-item .crop-icon-cauliflower,
+#seedModal .seed-modal-btn .crop-icon-cauliflower { background-image: url("assets/crops/seed_cauliflower.svg?v=1") !important; }
+.storage-item .crop-icon-coconut,
+#seedModal .seed-modal-btn .crop-icon-coconut     { background-image: url("assets/crops/seed_coconut.svg?v=1") !important; }
+
+/* Coconut growth stages — germinating coconut with sprout (young_coconut.svg). */
+.crop-sprite-coconut.stage-1,
+.crop-sprite-coconut.stage-2,
+.crop-sprite-coconut.stage-3 {
+    background-image: url("assets/crops/young_coconut.svg?v=2") !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center bottom !important;
+}
+
+/* Quantity badge — bottom-right corner of the tile */
+.storage-item b,
+#seedModal .seed-modal-btn .seed-count,
+#seedModal .seed-modal-btn span {
+    position: absolute !important;
+    right: 5px !important;
+    bottom: 3px !important;
+    z-index: 3 !important;
+    color: #fffce6 !important;
+    font-size: 15px !important;
+    font-weight: 900 !important;
+    line-height: 1 !important;
+    text-shadow:
+        1px 1px 0 #2a160d,
+        -1px -1px 0 #2a160d,
+        1px -1px 0 #2a160d,
+        -1px 1px 0 #2a160d,
+        0 0 4px rgba(0,0,0,.6) !important;
+    pointer-events: none !important;
+    background: transparent !important;
+    border: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* Crop name — keep visible in seed modal (small, under the bag),
+   but hide in 仓库 since the icon already conveys it. */
+.storage-item strong {
+    display: none !important;
+}
+
+#seedModal .seed-modal-btn strong {
+    position: absolute !important;
+    left: 50% !important;
+    bottom: 2px !important;
+    transform: translateX(-50%) !important;
+    z-index: 3 !important;
+    width: calc(100% - 16px) !important;
+    color: #5b2b19 !important;
+    font-size: 11px !important;
+    font-weight: 700 !important;
+    line-height: 1.1 !important;
+    text-align: center !important;
+    background: rgba(255,255,240,.82) !important;
+    border-radius: 6px !important;
+    padding: 1px 0 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+/* Tighten the storage grid so 4 columns fit nicely */
+.storage-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 10px !important;
+    padding: 16px 10px !important;
+    justify-items: center !important;
+}
+
+/* === 商铺 (shop) seed card — same green-tile + burlap-bag visual === */
+.shop-panel .seed-card .shop-seed-tile {
+    position: relative !important;
+    width: 56px !important;
+    height: 64px !important;
+    margin: auto !important;
+    background: linear-gradient(#9bc54e, #6ea838) !important;
+    border: 3px solid #3a6a1e !important;
+    border-radius: 9px !important;
+    box-shadow:
+        inset 0 2px 0 rgba(255,255,255,.22),
+        inset 0 -2px 0 rgba(0,0,0,.18),
+        0 2px 0 rgba(0,0,0,.25) !important;
+    overflow: hidden !important;
+}
+
+/* Bag overlay on the green tile */
+.shop-panel .seed-card .shop-seed-tile::before {
+    content: "" !important;
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -52%) !important;
+    width: 46px !important;
+    height: 56px !important;
+    background: url("assets/seed-bag.svg?v=2") center/contain no-repeat !important;
+    pointer-events: none !important;
+    z-index: 1 !important;
+}
+
+/* Crop icon centered on the bag */
+.shop-panel .seed-card .shop-seed-tile .crop-icon {
+    position: absolute !important;
+    left: 50% !important;
+    top: 52% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 26px !important;
+    height: 26px !important;
+    z-index: 2 !important;
+    background-color: transparent !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+}
+
+/* Hide the global pseudo-element drawings inside the shop bag */
+.shop-panel .seed-card .shop-seed-tile .crop-icon::before,
+.shop-panel .seed-card .shop-seed-tile .crop-icon::after {
+    display: none !important;
+}
+
+/* Per-crop seed icon mapping (matches the storage / seed-modal mappings) */
+.shop-panel .seed-card .shop-seed-tile .crop-icon-corn        { background-image: url("assets/crops/seed_corn.svg?v=1") !important; }
+.shop-panel .seed-card .shop-seed-tile .crop-icon-chili       { background-image: url("assets/crops/seed_chili.svg?v=1") !important; }
+.shop-panel .seed-card .shop-seed-tile .crop-icon-cabbage     { background-image: url("assets/crops/seed_cabbage.svg?v=1") !important; }
+.shop-panel .seed-card .shop-seed-tile .crop-icon-tomato      { background-image: url("assets/crops/seed_tomato.svg?v=1") !important; }
+.shop-panel .seed-card .shop-seed-tile .crop-icon-eggplant    { background-image: url("assets/crops/seed_eggplant.svg?v=1") !important; }
+.shop-panel .seed-card .shop-seed-tile .crop-icon-carrot      { background-image: url("assets/crops/seed_carrot.svg?v=1") !important; }
+.shop-panel .seed-card .shop-seed-tile .crop-icon-onion       { background-image: url("assets/crops/seed_onion.svg?v=1") !important; }
+.shop-panel .seed-card .shop-seed-tile .crop-icon-cauliflower { background-image: url("assets/crops/seed_cauliflower.svg?v=1") !important; }
+.shop-panel .seed-card .shop-seed-tile .crop-icon-coconut     { background-image: url("assets/crops/seed_coconut.svg?v=1") !important; }
+
+/* =====================================================================
+   Coconut crop-icon shape — was missing from styles.css's per-crop list.
+   Match the pattern of the other crops so .crop-icon-coconut renders
+   correctly anywhere it's used (crop card art, etc.).
+   ===================================================================== */
+.crop-icon-coconut::before {
+    width: 34px !important;
+    height: 34px !important;
+    border-radius: 50% !important;
+    background:
+        radial-gradient(circle at 30% 28%, #c08850 0 18%, transparent 19%),
+        linear-gradient(135deg, #8b5a2b, #5a3514) !important;
+    border: 2px solid #3a1f0a !important;
+}
+
+/* Use the dedicated SVG for the crop card art (the popup that opens when
+   clicking a planted coconut). */
+.crop-card .card-art.crop-icon-coconut {
+    background-image: url("assets/crops/seed_coconut.svg?v=1") !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+}
+.crop-card .card-art.crop-icon-coconut::before,
+.crop-card .card-art.crop-icon-coconut::after {
+    display: none !important;
+}
+
+/* =====================================================================
+   Coconut crop-sprite — was missing the base dimensions/scale that every
+   other crop has in styles.css (line 2322+). Without width/height the
+   element renders at 0×0 and is invisible on the field. Set them here.
+   ===================================================================== */
+.crop-sprite-coconut {
+    width: 64px !important;
+    height: 88px !important;
+    --crop-scale: 0.92 !important;
+    background-image: url("assets/crops/young_coconut.svg?v=2") !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center bottom !important;
+}
+
+.crop-card .tags span.potential {
+    opacity: .58 !important;
+    filter: grayscale(.25) !important;
+}
+
+.crop-weather-effect,
+.crop-sprite.has-weather::before,
+.crop-sprite.has-weather::after {
+    opacity: .12 !important;
+}
+
+/* Crop size mutation: each plant keeps its stage scale, then applies an
+   individual size scale so the field visibly reflects the fruit size roll. */
+.crop-sprite {
+    transform: translate(-50%, calc(-96% - var(--size-lift, 0px))) scale(calc(var(--crop-scale, 1) * var(--size-scale, 1))) !important;
+    transform-origin: center bottom !important;
+    max-width: 96px !important;
+    max-height: 112px !important;
+}
+
+.crop-sprite:hover,
+.crop-sprite:focus-visible {
+    transform: translate(-50%, calc(-101% - var(--size-lift, 0px))) scale(calc(var(--crop-scale, 1) * var(--size-scale, 1) * 1.04)) !important;
+}
+
+.crop-sprite.stage-3 {
+    transform: translate(-50%, calc(-96% - var(--size-lift, 0px))) scale(calc(var(--crop-scale, 1) * var(--size-scale, 1))) !important;
+}
+
+.crop-sprite.stage-3:hover,
+.crop-sprite.stage-3:focus-visible {
+    transform: translate(-50%, calc(-101% - var(--size-lift, 0px))) scale(calc(var(--crop-scale, 1) * var(--size-scale, 1) * 1.04)) !important;
+}
+
+/* Tall/bushy mature crops can cover the plot behind them. Keep their visual
+   size readable while the numeric size still affects yield and price. */
+.crop-sprite-chili.stage-3,
+.crop-sprite-eggplant.stage-3,
+.crop-sprite-corn.stage-3 {
+    --crop-scale: .78 !important;
+    transform: translate(-50%, calc(-90% - var(--size-lift, 0px))) scale(calc(var(--crop-scale, 1) * var(--size-scale, 1))) !important;
+}
+
+.crop-sprite-chili.stage-3:hover,
+.crop-sprite-chili.stage-3:focus-visible,
+.crop-sprite-eggplant.stage-3:hover,
+.crop-sprite-eggplant.stage-3:focus-visible,
+.crop-sprite-corn.stage-3:hover,
+.crop-sprite-corn.stage-3:focus-visible {
+    transform: translate(-50%, calc(-94% - var(--size-lift, 0px))) scale(calc(var(--crop-scale, 1) * var(--size-scale, 1) * 1.03)) !important;
 }

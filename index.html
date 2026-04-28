@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>田园牧歌 Demo</title>
     <link rel="stylesheet" href="styles.css?v=17" />
-    <link rel="stylesheet" href="override.css?v=1777999013" />
+    <link rel="stylesheet" href="override.css?v=1777999026" />
   </head>
   <body>
     <main class="phone-shell" aria-label="田园牧歌农场游戏">
@@ -36,39 +36,47 @@
           <button id="boostBtn" class="round-btn" title="使用唤风铃加速所有作物">↻</button>
         </div>
 
+        <div class="zoom-controls" aria-label="地图缩放">
+          <button id="zoomInBtn" type="button" aria-label="放大地图">+</button>
+          <span id="zoomLabel">100%</span>
+          <button id="zoomOutBtn" type="button" aria-label="缩小地图">-</button>
+        </div>
+
 
         <aside class="left-menu" aria-label="记录">
           <button class="wood-btn small" id="settingsBtn">收获<br />设置</button>
           <button class="wood-btn small" id="logBtn">记录</button>
         </aside>
 
-        <section class="homestead" aria-label="建筑">
-          <button class="map-building farm-building" id="farmBuildingBtn" aria-label="农场">
-            <span class="building-label">农场</span>
-          </button>
-          <button class="map-building storage-building" id="storageBuildingBtn" aria-label="仓库">
-            <span class="building-label">仓库</span>
-          </button>
-          <button class="map-building shop-building" id="shopBuildingBtn" aria-label="商铺">
-            <span class="building-label">商铺</span>
-          </button>
-          <div class="shed" aria-hidden="true">
-            <div class="roof"></div>
-            <div class="wall"><span>农场</span></div>
-          </div>
-          <div class="pond"></div>
-          <div class="crates"><span></span><span></span><span></span></div>
-          <div class="merchant">
-            <div class="speech">35</div>
-            <div class="merchant-body">福</div>
-          </div>
-                </section>
+        <div class="world-layer" id="worldLayer">
+          <section class="homestead" aria-label="建筑">
+            <button class="map-building farm-building" id="farmBuildingBtn" aria-label="农场">
+              <span class="building-label">农场</span>
+            </button>
+            <button class="map-building storage-building" id="storageBuildingBtn" aria-label="仓库">
+              <span class="building-label">仓库</span>
+            </button>
+            <button class="map-building shop-building" id="shopBuildingBtn" aria-label="商铺">
+              <span class="building-label">商铺</span>
+            </button>
+            <div class="shed" aria-hidden="true">
+              <div class="roof"></div>
+              <div class="wall"><span>农场</span></div>
+            </div>
+            <div class="pond"></div>
+            <div class="crates"><span></span><span></span><span></span></div>
+            <div class="merchant">
+              <div class="speech">35</div>
+              <div class="merchant-body">福</div>
+            </div>
+          </section>
 
-        <section class="field-wrap">
-          <div class="timer">00:23:10</div>
-          <div class="field" id="field" aria-label="农田"></div>
-          <div class="crop-layer" id="cropLayer" aria-hidden="true"></div>
-                </section>
+          <section class="field-wrap">
+            <div class="timer">00:23:10</div>
+            <div class="field" id="field" aria-label="农田"></div>
+            <div class="crop-layer" id="cropLayer" aria-hidden="true"></div>
+          </section>
+        </div>
 
         <nav class="bottom-actions" aria-label="操作">
           <button class="wood-btn" id="plantAllBtn">播种</button>
@@ -96,7 +104,8 @@
             <div class="rarity-tag" id="cardRarity">普通</div>
             <h2 id="cardName">小型玉米</h2>
             <div class="card-art" id="cardArt"></div>
-            <div class="price-row"><span class="coin"></span><strong id="cardPrice">8671</strong><button>!</button></div>
+            <div class="price-row"><span class="coin"></span><strong id="cardPrice">8671</strong><button id="priceInfoBtn" aria-label="价格说明">!</button></div>
+            <div class="price-info-popover" id="priceInfoPopover" hidden></div>
             <div class="life-row"><span class="water-drop"></span><div><i id="cardLife"></i></div><b id="cardLifeText">100/100</b></div>
             <p>产量 <strong id="cardYield">2.3斤</strong></p>
             <p>天气词条 <strong id="cardWeather">折枝 0.3倍</strong></p>
@@ -164,9 +173,9 @@
     </main>
 
     
-    <script src="weather-modal.js?v=3"></script>
-    <script src="seed-modal.js?v=3"></script>
-    <script src="game.js?v=2"></script>
-    <script src="shop-modal.js?v=2"></script>
+    <script src="weather-modal.js?v=4"></script>
+    <script src="seed-modal.js?v=4"></script>
+    <script src="game.js?v=10"></script>
+    <script src="shop-modal.js?v=3"></script>
   </body>
 </html>

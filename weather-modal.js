@@ -30,6 +30,11 @@ const weathers = [
 ];
 
 const seasons = ['春', '夏', '秋', '冬'];
+const WEATHER_CYCLE_MS = 20 * 60 * 1000;
+
+function getCurrentWeather() {
+    return forecastData[0]?.weather || weathers[0];
+}
 
 // Randomly generate the next 24 hours of weather just once to keep it consistent
 const forecastData = [];
@@ -53,6 +58,11 @@ function updateCurrentWeather() {
     }
 }
 
+window.gameWeather = {
+    getCurrent: getCurrentWeather,
+    list: weathers
+};
+
 function generateForecast() {
     const list = document.getElementById("weatherList");
     list.innerHTML = "";
@@ -60,8 +70,9 @@ function generateForecast() {
     const now = new Date();
     
     for (let i = 0; i < 8; i++) {
-        const time = new Date(now.getTime() + i * 60 * 60 * 1000); 
+        const time = new Date(now.getTime() + i * WEATHER_CYCLE_MS); 
         const hour = String(time.getHours()).padStart(2, '0');
+        const minute = String(time.getMinutes()).padStart(2, '0');
         const data = forecastData[i];
         
         const row = document.createElement("div");
@@ -80,7 +91,7 @@ function generateForecast() {
             <div style="font-size: 30px; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3));">${data.weather.icon}</div>
             <div style="flex-grow: 1; text-align: left;">
                 <div style="font-size: 14px; font-weight: bold; color: #a63a15; margin-bottom: 4px;">
-                    ${i === 0 ? '<span style="background: #f97316; color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px; margin-right: 5px;">当前</span>' : `<span style="color:#8b5a33; font-family: monospace;">${hour}:00</span> `} 
+                    ${i === 0 ? '<span style="background: #f97316; color: white; padding: 2px 6px; border-radius: 4px; font-size: 10px; margin-right: 5px;">当前</span>' : `<span style="color:#8b5a33; font-family: monospace;">${hour}:${minute}</span> `} 
                     <span style="background: #d97b41; color: white; padding: 1px 4px; border-radius: 4px; font-size: 11px; margin-right: 5px;">${data.season}</span> 
                     ${data.weather.name}
                 </div>
@@ -123,7 +134,7 @@ weatherBtn.style.cursor = 'pointer';
 
 // Initialize
 updateCurrentWeather();
-// Cycle weather every hour in game time (e.g. every 60 seconds real time)
+// Cycle weather every 20 real minutes.
 setInterval(() => {
     forecastData.shift();
     forecastData.push({
@@ -131,4 +142,4 @@ setInterval(() => {
         weather: weathers[Math.floor(Math.random() * weathers.length)]
     });
     updateCurrentWeather();
-}, 60000);
+}, WEATHER_CYCLE_MS);
