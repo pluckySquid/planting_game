@@ -8,7 +8,9 @@ const unlockModalHtml = `
   </div>
 </div>
 `;
-document.body.insertAdjacentHTML("beforeend", unlockModalHtml);
+// Insert into .game so the modal is scoped to the phone-shell, not the whole desktop browser.
+const __unlockHost = document.querySelector(".game") || document.body;
+__unlockHost.insertAdjacentHTML("beforeend", unlockModalHtml);
 
 const unlockModal = document.getElementById("unlockModal");
 const closeUnlockModalBtn = document.getElementById("closeUnlockModalBtn");

@@ -2989,12 +2989,14 @@ body .game .task::before {
     top: 200px !important;
 }
 
-/* Shop mirrors Farm across the field's vertical center axis (x=215). */
+/* Shop sits at the upper-right of Storage along the field's 45° tilt:
+   Storage center (90, 365 game-coords) -> Shop center (150, 305) means
+   +60 right and -60 up = exactly 45°, matching the diamond's edge. */
 .shop-building {
     background-image: url("assets/buildings/shop.svg") !important;
-    left: 0 !important;
+    left: 120px !important;
     right: auto !important;
-    top: 200px !important;
+    top: 145px !important;
 }
 
 /* Kill any ::before/::after decorative pseudo-elements that earlier rules drew on
@@ -3055,62 +3057,79 @@ body .game .task::before {
     cursor: pointer !important;
 }
 
-/* === Building panels fill the .phone-shell (the in-game screen), not the desktop browser window ===
-   Uses position: absolute so the dialog matches the phone-shell on desktop too. */
+/* === Centered-card dialogs (panels + seed-style modals) ===
+   Reasonable size — fits comfortably inside the phone-shell with a paper/card
+   look (border, rounded corners, drop shadow). NOT full-screen, NOT a
+   draggable floating box. Matches the in-game card aesthetic. */
+
+/* Building panels: shop, farm, storage, generic .panel */
 .panel,
 .shop-panel,
 .farm-panel,
 .storage-panel {
     position: absolute !important;
-    left: 0 !important;
-    right: 0 !important;
-    top: 0 !important;
-    bottom: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
+    left: 50% !important;
+    top: 50% !important;
+    right: auto !important;
+    bottom: auto !important;
+    inset: auto !important;
+    transform: translate(-50%, -50%) !important;
+    width: min(340px, calc(100% - 24px)) !important;
+    height: auto !important;
     max-width: none !important;
-    max-height: none !important;
+    max-height: calc(100% - 60px) !important;
     margin: 0 !important;
-    padding: 70px 20px 30px !important;
-    border-radius: 0 !important;
-    border: 0 !important;
-    box-shadow: none !important;
-    transform: none !important;
+    padding: 50px 20px 30px !important;
+    border: 5px solid #5b2b19 !important;
+    border-radius: 14px !important;
+    box-shadow: 0 14px 36px rgba(0,0,0,.5) !important;
+    background: linear-gradient(#c58c62, #b8774f) !important;
     overflow-y: auto !important;
     z-index: 20000 !important;
-    background: linear-gradient(#c58c62, #b8774f) !important;
-    inset: 0 !important;
 }
 
-/* Title bar pinned to the top of the phone-shell, not the browser. */
+/* Title plaque sticks up from the top edge of the card, like a banner. */
 .panel .panel-title,
 .shop-panel .panel-title,
 .farm-panel .panel-title,
 .storage-panel .panel-title {
     position: absolute !important;
-    top: 12px !important;
+    top: -20px !important;
     left: 50% !important;
     right: auto !important;
     bottom: auto !important;
     transform: translateX(-50%) !important;
     z-index: 20001 !important;
     margin: 0 !important;
+    white-space: nowrap !important;
 }
 
-/* Close button anchored to the top-right corner of the phone-shell. */
+/* X close button at the top-right corner inside the card. */
 .panel .panel-close,
 .shop-panel .panel-close,
 .farm-panel .panel-close,
 .storage-panel .panel-close {
     position: absolute !important;
-    top: 12px !important;
-    right: 14px !important;
-    left: auto !important;
+    top: 8px !important;
+    right: 8px !important;
     bottom: auto !important;
+    left: auto !important;
+    width: 32px !important;
+    height: 32px !important;
+    line-height: 28px !important;
+    padding: 0 !important;
+    border: 2px solid #5a2817 !important;
+    border-radius: 50% !important;
+    background: #c3402d !important;
+    color: #fff !important;
+    font-size: 18px !important;
+    font-weight: 900 !important;
+    text-align: center !important;
     z-index: 20002 !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
 }
 
-/* Inner content uses the full panel width. */
 .shop-panel .seed-grid,
 .farm-panel .farm-preview,
 .farm-panel .mini-farm-art {
@@ -3118,7 +3137,7 @@ body .game .task::before {
     width: 100% !important;
 }
 
-/* Seed modal overlay: dim only the phone-shell area, not the desktop background. */
+/* Seed/unlock/etc. modal — same centered card pattern, cream background. */
 .seed-modal {
     position: absolute !important;
     inset: 0 !important;
@@ -3129,16 +3148,278 @@ body .game .task::before {
 
 .seed-modal .seed-modal-content {
     position: absolute !important;
-    inset: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
+    left: 50% !important;
+    top: 50% !important;
+    right: auto !important;
+    bottom: auto !important;
+    inset: auto !important;
+    transform: translate(-50%, -50%) !important;
+    width: min(330px, calc(100% - 24px)) !important;
+    height: auto !important;
     max-width: none !important;
-    max-height: none !important;
-    border-radius: 0 !important;
-    transform: none !important;
+    max-height: calc(100% - 60px) !important;
     margin: 0 !important;
-    padding: 70px 20px 30px !important;
+    padding: 24px 18px 20px !important;
+    border: 4px solid #e6a861 !important;
+    border-radius: 14px !important;
+    box-shadow: 0 14px 36px rgba(0,0,0,.5) !important;
+    background: #fdf5e6 !important;
     overflow-y: auto !important;
+}
+
+/* X close button on cream-card modals (seed, unlock, etc.) */
+.seed-modal .panel-close {
+    position: absolute !important;
+    top: 8px !important;
+    right: 8px !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: 32px !important;
+    height: 32px !important;
+    line-height: 28px !important;
+    padding: 0 !important;
+    border: 2px solid #5a2817 !important;
+    border-radius: 50% !important;
+    background: #c3402d !important;
+    color: #fff !important;
+    font-size: 18px !important;
+    font-weight: 900 !important;
+    text-align: center !important;
+    z-index: 20002 !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+}
+
+/* === Seed modal: BOTTOM-ANCHORED dock (NOT centered, NOT fullscreen) ===
+   Floats up from the bottom of the phone-shell. The rest of the game
+   stays visible and interactive — no dim backdrop. Horizontal scrollable
+   row of seed bags, no visible scrollbar. */
+#seedModal.seed-modal {
+    position: absolute !important;
+    inset: auto 0 0 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    top: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;     /* no dim — see-through */
+    pointer-events: none !important;        /* clicks pass through except on the card */
+    z-index: 19990 !important;
+    display: block !important;
+}
+
+#seedModal[hidden] {
+    display: none !important;
+}
+
+#seedModal .seed-modal-content {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    inset: auto !important;
+    transform: none !important;
+    width: 100% !important;
+    max-width: none !important;
+    height: auto !important;
+    max-height: 42vh !important;
+    margin: 0 !important;
+    padding: 32px 14px 14px !important;
+    border: 5px solid #5c3318 !important;
+    border-bottom: 0 !important;
+    border-radius: 22px 22px 0 0 !important;
+    background:
+        linear-gradient(#dcab73, #b67e3f) !important;
+    box-shadow: 0 -10px 28px rgba(0,0,0,.4) !important;
+    overflow: visible !important;
+    pointer-events: auto !important;        /* the card itself takes clicks */
+}
+
+/* "种子" title — wooden ribbon plaque sitting on top-left of the dock. */
+#seedModal .seed-modal-content h3 {
+    position: absolute !important;
+    top: -10px !important;
+    left: 14px !important;
+    margin: 0 !important;
+    padding: 6px 22px !important;
+    background: linear-gradient(#9a4a2c, #6d2d1a) !important;
+    color: #ffe1bd !important;
+    border: 3px solid #4d2013 !important;
+    border-radius: 10px !important;
+    font-size: 16px !important;
+    font-weight: 900 !important;
+    letter-spacing: 3px !important;
+    text-align: center !important;
+    z-index: 5 !important;
+}
+
+/* X close button — round red, top-right corner of the dock. */
+#seedModal .panel-close {
+    position: absolute !important;
+    top: -10px !important;
+    right: 10px !important;
+    bottom: auto !important;
+    left: auto !important;
+    width: 32px !important;
+    height: 32px !important;
+    line-height: 28px !important;
+    padding: 0 !important;
+    border: 3px solid #4d2013 !important;
+    border-radius: 50% !important;
+    background: #c3402d !important;
+    color: #fff !important;
+    font-size: 18px !important;
+    font-weight: 900 !important;
+    text-align: center !important;
+    z-index: 6 !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+}
+
+/* Horizontal scrollable row of seed bags. .game has touch-action:none for
+   map dragging, so we re-enable horizontal panning here. */
+#seedModal,
+#seedModal .seed-modal-content {
+    touch-action: pan-x pan-y !important;
+}
+
+#seedModal .seed-grid-modal {
+    display: flex !important;
+    flex-direction: row !important;
+    grid-template-columns: none !important;
+    gap: 10px !important;
+    width: 100% !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 6px 4px 10px !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-snap-type: x proximity !important;
+    touch-action: pan-x !important;
+    cursor: grab !important;
+    user-select: none !important;
+}
+
+#seedModal .seed-grid-modal.dragging {
+    cursor: grabbing !important;
+    scroll-snap-type: none !important;
+}
+
+/* Each seed bag card. */
+#seedModal .seed-modal-btn {
+    flex: 0 0 82px !important;
+    min-width: 82px !important;
+    width: 82px !important;
+    padding: 10px 6px 8px !important;
+    background: linear-gradient(#efd6a5, #e2bf81) !important;
+    border: 3px solid #8a5a2d !important;
+    border-radius: 12px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 4px !important;
+    scroll-snap-align: start !important;
+    cursor: pointer !important;
+    transition: transform .12s ease, filter .12s ease !important;
+}
+
+#seedModal .seed-modal-btn:hover {
+    transform: translateY(-2px) !important;
+    filter: brightness(1.05) drop-shadow(0 0 6px rgba(255,220,90,.55)) !important;
+    background: linear-gradient(#f5e0b0, #e8c98a) !important;
+}
+
+#seedModal .seed-modal-btn .crop-icon {
+    width: 46px !important;
+    height: 46px !important;
+}
+
+#seedModal .seed-modal-btn strong {
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    color: #5b2b19 !important;
+    text-align: center !important;
+    line-height: 1.15 !important;
+    white-space: nowrap !important;
+}
+
+#seedModal .seed-modal-btn span {
+    font-size: 11px !important;
+    color: #6e3e22 !important;
+}
+
+/* === Unlock modal stays as a small centered confirmation card === */
+#unlockModal.seed-modal {
+    position: absolute !important;
+    inset: 0 !important;
+    padding: 0 !important;
+    background: rgba(0,0,0,.45) !important;
+    z-index: 19990 !important;
+}
+
+#unlockModal[hidden] {
+    display: none !important;
+}
+
+#unlockModal .seed-modal-content {
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    right: auto !important;
+    bottom: auto !important;
+    inset: auto !important;
+    transform: translate(-50%, -50%) !important;
+    width: min(320px, calc(100% - 24px)) !important;
+    max-width: none !important;
+    height: auto !important;
+    max-height: calc(100% - 60px) !important;
+    margin: 0 !important;
+    padding: 24px 18px 20px !important;
+    border: 4px solid #e6a861 !important;
+    border-radius: 14px !important;
+    background: #fdf5e6 !important;
+    box-shadow: 0 14px 36px rgba(0,0,0,.5) !important;
+    overflow-y: auto !important;
+}
+
+/* === Hide visible scrollbars on every popup — scrolling still works,
+   the "drag handle" looking bar is just invisible. === */
+.panel,
+.shop-panel,
+.farm-panel,
+.storage-panel,
+.seed-modal,
+.seed-modal .seed-modal-content,
+.seed-modal .seed-grid-modal,
+#seedModal .seed-modal-content,
+#seedModal .seed-grid-modal,
+#unlockModal .seed-modal-content,
+#weatherModal .seed-modal-content {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+}
+
+.panel::-webkit-scrollbar,
+.shop-panel::-webkit-scrollbar,
+.farm-panel::-webkit-scrollbar,
+.storage-panel::-webkit-scrollbar,
+.seed-modal::-webkit-scrollbar,
+.seed-modal .seed-modal-content::-webkit-scrollbar,
+.seed-modal .seed-grid-modal::-webkit-scrollbar,
+#seedModal .seed-modal-content::-webkit-scrollbar,
+#seedModal .seed-grid-modal::-webkit-scrollbar,
+#unlockModal .seed-modal-content::-webkit-scrollbar,
+#weatherModal .seed-modal-content::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    background: transparent !important;
 }
 
 /* Weather modal: scoped to the phone-shell (it's now inserted inside .game),
@@ -3193,4 +3474,34 @@ body .game .task::before {
     z-index: 30 !important;
     pointer-events: auto !important;
     cursor: pointer !important;
+}
+
+/* === Lock the field to the background ===
+   Earlier rules made the background move at a parallax rate (18% / 12%) while
+   the field/buildings moved at 100%. That made them "drift apart" while the
+   user dragged. Sync the background to 1:1 so everything moves together,
+   and enlarge the background so there's room to pan and reveal more world. */
+.game {
+    background-size: 200% 200% !important;
+    background-position: calc(50% + var(--map-x)) calc(50% + var(--map-y)) !important;
+}
+
+/* Keep building panels inside the phone game screen.
+   These panels live inside .game, so use fixed in-game side gutters instead of
+   horizontal translate centering, which can resolve against a zero-width box. */
+#shopPanel.panel,
+#farmPanel.panel,
+#storagePanel.panel {
+    position: absolute !important;
+    left: 24px !important;
+    right: 24px !important;
+    top: 72px !important;
+    bottom: auto !important;
+    inset: 72px 24px auto 24px !important;
+    width: auto !important;
+    max-width: none !important;
+    height: auto !important;
+    max-height: calc(100% - 120px) !important;
+    transform: none !important;
+    overflow-y: auto !important;
 }
