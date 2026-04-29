@@ -31,25 +31,12 @@ function openSeedModal(index) {
         const btn = document.createElement("button");
         btn.className = "seed-modal-btn" + (count === 0 ? " locked" : "");
         btn.dataset.count = String(count);
+        btn.dataset.modalSeed = seedKey;
         btn.innerHTML = `
             <div class="crop-icon crop-icon-${seedKey}"></div>
             <strong>${crop.seed}</strong>
             <span class="seed-count">${count}</span>
         `;
-        btn.addEventListener("click", () => {
-            // Suppress click that ends a drag-scroll.
-            if (seedModalList.dataset.justDragged === "1") {
-                seedModalList.dataset.justDragged = "0";
-                return;
-            }
-            if (state.inventory[seedKey] > 0) {
-                state.selectedSeed = seedKey;
-                plant(targetPlotIndex, seedKey);
-                seedModal.hidden = true;
-            } else {
-                showToast("种子不足，请前往商铺购买！");
-            }
-        });
         seedModalList.appendChild(btn);
     });
 
@@ -66,6 +53,7 @@ function openSeedModal(index) {
 
     seedModalList.addEventListener("pointerdown", (e) => {
         if (e.pointerType === "touch") return; // let native touch scrolling handle it
+        if (e.target.closest(".seed-modal-btn")) return; // keep Chrome click targeting on the seed button
         dragging = true;
         moved = 0;
         startX = e.clientX;
@@ -92,3 +80,23 @@ function openSeedModal(index) {
     seedModalList.addEventListener("pointerup", endDrag);
     seedModalList.addEventListener("pointercancel", endDrag);
 })();
+
+seedModalList.addEventListener("click", (event) => {
+    const seedButton = event.target.closest("[data-modal-seed]");
+    if (!seedButton) return;
+    event.preventDefault();
+    event.stopPropagation();
+    if (seedModalList.dataset.justDragged === "1") {
+        seedModalList.dataset.justDragged = "0";
+        return;
+    }
+
+    const seedKey = seedButton.dataset.modalSeed;
+    if (state.inventory[seedKey] > 0) {
+        state.selectedSeed = seedKey;
+        plant(targetPlotIndex, seedKey);
+        seedModal.hidden = true;
+    } else {
+        showToast("种子不足，请前往商铺购买！");
+    }
+});

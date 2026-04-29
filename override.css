@@ -1316,7 +1316,10 @@
     transform: translate(calc(-50% + var(--map-x)), var(--map-y)) !important;
 }
 .scarecrow {
-    transform: translate(calc(-50% + var(--map-x)), var(--map-y)) !important;
+    left: 34% !important;
+    top: 154px !important;
+    transform: translate(calc(-50% + var(--map-x)), var(--map-y)) scale(var(--map-zoom)) !important;
+    transform-origin: center bottom !important;
 }
 
 /* --- ABSOLUTE FINAL TASK BAR AND CHAT FIX --- */
@@ -4770,4 +4773,13 @@ body .game .task::before {
 .crop-sprite-corn.stage-3:hover,
 .crop-sprite-corn.stage-3:focus-visible {
     transform: translate(-50%, calc(-94% - var(--size-lift, 0px))) scale(calc(var(--crop-scale, 1) * var(--size-scale, 1) * 1.03)) !important;
+}
+
+/* Keep the decorative farm character anchored to a fixed map location. It
+   should move with map pan/zoom, but not drift relative to the road. */
+.scarecrow {
+    left: 34% !important;
+    top: 154px !important;
+    transform: translate(calc(-50% + var(--map-x)), var(--map-y)) scale(var(--map-zoom)) !important;
+    transform-origin: center bottom !important;
 }

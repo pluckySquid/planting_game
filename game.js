@@ -143,9 +143,9 @@ function load() {
 function normalize(source) {
   const next = structuredClone(source);
   next.selectedSeed = CROPS[next.selectedSeed] ? next.selectedSeed : "chili";
-  next.mapX = Number.isFinite(next.mapX) ? next.mapX : 0;
-  next.mapY = Number.isFinite(next.mapY) ? next.mapY : 0;
-  next.zoom = Number.isFinite(next.zoom) ? clamp(next.zoom, 0.8, 2.5) : 1;
+  next.mapX = 0;
+  next.mapY = 0;
+  next.zoom = 1;
   next.lastLifeTick = Number.isFinite(next.lastLifeTick) ? next.lastLifeTick : Date.now();
   next.inventory = next.inventory || {};
   CROP_ORDER.forEach((key) => {
@@ -207,7 +207,11 @@ function normalizeCropSize(size, fallbackSeed) {
 }
 
 function save() {
-  localStorage.setItem(SAVE_KEY, JSON.stringify(state));
+  const snapshot = structuredClone(state);
+  snapshot.mapX = 0;
+  snapshot.mapY = 0;
+  snapshot.zoom = 1;
+  localStorage.setItem(SAVE_KEY, JSON.stringify(snapshot));
 }
 
 function cropStage(plot) {
