@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>田园牧歌 Demo</title>
     <link rel="stylesheet" href="styles.css?v=17" />
-    <link rel="stylesheet" href="override.css?v=1778088061" />
+    <link rel="stylesheet" href="override.css?v=1778103605" />
   </head>
   <body>
     <main class="phone-shell" aria-label="田园牧歌农场游戏">
@@ -15,7 +15,6 @@
         </div>
         <div class="version">13110152814&nbsp;&nbsp;6550<br />10.2244_10.2244</div>
         <div class="gate" aria-hidden="true"></div>
-        <div class="scarecrow" aria-hidden="true"></div>
 
         <header class="topbar">
           <div class="farm-badge">
@@ -50,6 +49,7 @@
 
         <div class="world-layer" id="worldLayer">
           <section class="homestead" aria-label="建筑">
+            <div class="scarecrow" aria-hidden="true"></div>
             <button class="map-building farm-building" id="farmBuildingBtn" aria-label="农场">
               <span class="building-label">农场</span>
             </button>
@@ -107,7 +107,7 @@
             <div class="price-row"><span class="coin"></span><strong id="cardPrice">8671</strong><button id="priceInfoBtn" aria-label="价格说明">!</button></div>
             <div class="price-info-popover" id="priceInfoPopover" hidden></div>
             <div class="life-row"><span class="water-drop"></span><div><i id="cardLife"></i></div><b id="cardLifeText">100/100</b></div>
-            <p>产量 <strong id="cardYield">2.3斤</strong></p>
+            <p>产量 <strong id="cardYield">2.3斤</strong><button id="yieldInfoBtn" class="yield-info-btn" aria-label="产量范围说明">?</button></p>
             <p>天气词条 <strong id="cardWeather">折枝 0.3倍</strong></p>
             <div class="tags" id="cardTags"></div>
           </div>
@@ -135,12 +135,13 @@
           </div>
           <h3>升级效果</h3>
           <div class="upgrade-list" id="upgradeList"></div>
-          <button class="upgrade-button" id="upgradeFarmBtn">升级</button>
+          <button class="upgrade-button" id="upgradeFarmBtn">看广告 +100上限</button>
                 </section>
 
         <section class="panel storage-panel" id="storagePanel" hidden>
           <div class="panel-title">仓库</div>
           <button class="panel-close" data-close="storagePanel">×</button>
+          <div class="storage-detail" id="storageDetail" hidden></div>
           <div class="storage-grid" id="storageGrid"></div>
                 </section>
 
@@ -148,6 +149,7 @@
           <div class="panel-title">作物图鉴</div>
           <button class="panel-close" data-close="bookPanel">×</button>
           <div class="book-tabs"><span>普通</span><span>常见</span><span>稀有</span></div>
+          <div class="book-detail" id="bookDetail" hidden></div>
           <div class="book-grid" id="bookGrid"></div>
                 </section>
 
@@ -175,7 +177,7 @@
     
     <script src="weather-modal.js?v=4"></script>
     <script src="seed-modal.js?v=5"></script>
-    <script src="game.js?v=11"></script>
-    <script src="shop-modal.js?v=3"></script>
+    <script src="game.js?v=39"></script>
+    <script src="shop-modal.js?v=9"></script>
   </body>
 </html>

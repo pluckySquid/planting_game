@@ -1,0 +1,137 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 1200" preserveAspectRatio="none">
+  <defs>
+    <linearGradient id="forestGround" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6bbf59"/>
+      <stop offset=".42" stop-color="#91d95f"/>
+      <stop offset="1" stop-color="#5fa83e"/>
+    </linearGradient>
+    <linearGradient id="sand" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#dfbc80"/>
+      <stop offset="1" stop-color="#c99755"/>
+    </linearGradient>
+    <linearGradient id="grass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#82c94f"/>
+      <stop offset="1" stop-color="#5d9d36"/>
+    </linearGradient>
+    <linearGradient id="cliff" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8ea687"/>
+      <stop offset=".55" stop-color="#687d78"/>
+      <stop offset="1" stop-color="#40535a"/>
+    </linearGradient>
+    <radialGradient id="leaf" cx="42%" cy="34%" r="66%">
+      <stop offset="0" stop-color="#9be66d"/>
+      <stop offset=".56" stop-color="#4f9a3d"/>
+      <stop offset="1" stop-color="#245b2d"/>
+    </radialGradient>
+    <radialGradient id="shadow" cx="50%" cy="50%" r="65%">
+      <stop offset="0" stop-color="#2f6829" stop-opacity=".24"/>
+      <stop offset="1" stop-color="#2f6829" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="860" height="1200" fill="url(#forestGround)"/>
+
+  <!-- Deep forest backdrop, like the reference map top edge. -->
+  <g opacity=".98">
+    <rect x="0" y="0" width="860" height="145" fill="#2f6d45"/>
+    <g fill="url(#leaf)">
+      <ellipse cx="30" cy="90" rx="105" ry="70"/>
+      <ellipse cx="120" cy="82" rx="120" ry="76"/>
+      <ellipse cx="235" cy="92" rx="118" ry="78"/>
+      <ellipse cx="350" cy="78" rx="125" ry="76"/>
+      <ellipse cx="482" cy="92" rx="126" ry="82"/>
+      <ellipse cx="620" cy="82" rx="130" ry="78"/>
+      <ellipse cx="760" cy="92" rx="128" ry="82"/>
+      <ellipse cx="875" cy="82" rx="105" ry="72"/>
+    </g>
+    <g opacity=".38" fill="#b5f07d">
+      <ellipse cx="170" cy="58" rx="34" ry="18"/>
+      <ellipse cx="330" cy="42" rx="40" ry="20"/>
+      <ellipse cx="520" cy="58" rx="38" ry="18"/>
+      <ellipse cx="700" cy="48" rx="34" ry="18"/>
+    </g>
+  </g>
+
+  <!-- Homestead plaza. Buildings are separate DOM sprites placed on top. -->
+  <path d="M0,118 C130,92 260,128 410,110 C560,90 720,118 860,100 L860,382 C710,400 575,362 430,384 C275,408 145,372 0,390 Z"
+        fill="url(#sand)"/>
+  <g opacity=".18" fill="#8a642f">
+    <ellipse cx="120" cy="235" rx="95" ry="30"/>
+    <ellipse cx="350" cy="245" rx="110" ry="34"/>
+    <ellipse cx="600" cy="230" rx="105" ry="32"/>
+    <ellipse cx="770" cy="320" rx="82" ry="28"/>
+  </g>
+  <path d="M35,330 C165,300 260,345 395,320 C540,292 675,336 835,304"
+        fill="none" stroke="#e8d09a" stroke-width="58" stroke-linecap="round" opacity=".55"/>
+
+  <!-- Wooden fence separating shops from field. -->
+  <g stroke="#653914" stroke-width="4" stroke-linecap="round">
+    <path d="M0,365 C145,356 242,374 365,363"/>
+    <path d="M0,385 C145,376 242,394 365,383"/>
+    <path d="M500,363 C620,374 725,352 860,365"/>
+    <path d="M500,383 C620,394 725,372 860,385"/>
+  </g>
+  <g fill="#a4703a" stroke="#653914" stroke-width="2">
+    <rect x="28" y="342" width="12" height="56" rx="3"/>
+    <rect x="104" y="338" width="12" height="56" rx="3"/>
+    <rect x="180" y="346" width="12" height="56" rx="3"/>
+    <rect x="286" y="344" width="12" height="56" rx="3"/>
+    <rect x="540" y="342" width="12" height="56" rx="3"/>
+    <rect x="620" y="346" width="12" height="56" rx="3"/>
+    <rect x="705" y="338" width="12" height="56" rx="3"/>
+    <rect x="790" y="344" width="12" height="56" rx="3"/>
+  </g>
+
+  <!-- Farm field zone. The interactive 10x10 diamond sits here. -->
+  <path d="M0,385 C150,372 275,406 430,386 C585,366 705,390 860,372 L860,920 C710,960 585,925 430,950 C275,980 145,938 0,970 Z"
+        fill="url(#grass)"/>
+  <g fill="url(#shadow)">
+    <ellipse cx="112" cy="520" rx="112" ry="42"/>
+    <ellipse cx="430" cy="610" rx="150" ry="50"/>
+    <ellipse cx="705" cy="540" rx="110" ry="40"/>
+    <ellipse cx="250" cy="790" rx="135" ry="46"/>
+    <ellipse cx="620" cy="820" rx="130" ry="44"/>
+  </g>
+  <polygon points="430,410 810,690 430,970 50,690"
+           fill="#3f7d2f" opacity=".08" stroke="#315e24" stroke-opacity=".14" stroke-width="2"/>
+
+  <!-- Decorative stones, tools, and fence fragments inspired by the screenshots. -->
+  <g fill="#b9b08b" stroke="#746a50" stroke-width="2" opacity=".9">
+    <ellipse cx="88" cy="300" rx="18" ry="10"/>
+    <ellipse cx="110" cy="309" rx="14" ry="8"/>
+    <ellipse cx="720" cy="760" rx="26" ry="14"/>
+    <ellipse cx="760" cy="785" rx="34" ry="18"/>
+    <ellipse cx="160" cy="1040" rx="38" ry="18"/>
+    <ellipse cx="220" cy="1064" rx="28" ry="14"/>
+  </g>
+  <g stroke="#7c4a20" stroke-width="5" stroke-linecap="round" opacity=".95">
+    <path d="M120,1050 L300,1080"/>
+    <path d="M130,1072 L310,1102"/>
+    <path d="M135,1030 L135,1085"/>
+    <path d="M210,1042 L210,1098"/>
+    <path d="M292,1056 L292,1112"/>
+    <path d="M690,960 L835,920"/>
+    <path d="M700,982 L845,942"/>
+    <path d="M710,934 L710,990"/>
+    <path d="M790,914 L790,970"/>
+  </g>
+  <g opacity=".45" fill="#bbed75">
+    <ellipse cx="70" cy="520" rx="24" ry="8"/>
+    <ellipse cx="790" cy="520" rx="24" ry="8"/>
+    <ellipse cx="80" cy="850" rx="24" ry="8"/>
+    <ellipse cx="760" cy="870" rx="26" ry="9"/>
+    <ellipse cx="420" cy="1020" rx="30" ry="10"/>
+  </g>
+
+  <!-- Cliff at the far lower map, so dragging has somewhere believable to go. -->
+  <path d="M0,950 C150,910 275,985 430,940 C585,895 710,950 860,910 L860,1200 L0,1200 Z"
+        fill="url(#cliff)"/>
+  <g opacity=".24" fill="#d3e4d3">
+    <path d="M50,1000 L150,1185 L95,1200 L0,1040 Z"/>
+    <path d="M320,980 L420,1200 L330,1200 L250,1015 Z"/>
+    <path d="M650,970 L810,1200 L690,1200 L575,1010 Z"/>
+  </g>
+
+  <rect width="860" height="1200" fill="none" stroke="rgba(0,0,0,.18)" stroke-width="2"/>
+  <rect width="860" height="1200" fill="rgba(0,0,0,.14)"/>
+</svg>
