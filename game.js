@@ -293,11 +293,20 @@ function currentWeatherMutation() {
   return PLANT_WEATHER_MUTATIONS.find((item) => item.id === mutationId) || null;
 }
 
+
 function weatherMutationChance(plotOrStage = 1) {
   const stage = typeof plotOrStage === "number" ? plotOrStage : cropStage(plotOrStage);
-  if (stage <= 1) return 0.08;
-  if (stage === 2) return 0.04;
-  return 0.01;
+  
+  if (stage < 3) {
+      // 幼苗期 (小时候) 有 60% 概率获得当前天气
+      return 0.60; 
+  } else {
+      // 成熟后 (stage 3)，如果生机不为零，有 10% 概率获得天气
+      if (typeof plotOrStage === "object" && lifeLeft(plotOrStage) > 0) {
+          return 0.10;
+      }
+      return 0; // 生机为 0 或者是无上下文的直接调用成熟期，默认为 0
+  }
 }
 
 function rollPlantWeather(plotOrStage = 1) {
